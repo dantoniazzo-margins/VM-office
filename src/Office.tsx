@@ -16,6 +16,11 @@ import { Whiteboard } from '_entities/whiteboard';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Pillar } from '_entities/pillar';
+import { TvTable } from '_entities/tv-table';
+import { Chair } from '_entities/chair';
+import { Shelf } from '_entities/shelf';
+import { TV } from '_entities/tv';
+import { Couch } from '_entities/couch';
 
 export default function Office() {
   const [hitSound] = useState(() => new Audio('./hit.mp3'));
@@ -92,6 +97,7 @@ export default function Office() {
           position-z={FLOOR_LENGTH / 2 - WALL_WIDTH / 2}
           position-x={FLOOR_WIDTH / 3 / 2}
         />
+        <Pillar position-x={4.75} position-z={-18} />
 
         <Desk position-z={-16} position-x={3} />
         <Desk position-z={-17.75} position-x={3} />
@@ -117,6 +123,12 @@ export default function Office() {
         <Desk position-z={-11.75} position-x={4.5} rotation-y={Math.PI * 0.5} />
         <Desk position-z={-12.75} position-x={4.5} rotation-y={Math.PI * 0.5} />
 
+        <Chair
+          position-z={-17.75}
+          position-x={3.75}
+          rotation-y={Math.PI * -0.5}
+        />
+
         <Wall length={4} position-x={3.75} position-z={-9} />
         {/* Middle section */}
 
@@ -128,10 +140,10 @@ export default function Office() {
           opacity={0.4}
           width={0.1}
         />
-        <Desk position-z={-2.5} position-x={2} />
-        <Desk position-z={-0.75} position-x={2} />
+        <Desk position-z={-1.25} position-x={2} />
+        <Desk position-z={0.5} position-x={2} />
         <Whiteboard
-          position-z={0}
+          position-z={2}
           position-x={-0.8}
           rotation-y={Math.PI * 0.3}
         />
@@ -178,7 +190,16 @@ export default function Office() {
           <Desk position-z={9} position-x={1.75} rotation-y={Math.PI * 0.5} />
           <Desk position-z={9} position-x={3.5} rotation-y={Math.PI * 0.5} />
         </group>
-        <Pillar position-x={4.75} position-z={-18} />
+        <Pillar position-z={14} position-x={4.75} />
+        <Shelf position-z={14} position-x={1} scale={[2.5, 0.8, 1]} />
+        <Couch position-z={16.7} position-x={2} />
+        <TV
+          position-z={19.3}
+          position-x={2.3}
+          position-y={0.15}
+          rotation-y={Math.PI}
+        />
+        <TvTable position-z={18.5} position-x={2.7} scale={[1.4, 1, 1]} />
       </Physics>
     </>
   );
