@@ -15,6 +15,7 @@ import { Desk } from '_entities/desk';
 import { Whiteboard } from '_entities/whiteboard';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { Pillar } from '_entities/pillar';
 
 export default function Office() {
   const [hitSound] = useState(() => new Audio('./hit.mp3'));
@@ -92,8 +93,8 @@ export default function Office() {
           position-x={FLOOR_WIDTH / 3 / 2}
         />
 
-        <Desk position-z={-16} position-x={2} />
-        <Desk position-z={-17.75} position-x={2} />
+        <Desk position-z={-16} position-x={3} />
+        <Desk position-z={-17.75} position-x={3} />
         <Desk position-z={-16} position-x={-2} />
         <Desk position-z={-17.75} position-x={-2} />
         <Desk position-z={-16} position-x={-3} />
@@ -115,11 +116,15 @@ export default function Office() {
         />
         <Desk position-z={-11.75} position-x={4.5} rotation-y={Math.PI * 0.5} />
         <Desk position-z={-12.75} position-x={4.5} rotation-y={Math.PI * 0.5} />
+
+        <Wall length={4} position-x={3.75} position-z={-9} />
         {/* Middle section */}
+
+        {/* Glass wall */}
         <Wall
-          length={FLOOR_WIDTH - 2 * WALL_WIDTH - FLOOR_WIDTH / 3}
+          length={8}
           position-x={FLOOR_WIDTH / 3 / 2}
-          position-z={-FLOOR_LENGTH / 2 + 0.1 / 2 + FLOOR_LENGTH / 3}
+          position-z={-5}
           opacity={0.4}
           width={0.1}
         />
@@ -130,34 +135,29 @@ export default function Office() {
           position-x={-0.8}
           rotation-y={Math.PI * 0.3}
         />
-        <Wall
-          length={FLOOR_WIDTH - 2 * WALL_WIDTH - FLOOR_WIDTH / 3}
-          position-x={FLOOR_WIDTH / 3 / 2}
-          position-z={3}
-        />
-        <Wall
-          length={FLOOR_WIDTH - 2 * WALL_WIDTH - FLOOR_WIDTH / 3}
-          position-x={FLOOR_WIDTH / 3 / 2}
-          position-z={FLOOR_LENGTH / 2 - WALL_WIDTH / 2 - FLOOR_LENGTH / 3}
-        />
+
+        {/* Middle wall */}
+        <Wall length={8} position-x={FLOOR_WIDTH / 3 / 2} position-z={3} />
+
+        {/* Designer wall */}
+        <Wall length={8} position-x={FLOOR_WIDTH / 3 / 2} position-z={6.5} />
 
         {/* Ana and Dora office */}
         <Desk position-z={5} position-x={2.67} rotation-y={Math.PI * 0.5} />
         <Desk position-z={5} position-x={1} rotation-y={Math.PI * 0.5} />
 
         <Wall
-          length={FLOOR_LENGTH / 5}
+          length={8}
           rotate
           position-x={-FLOOR_WIDTH / 3 / 2 + WALL_WIDTH / 2}
-          position-z={
-            -FLOOR_LENGTH / 2 + FLOOR_LENGTH / 3 + FLOOR_LENGTH / 4 / 2
-          }
+          position-z={-1}
         />
 
+        {/* Dora and Ana office door */}
         <Wall
-          length={FLOOR_LENGTH / 4 / 3 - WALL_WIDTH}
+          length={3.5}
           rotate
-          position-x={-FLOOR_WIDTH / 3 / 2 + 0.1 * 2}
+          position-x={-FLOOR_WIDTH / 3 / 2}
           position-z={
             FLOOR_LENGTH / 2 -
             FLOOR_LENGTH / 3 -
@@ -178,6 +178,7 @@ export default function Office() {
           <Desk position-z={9} position-x={1.75} rotation-y={Math.PI * 0.5} />
           <Desk position-z={9} position-x={3.5} rotation-y={Math.PI * 0.5} />
         </group>
+        <Pillar position-x={4.75} position-z={-18} />
       </Physics>
     </>
   );

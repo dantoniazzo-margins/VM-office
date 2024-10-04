@@ -30,7 +30,7 @@ export const Wall = (props: Props) => {
           ]}
         />
         <meshPhongMaterial
-          color="white"
+          color="gray"
           opacity={props.opacity ?? 1}
           transparent
         />
