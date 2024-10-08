@@ -21,6 +21,7 @@ export const MiddleSpace = () => {
         rotate
         position-x={-FLOOR_WIDTH / 3 / 2 + WALL_WIDTH / 2}
         position-z={4}
+        opacity={0.4}
       />
 
       {/* Middle wall */}

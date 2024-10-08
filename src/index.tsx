@@ -14,7 +14,7 @@ if (rootContainer) {
       shadows
       camera={{
         fov: 45,
-        near: 0.1,
+        near: 0.5,
         far: 200,
         position: [-4.5, 1, 25],
       }}
