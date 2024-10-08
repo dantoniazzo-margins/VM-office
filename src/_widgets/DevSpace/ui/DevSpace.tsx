@@ -1,38 +1,23 @@
 import { Chair } from '_entities/chair';
-import { Desk } from '_entities/desk';
 import { Pillar } from '_entities/pillar';
 import { Wall } from '_entities/wall';
+import { FullDeskGroup } from '_widgets/FullDeskGroup';
+import { HorizontalHalfDeskGroup } from '_widgets/HalfDeskGroup';
 
 export const DevSpace = () => {
   return (
-    <>
-      <Pillar position-x={4.75} position-z={-18} />
-
-      <Desk position-z={-16} position-x={3} />
-      <Desk position-z={-17.75} position-x={3} />
-      <Desk position-z={-16} position-x={-2} />
-      <Desk position-z={-17.75} position-x={-2} />
-      <Desk position-z={-16} position-x={-3} />
-      <Desk position-z={-17.75} position-x={-3} />
-      <Desk position-z={-11} position-x={-3} />
-      <Desk position-z={-12.75} position-x={-3} />
-      <Desk position-z={-11} position-x={-2} />
-      <Desk position-z={-12.75} position-x={-2} />
-
-      <Desk position-z={-11.75} position-x={2.75} rotation-y={Math.PI * 0.5} />
-      <Desk position-z={-12.75} position-x={2.75} rotation-y={Math.PI * 0.5} />
-      <Desk position-z={-11.75} position-x={4.5} rotation-y={Math.PI * 0.5} />
-      <Desk position-z={-12.75} position-x={4.5} rotation-y={Math.PI * 0.5} />
-      <group position-z={-17.75}>
-        <Chair position-z={0} position-x={3.75} rotation-y={Math.PI * -0.5} />
-        <Chair
-          position-z={1.75}
-          position-x={3.75}
-          rotation-y={Math.PI * -0.5}
-        />
-      </group>
+    <group position-z={-18}>
+      <Pillar position-x={4.75} />
+      <HorizontalHalfDeskGroup position-z={0.25} position-x={3} />
+      <FullDeskGroup position-z={0.25} position-x={-3} />
+      <FullDeskGroup position-z={0.25} position-x={-3} />
+      <FullDeskGroup
+        position-z={6.25}
+        position-x={3}
+        rotation-y={Math.PI * 0.5}
+      />
       {/* Left wall */}
-      <Wall length={4} position-x={3.75} position-z={-9} />
-    </>
+      <Wall length={4} position-x={3.75} position-z={9} />
+    </group>
   );
 };
