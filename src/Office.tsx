@@ -3,33 +3,33 @@ import {
   OrbitControls,
   FirstPersonControls,
   FaceControls,
-} from "@react-three/drei";
-import { Perf } from "r3f-perf";
-import { Physics } from "@react-three/rapier";
-import { useEffect, useState, useRef } from "react";
-import { RapierRigidBody } from "@react-three/rapier";
-import { Wall, WALL_HEIGHT, WALL_LENGTH, WALL_WIDTH } from "_entities/wall";
-import { Ball } from "_entities/ball";
+} from '@react-three/drei';
+import { Perf } from 'r3f-perf';
+import { Physics } from '@react-three/rapier';
+import { useEffect, useState, useRef } from 'react';
+import { RapierRigidBody } from '@react-three/rapier';
+import { Wall, WALL_HEIGHT, WALL_LENGTH, WALL_WIDTH } from '_entities/wall';
+import { Ball } from '_entities/ball';
 import {
   Floor,
   FLOOR_HEIGHT,
   FLOOR_LENGTH,
   FLOOR_WIDTH,
-} from "_entities/floor";
-import { Desk } from "_entities/desk";
-import { Whiteboard } from "_entities/whiteboard";
-import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
-import { Pillar } from "_entities/pillar";
-import { TvTable } from "_entities/tv-table";
-import { Chair } from "_entities/chair";
-import { Shelf } from "_entities/shelf";
-import { TV } from "_entities/tv";
-import { Couch } from "_entities/couch";
-import { Reception } from "_entities/reception";
+} from '_entities/floor';
+import { Desk } from '_entities/desk';
+import { Whiteboard } from '_entities/whiteboard';
+import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
+import { Pillar } from '_entities/pillar';
+import { TvTable } from '_entities/tv-table';
+import { Chair } from '_entities/chair';
+import { Shelf } from '_entities/shelf';
+import { TV } from '_entities/tv';
+import { Couch } from '_entities/couch';
+import { Reception } from '_entities/reception';
 
 export default function Office() {
-  const [hitSound] = useState(() => new Audio("./hit.mp3"));
+  const [hitSound] = useState(() => new Audio('./hit.mp3'));
   const ball = useRef<RapierRigidBody | null>(null);
   const ballMesh = useRef<THREE.Mesh | null>(null);
   const FORCE_POWER = 0.1;
@@ -47,17 +47,7 @@ export default function Office() {
     <>
       <Perf position="top-left" />
 
-      {/* <OrbitControls makeDefault /> */}
-      <FirstPersonControls
-        lookSpeed={0.1}
-        movementSpeed={3}
-        activeLook={true}
-        heightMax={2}
-        heightMin={1}
-        mouseDragOn
-        autoForward={false}
-        constrainVertical={true}
-      />
+      <OrbitControls makeDefault />
 
       <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
       <ambientLight intensity={1.5} />
@@ -112,12 +102,14 @@ export default function Office() {
         />
         <Desk position-z={-11.75} position-x={4.5} rotation-y={Math.PI * 0.5} />
         <Desk position-z={-12.75} position-x={4.5} rotation-y={Math.PI * 0.5} />
-
-        <Chair
-          position-z={-17.75}
-          position-x={3.75}
-          rotation-y={Math.PI * -0.5}
-        />
+        <group position-z={-17.75}>
+          <Chair position-z={0} position-x={3.75} rotation-y={Math.PI * -0.5} />
+          <Chair
+            position-z={1.75}
+            position-x={3.75}
+            rotation-y={Math.PI * -0.5}
+          />
+        </group>
 
         <Wall length={4} position-x={3.75} position-z={-9} />
         {/* Middle section */}

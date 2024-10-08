@@ -1,10 +1,10 @@
-import "./style.css";
-import ReactDOM from "react-dom/client";
-import { Canvas } from "@react-three/fiber";
-import Office from "./Office";
-import React from "react";
+import './style.css';
+import ReactDOM from 'react-dom/client';
+import { Canvas } from '@react-three/fiber';
+import Office from './Office';
+import React from 'react';
 
-const rootContainer = document.querySelector("#root");
+const rootContainer = document.querySelector('#root');
 
 if (rootContainer) {
   const root = ReactDOM.createRoot(rootContainer);
@@ -16,7 +16,7 @@ if (rootContainer) {
         fov: 45,
         near: 0.1,
         far: 200,
-        position: [-3, 1, 20.5],
+        position: [-4.5, 1, 25],
       }}
     >
       <Office />
