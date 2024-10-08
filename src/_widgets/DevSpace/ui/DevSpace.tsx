@@ -10,7 +10,7 @@ export const DevSpace = () => {
       <Pillar position-x={4.75} />
       <HorizontalHalfDeskGroup position-z={0.25} position-x={3} />
       <FullDeskGroup position-z={0.25} position-x={-3} />
-      <FullDeskGroup position-z={0.25} position-x={-3} />
+      <FullDeskGroup position-z={4.5} position-x={-3} />
       <FullDeskGroup
         position-z={6.25}
         position-x={3}
