@@ -1,4 +1,4 @@
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, FirstPersonControls } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import { Physics } from '@react-three/rapier';
 import { Floor } from '_entities/floor';
@@ -8,6 +8,7 @@ import { MiddleSpace } from '_widgets/MiddleSpace';
 import { DesignSpace } from '_widgets/DesignSpace';
 import { Reception } from '_widgets/Reception';
 import { Lounge } from '_widgets/Lounge';
+import { PS5 } from '_entities/ps5';
 
 export default function Office() {
   return (
@@ -15,7 +16,12 @@ export default function Office() {
       <Perf position="top-left" />
 
       <OrbitControls makeDefault />
-
+      {/* <FirstPersonControls
+        makeDefault
+        lookSpeed={0.1}
+        movementSpeed={3}
+        mouseDragOn={false}
+      /> */}
       <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
       <ambientLight intensity={1.5} />
 
