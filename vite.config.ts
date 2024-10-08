@@ -24,6 +24,7 @@ export default {
   resolve: {
     alias: {
       _entities: path.resolve(__dirname, 'src/_entities/'),
+      _widgets: path.resolve(__dirname, 'src/_widgets/'),
     },
   },
 };

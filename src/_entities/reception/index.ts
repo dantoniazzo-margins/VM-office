@@ -1,1 +1,1 @@
-export * from "./ui/Reception";
+export * from './ui/ReceptionDesk';
