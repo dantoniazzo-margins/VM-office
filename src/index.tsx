@@ -16,7 +16,7 @@ if (rootContainer) {
         fov: 45,
         near: 0.1,
         far: 200,
-        position: [0, 50, 0],
+        position: [-3, 1, 20.5],
       }}
     >
       <Office />
