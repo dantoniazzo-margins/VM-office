@@ -1,8 +1,8 @@
-import { Chair } from '_entities/chair';
-import { Pillar } from '_entities/pillar';
-import { Wall } from '_entities/wall';
-import { FullDeskGroup } from '_widgets/FullDeskGroup';
-import { HorizontalHalfDeskGroup } from '_widgets/HalfDeskGroup';
+import { Chair } from "_entities/chair";
+import { Pillar } from "_entities/pillar";
+import { Wall } from "_entities/wall";
+import { FullDeskGroup } from "_widgets/FullDeskGroup";
+import { HorizontalHalfDeskGroup } from "_widgets/HalfDeskGroup";
 
 export const DevSpace = () => {
   return (

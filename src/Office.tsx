@@ -16,7 +16,7 @@ export default function Office() {
       <Perf position="top-left" />
 
       {/* <OrbitControls makeDefault /> */}
-      <FirstPersonControls makeDefault lookSpeed={0.1} movementSpeed={10} />
+      {/* <FirstPersonControls makeDefault lookSpeed={0.1} movementSpeed={10} /> */}
       <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
       <ambientLight intensity={1.5} />
 

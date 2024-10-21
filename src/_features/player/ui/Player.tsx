@@ -25,7 +25,7 @@ export const Player = () => {
     const hit = world.castRay(ray, 10, true);
 
     if (hit && hit.timeOfImpact < 0.15) {
-      player.applyImpulse({ x: 0, y: 0.5, z: 0 }, true);
+      player.applyImpulse({ x: 0, y: 0.1, z: 0 }, true);
     }
   };
 
@@ -42,20 +42,17 @@ export const Player = () => {
   }, []);
 
   useFrame((state, delta) => {
-    /**
-     * Controls
-     */
-
     const player = getPlayer();
     if (!player) return;
+    player.setAdditionalMass(0.05, true);
 
     const { forward, backward, leftward, rightward, jump } = getKeys();
 
     const impulse = { x: 0, y: 0, z: 0 };
     const torque = { x: 0, y: 0, z: 0 };
 
-    const impulseStrength = 0.6 * delta;
-    const torqueStrength = 0.2 * delta;
+    const impulseStrength = 0.1 * delta;
+    const torqueStrength = 0.1 * delta;
 
     if (forward) {
       impulse.z -= impulseStrength;
@@ -84,9 +81,6 @@ export const Player = () => {
     player.applyImpulse(impulse, true);
     player.applyTorqueImpulse(torque, true);
 
-    /**
-     * Camera
-     */
     const bodyPosition = player.translation();
 
     const cameraPosition = new THREE.Vector3();
@@ -114,6 +108,7 @@ export const Player = () => {
       friction={1}
       linearDamping={0.5}
       angularDamping={0.5}
+      mass={3}
       position={[0, 1, 0]}
     >
       <mesh castShadow>
