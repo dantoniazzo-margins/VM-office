@@ -13,7 +13,7 @@ import { Player } from "_features/player";
 export default function Office() {
   return (
     <>
-      <Perf position="top-left" />
+      {process.env.NODE_ENV === "development" && <Perf position="top-left" />}
 
       {/* <OrbitControls makeDefault /> */}
       {/* <FirstPersonControls makeDefault lookSpeed={0.1} movementSpeed={10} /> */}
