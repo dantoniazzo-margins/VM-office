@@ -3,14 +3,17 @@ import { useFrame } from "@react-three/fiber";
 import { useKeyboardControls } from "@react-three/drei";
 import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
+import { debounce } from "lodash";
 
 export const Player = () => {
   const body = useRef<RapierRigidBody | null>(null);
   const [_, getKeys] = useKeyboardControls();
   const { rapier, world } = useRapier();
+  let isFlipped = false;
   const [smoothedCameraPosition] = useState(
     () => new THREE.Vector3(10, 10, 10)
   );
+
   const [smoothedCameraTarget] = useState(() => new THREE.Vector3());
   const getPlayer = () => {
     return body.current;
@@ -44,9 +47,8 @@ export const Player = () => {
   useFrame((state, delta) => {
     const player = getPlayer();
     if (!player) return;
-    player.setAdditionalMass(0.05, true);
 
-    const { forward, backward, leftward, rightward, jump } = getKeys();
+    const { forward, backward, leftward, rightward, jump, flip } = getKeys();
 
     const impulse = { x: 0, y: 0, z: 0 };
     const torque = { x: 0, y: 0, z: 0 };
@@ -55,23 +57,37 @@ export const Player = () => {
     const torqueStrength = 0.1 * delta;
 
     if (forward) {
-      impulse.z -= impulseStrength;
-      torque.x -= torqueStrength;
+      isFlipped
+        ? (impulse.z += impulseStrength)
+        : (impulse.z -= impulseStrength);
+      isFlipped ? (torque.x += torqueStrength) : (torque.x -= torqueStrength);
     }
 
     if (rightward) {
-      impulse.x += impulseStrength;
-      torque.z -= torqueStrength;
+      isFlipped
+        ? (impulse.x -= impulseStrength)
+        : (impulse.x += impulseStrength);
+      isFlipped ? (torque.z += torqueStrength) : (torque.z -= torqueStrength);
     }
 
     if (backward) {
-      impulse.z += impulseStrength;
-      torque.x += torqueStrength;
+      isFlipped
+        ? (impulse.z -= impulseStrength)
+        : (impulse.z += impulseStrength);
+      isFlipped ? (torque.x -= torqueStrength) : (torque.x += torqueStrength);
     }
 
     if (leftward) {
-      impulse.x -= impulseStrength;
-      torque.z += torqueStrength;
+      isFlipped
+        ? (impulse.x += impulseStrength)
+        : (impulse.x -= impulseStrength);
+      isFlipped ? (torque.z -= torqueStrength) : (torque.z += torqueStrength);
+    }
+
+    if (flip) {
+      debounce(() => {
+        isFlipped = !isFlipped;
+      }, 100)();
     }
 
     if (jump) {
@@ -85,7 +101,13 @@ export const Player = () => {
 
     const cameraPosition = new THREE.Vector3();
     cameraPosition.copy(bodyPosition);
-    cameraPosition.z += 5.25;
+    if (isFlipped) {
+      cameraPosition.z -= 5.25;
+    } else {
+      cameraPosition.z += 5.25;
+    }
+    1;
+
     cameraPosition.y += 2.65;
 
     const cameraTarget = new THREE.Vector3();
