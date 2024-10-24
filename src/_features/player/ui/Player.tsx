@@ -1,15 +1,16 @@
-import { useRapier, RigidBody, RapierRigidBody } from "@react-three/rapier";
-import { useFrame } from "@react-three/fiber";
-import { useKeyboardControls } from "@react-three/drei";
-import { useState, useEffect, useRef } from "react";
-import * as THREE from "three";
-import { debounce } from "lodash";
+import { useRapier, RigidBody, RapierRigidBody } from '@react-three/rapier';
+import { useFrame } from '@react-three/fiber';
+import { useKeyboardControls } from '@react-three/drei';
+import { useState, useEffect, useRef } from 'react';
+import * as THREE from 'three';
+
+const CAMERA_FROM_OBJECT_DISTANCE = 2;
 
 export const Player = () => {
   const body = useRef<RapierRigidBody | null>(null);
   const [_, getKeys] = useKeyboardControls();
   const { rapier, world } = useRapier();
-  let isFlipped = false;
+  const mouse = useRef<THREE.Vector2>(new THREE.Vector2());
   const [smoothedCameraPosition] = useState(
     () => new THREE.Vector3(10, 10, 10)
   );
@@ -40,8 +41,15 @@ export const Player = () => {
     player.setAngvel({ x: 0, y: 0, z: 0 }, true);
   };
 
+  const handleMouseMove = (e: MouseEvent) => {
+    mouse.current.x = (e.clientX / innerWidth) * 2 - 1;
+    mouse.current.y = -(e.clientY / innerHeight) * 2 + 1;
+  };
+
   useEffect(() => {
     reset();
+
+    window.addEventListener('mousemove', handleMouseMove);
   }, []);
 
   useFrame((state, delta) => {
@@ -57,37 +65,23 @@ export const Player = () => {
     const torqueStrength = 0.1 * delta;
 
     if (forward) {
-      isFlipped
-        ? (impulse.z += impulseStrength)
-        : (impulse.z -= impulseStrength);
-      isFlipped ? (torque.x += torqueStrength) : (torque.x -= torqueStrength);
+      impulse.z -= impulseStrength;
+      torque.x -= torqueStrength;
     }
 
     if (rightward) {
-      isFlipped
-        ? (impulse.x -= impulseStrength)
-        : (impulse.x += impulseStrength);
-      isFlipped ? (torque.z += torqueStrength) : (torque.z -= torqueStrength);
+      impulse.x += impulseStrength;
+      torque.z -= torqueStrength;
     }
 
     if (backward) {
-      isFlipped
-        ? (impulse.z -= impulseStrength)
-        : (impulse.z += impulseStrength);
-      isFlipped ? (torque.x -= torqueStrength) : (torque.x += torqueStrength);
+      impulse.z += impulseStrength;
+      torque.x += torqueStrength;
     }
 
     if (leftward) {
-      isFlipped
-        ? (impulse.x += impulseStrength)
-        : (impulse.x -= impulseStrength);
-      isFlipped ? (torque.z -= torqueStrength) : (torque.z += torqueStrength);
-    }
-
-    if (flip) {
-      debounce(() => {
-        isFlipped = !isFlipped;
-      }, 100)();
+      impulse.x -= impulseStrength;
+      torque.z += torqueStrength;
     }
 
     if (jump) {
@@ -101,14 +95,15 @@ export const Player = () => {
 
     const cameraPosition = new THREE.Vector3();
     cameraPosition.copy(bodyPosition);
-    if (isFlipped) {
-      cameraPosition.z -= 5.25;
-    } else {
-      cameraPosition.z += 5.25;
-    }
+
+    cameraPosition.x -= CAMERA_FROM_OBJECT_DISTANCE * mouse.current.x;
+    cameraPosition.y -= CAMERA_FROM_OBJECT_DISTANCE * mouse.current.y;
+    cameraPosition.z +=
+      CAMERA_FROM_OBJECT_DISTANCE * (1 - Math.abs(mouse.current.x));
+
     1;
 
-    cameraPosition.y += 2.65;
+    cameraPosition.y += 0.5;
 
     const cameraTarget = new THREE.Vector3();
     cameraTarget.copy(bodyPosition);
@@ -118,6 +113,7 @@ export const Player = () => {
     smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
 
     state.camera.position.copy(smoothedCameraPosition);
+    /*  state.camera.rotation.set(Math.PI * mouse.current.y, 0, 0); */
     state.camera.lookAt(smoothedCameraTarget);
   });
 
