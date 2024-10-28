@@ -4,12 +4,14 @@ import { useThirdPersonCamera } from '../model/third-person.camera';
 import { usePlayerMovement } from '../model/player.movement';
 import { INITIAL_POSITION } from '../lib/constants';
 import { Car } from '_entities/car';
-import { CharacterModel } from './CharacterModel';
+import { Character } from './CharacterModel';
 
 export const Player = () => {
   const body = useRef<RapierRigidBody | null>(null);
   useThirdPersonCamera({ target: body.current });
   usePlayerMovement({ target: body.current });
 
-  return <Car position={INITIAL_POSITION} ref={body} />;
+  return (
+    <Character position={INITIAL_POSITION} ref={body} />
+  ); /* <Car position={INITIAL_POSITION} ref={body} /> */
 };
