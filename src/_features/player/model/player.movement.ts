@@ -25,20 +25,19 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
   const jumpUp = () => {
     if (!target) return;
     const origin = target.translation();
-    origin.y -= 0.31;
+    origin.y -= 0.77;
     const direction = { x: 0, y: -1, z: 0 };
     const ray = new rapier.Ray(origin, direction);
     const hit = world.castRay(ray, 10, true);
-
     if (hit && hit.timeOfImpact < 0.1) {
-      target.applyImpulse({ x: 0, y: 0.03, z: 0 }, true);
+      target.applyImpulse({ x: 0, y: 0.07, z: 0 }, true);
     }
   };
 
   useFrame((state, delta) => {
     if (!target) return;
     const _keys = getKeys();
-    const speed = _keys.shift ? 2 : 1;
+    const speed = _keys.shift ? 10 : 5;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();
@@ -61,13 +60,20 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
     if (moveDir.lengthSq() > 0) {
       moveDir.normalize();
 
-      const newPosition = {
+      const currentPosition = target.translation();
+
+      const newPosition = /* {
         x: moveDir.x * speed * delta,
         y: 0,
         z: moveDir.z * speed * delta,
+      }; */ {
+        x: currentPosition.x + moveDir.x * speed * delta,
+        y: currentPosition.y,
+        z: currentPosition.z + moveDir.z * speed * delta,
       };
       // Move character
-      target.applyImpulse(newPosition, true);
+      /* target.applyImpulse(newPosition, true); */
+      target.setTranslation(newPosition, true);
 
       // Calculate target rotation angle based on movement direction
       const targetAngle = Math.atan2(moveDir.x, moveDir.z);

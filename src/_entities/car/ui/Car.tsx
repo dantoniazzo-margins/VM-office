@@ -15,11 +15,12 @@ export const Car = forwardRef<
       colliders="cuboid"
       restitution={0}
       friction={0.7}
+      mass={1}
     >
       <primitive
         scale={0.2}
         rotation-y={Math.PI}
-        position-y={-0.9}
+        position-y={-1}
         object={scene}
         castShadow
       />
