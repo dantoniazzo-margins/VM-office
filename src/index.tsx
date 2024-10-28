@@ -11,17 +11,18 @@ if (rootContainer) {
   const root = ReactDOM.createRoot(rootContainer);
 
   root.render(
-    <ThirdPersonTest />
-    /*  <KeyboardControls
+    <KeyboardControls
       map={[
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
         { name: "backward", keys: ["ArrowDown", "KeyS"] },
         { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
         { name: "rightward", keys: ["ArrowRight", "KeyD"] },
         { name: "flip", keys: ["KeyF"] },
+        { name: "shift", keys: ["KeyShift"] },
         { name: "jump", keys: ["Space"] },
       ]}
     >
+      {/* <ThirdPersonTest /> */}
       <Canvas
         shadows
         camera={{
@@ -33,6 +34,6 @@ if (rootContainer) {
       >
         <Office />
       </Canvas>
-    </KeyboardControls> */
+    </KeyboardControls>
   );
 }
