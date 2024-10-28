@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Canvas } from "@react-three/fiber";
 import Office from "./Office";
 import { KeyboardControls } from "@react-three/drei";
+import ThirdPersonTest from "_pages/ThirdPersonTest/ThirdPersonTest";
 
 const rootContainer = document.querySelector("#root");
 
@@ -10,7 +11,8 @@ if (rootContainer) {
   const root = ReactDOM.createRoot(rootContainer);
 
   root.render(
-    <KeyboardControls
+    <ThirdPersonTest />
+    /*  <KeyboardControls
       map={[
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
         { name: "backward", keys: ["ArrowDown", "KeyS"] },
@@ -31,6 +33,6 @@ if (rootContainer) {
       >
         <Office />
       </Canvas>
-    </KeyboardControls>
+    </KeyboardControls> */
   );
 }

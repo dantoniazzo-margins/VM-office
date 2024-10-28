@@ -26,6 +26,7 @@ export default {
       _entities: path.resolve(__dirname, "src/_entities/"),
       _widgets: path.resolve(__dirname, "src/_widgets/"),
       _features: path.resolve(__dirname, "src/_features/"),
+      _pages: path.resolve(__dirname, "src/_pages/"),
     },
   },
 };
