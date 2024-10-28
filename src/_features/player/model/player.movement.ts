@@ -68,9 +68,32 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
       };
       // Move character
       target.applyImpulse(newPosition, true);
-      // Rotate character to face movement direction
-      const angle = Math.atan2(moveDir.x, moveDir.z);
-      const rotationSpeed = 15;
+
+      // Calculate target rotation angle based on movement direction
+      const targetAngle = Math.atan2(moveDir.x, moveDir.z);
+
+      // Interpolate towards target angle using quaternions for smooth rotation
+      const targetQuaternion = new THREE.Quaternion();
+      targetQuaternion.setFromAxisAngle(
+        new THREE.Vector3(0, 1, 0),
+        targetAngle
+      );
+
+      // Retrieve the current rotation as a quaternion
+      const currentQuaternion = new THREE.Quaternion();
+      const currentRotation = target.rotation();
+      currentQuaternion.set(
+        currentRotation.x,
+        currentRotation.y,
+        currentRotation.z,
+        currentRotation.w
+      );
+
+      // Smoothly interpolate rotation with quaternion slerp
+      currentQuaternion.slerp(targetQuaternion, 10 * delta); // 10 * delta adjusts rotation speed
+
+      // Apply the new rotation to the target
+      target.setRotation(currentQuaternion, true);
     }
   });
 };

@@ -20,7 +20,7 @@ export const useThirdPersonCamera = ({ target }: ThirdPersonCameraProps) => {
     // Configuration
     mouseSensitivity: 0.002,
     orbitSensitivity: 0.005, // Sensitivity for orbital rotation
-    smoothingFactor: 0,
+    smoothingFactor: 0.85,
     maxVerticalAngle: 1.5,
     minVerticalAngle: 0.1,
     zoomSpeed: 0.5,
