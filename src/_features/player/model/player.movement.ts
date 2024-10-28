@@ -38,7 +38,7 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
   useFrame((state, delta) => {
     if (!target) return;
     const _keys = getKeys();
-    const speed = _keys.shift ? 0.3 : 0.15;
+    const speed = _keys.shift ? 2 : 1;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();
@@ -61,44 +61,16 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
     if (moveDir.lengthSq() > 0) {
       moveDir.normalize();
 
-      const currentPosition = target.translation();
-
       const newPosition = {
         x: moveDir.x * speed * delta,
         y: 0,
         z: moveDir.z * speed * delta,
-      }; /* {
-        x: currentPosition.x + moveDir.x * speed * delta,
-        y: currentPosition.y,
-        z: currentPosition.z + moveDir.z * speed * delta,
-      } */
+      };
       // Move character
       target.applyImpulse(newPosition, true);
       // Rotate character to face movement direction
       const angle = Math.atan2(moveDir.x, moveDir.z);
       const rotationSpeed = 15;
-
-      // Get current rotation and normalize it
-      const currentRotation = {
-        ...target.rotation(),
-        y: target.rotation().y % (2 * Math.PI),
-      };
-      if (currentRotation && currentRotation.y < 0)
-        currentRotation.y += 2 * Math.PI;
-
-      // Calculate shortest rotation path
-      let rotationDiff = angle - target.rotation().y;
-      if (rotationDiff > Math.PI) rotationDiff -= 2 * Math.PI;
-      if (rotationDiff < -Math.PI) rotationDiff += 2 * Math.PI;
-
-      // Apply smooth rotation
-      target.setRotation(
-        {
-          ...target.rotation(),
-          y: target.rotation().y + rotationDiff * rotationSpeed * delta,
-        },
-        true
-      );
     }
   });
 };

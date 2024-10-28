@@ -13,17 +13,17 @@ export const Player = () => {
     <RigidBody
       ref={body}
       canSleep={false}
-      colliders="ball"
+      colliders="cuboid"
       restitution={0.2}
-      friction={1}
+      friction={0.1}
       linearDamping={0.5}
       angularDamping={0.5}
       mass={5}
       position={INITIAL_POSITION}
     >
       <mesh castShadow>
-        <icosahedronGeometry args={[0.2, 1]} />
-        <meshStandardMaterial flatShading color="mediumpurple" />
+        <boxGeometry args={[0.5, 1, 0.3]} />
+        <meshStandardMaterial flatShading color="#1948bf" />
       </mesh>
     </RigidBody>
   );
