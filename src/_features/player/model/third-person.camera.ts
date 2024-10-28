@@ -125,7 +125,7 @@ export const useThirdPersonCamera = ({ target }: ThirdPersonCameraProps) => {
     // Look at target with offset
     const lookAtPosition = new THREE.Vector3(
       target.translation().x,
-      target.translation().y,
+      target.translation().y + 1,
       target.translation().z
     );
 
