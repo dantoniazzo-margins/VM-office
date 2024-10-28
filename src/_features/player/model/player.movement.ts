@@ -13,20 +13,19 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
     if (!target) return;
     const origin = target.translation();
     origin.y -= 0.31;
-    const direction = { x: 0, y: -0.1, z: 0 };
+    const direction = { x: 0, y: -1, z: 0 };
     const ray = new rapier.Ray(origin, direction);
     const hit = world.castRay(ray, 10, true);
 
-    if (hit && hit.timeOfImpact < 0.15) {
-      target.applyImpulse({ x: 0, y: 0.1, z: 0 }, true);
+    if (hit && hit.timeOfImpact < 0.1) {
+      target.applyImpulse({ x: 0, y: 0.03, z: 0 }, true);
     }
   };
 
   useFrame((state, delta) => {
     if (!target) return;
-    const { forward, backward, leftward, rightward, jump, flip, shift } =
-      getKeys();
-    const speed = shift ? 1 : 0.5;
+    const { forward, backward, leftward, rightward, jump, shift } = getKeys();
+    const speed = shift ? 0.3 : 0.15;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();

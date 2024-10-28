@@ -18,7 +18,7 @@ if (rootContainer) {
         { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
         { name: "rightward", keys: ["ArrowRight", "KeyD"] },
         { name: "flip", keys: ["KeyF"] },
-        { name: "shift", keys: ["KeyShift"] },
+        { name: "shift", keys: ["Shift"] },
         { name: "jump", keys: ["Space"] },
       ]}
     >

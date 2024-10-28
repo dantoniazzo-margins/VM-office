@@ -34,7 +34,7 @@ export const Player = () => {
       friction={1}
       linearDamping={0.5}
       angularDamping={0.5}
-      mass={3}
+      mass={5}
       position={[0, 1, 0]}
     >
       <mesh castShadow>
