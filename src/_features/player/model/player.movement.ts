@@ -1,13 +1,26 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { ThirdPersonCameraProps } from "./third-person.camera";
-import { useKeyboardControls } from "@react-three/drei";
-import * as THREE from "three";
-import { useRapier } from "@react-three/rapier";
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { ThirdPersonCameraProps } from './third-person.camera';
+import { useKeyboardControls } from '@react-three/drei';
+import * as THREE from 'three';
+import { useRapier } from '@react-three/rapier';
+import { useEffect } from 'react';
+import { INITIAL_POSITION } from '../lib/constants';
 
 export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
   const [_, getKeys] = useKeyboardControls();
 
   const { rapier, world } = useRapier();
+
+  const reset = () => {
+    if (!target) return;
+    target.setTranslation(INITIAL_POSITION, true);
+    target.setLinvel({ x: 0, y: 0, z: 0 }, true);
+    target.setAngvel({ x: 0, y: 0, z: 0 }, true);
+  };
+
+  useEffect(() => {
+    reset();
+  }, []);
 
   const jumpUp = () => {
     if (!target) return;
@@ -24,8 +37,8 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
 
   useFrame((state, delta) => {
     if (!target) return;
-    const { forward, backward, leftward, rightward, jump, shift } = getKeys();
-    const speed = shift ? 0.3 : 0.15;
+    const _keys = getKeys();
+    const speed = _keys.shift ? 0.3 : 0.15;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();
@@ -38,11 +51,12 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
     // Calculate movement direction
     const moveDir = new THREE.Vector3(0, 0, 0);
 
-    if (forward) moveDir.add(cameraForward);
-    if (backward) moveDir.sub(cameraForward);
-    if (rightward) moveDir.sub(cameraRight);
-    if (leftward) moveDir.add(cameraRight);
-    if (jump) jumpUp();
+    if (_keys.forward) moveDir.add(cameraForward);
+    if (_keys.backward) moveDir.sub(cameraForward);
+    if (_keys.rightward) moveDir.sub(cameraRight);
+    if (_keys.leftward) moveDir.add(cameraRight);
+    if (_keys.jump) jumpUp();
+    if (_keys.reset) reset();
 
     if (moveDir.lengthSq() > 0) {
       moveDir.normalize();
