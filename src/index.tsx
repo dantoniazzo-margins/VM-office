@@ -4,14 +4,14 @@ import { Canvas } from '@react-three/fiber';
 import Office from './Office';
 import { KeyboardControls } from '@react-three/drei';
 import ThirdPersonTest from '_pages/ThirdPersonTest/ThirdPersonTest';
-
+import WalkingTest from '_pages/WalkingTest/WalkingTest';
 const rootContainer = document.querySelector('#root');
 
 if (rootContainer) {
   const root = ReactDOM.createRoot(rootContainer);
 
   root.render(
-    <KeyboardControls
+    /*     <KeyboardControls
       map={[
         { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
         { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
@@ -23,7 +23,8 @@ if (rootContainer) {
         { name: 'reset', keys: ['KeyR'] },
       ]}
     >
-      {/* <ThirdPersonTest /> */}
+
+      <WalkingTest />
       <Canvas
         shadows
         camera={{
@@ -35,6 +36,7 @@ if (rootContainer) {
       >
         <Office />
       </Canvas>
-    </KeyboardControls>
+    </KeyboardControls> */
+    <WalkingTest />
   );
 }

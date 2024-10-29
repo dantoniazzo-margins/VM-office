@@ -10,6 +10,7 @@ export const Car = forwardRef<
   const scene = useMemo(() => car.scene.clone(), [car]);
   return (
     <RigidBody
+      scale={0.02}
       position={props.position}
       ref={ref}
       colliders="cuboid"
@@ -17,13 +18,7 @@ export const Car = forwardRef<
       friction={0.7}
       mass={1}
     >
-      <primitive
-        scale={0.2}
-        rotation-y={Math.PI}
-        position-y={-1}
-        object={scene}
-        castShadow
-      />
+      <primitive rotation-y={Math.PI} object={scene} castShadow />
     </RigidBody>
   );
 });

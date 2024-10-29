@@ -1,15 +1,15 @@
-import { useFBX, useGLTF } from "@react-three/drei";
+import { useFBX, useGLTF } from '@react-three/drei';
 import {
   RapierRigidBody,
   RigidBody,
   RigidBodyAutoCollider,
-} from "@react-three/rapier";
-import { forwardRef, useMemo } from "react";
+} from '@react-three/rapier';
+import { forwardRef, useMemo } from 'react';
 
 type CharacterProps = {
   url: string;
   collider?: RigidBodyAutoCollider;
-} & JSX.IntrinsicElements["group"];
+} & JSX.IntrinsicElements['group'];
 export const Character = forwardRef<RapierRigidBody | null, CharacterProps>(
   (props, ref) => {
     const character = useGLTF(props.url);
@@ -26,8 +26,7 @@ export const Character = forwardRef<RapierRigidBody | null, CharacterProps>(
         mass={1}
       >
         <primitive
-          position-y={0.983}
-          rotation-y={Math.PI * 0.5}
+          rotation={props.rotation}
           object={character.scene}
           castShadow
         />

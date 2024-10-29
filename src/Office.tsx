@@ -1,19 +1,19 @@
-import { OrbitControls, FirstPersonControls } from "@react-three/drei";
-import { Perf } from "r3f-perf";
-import { Physics } from "@react-three/rapier";
-import { Floor } from "_entities/floor";
-import { BoundingWalls } from "_widgets/BoundingWalls";
-import { DevSpace } from "_widgets/DevSpace";
-import { MiddleSpace } from "_widgets/MiddleSpace";
-import { DesignSpace } from "_widgets/DesignSpace";
-import { Reception } from "_widgets/Reception";
-import { Lounge } from "_widgets/Lounge";
-import { Player } from "_features/player";
+import { OrbitControls, FirstPersonControls } from '@react-three/drei';
+import { Perf } from 'r3f-perf';
+import { Physics } from '@react-three/rapier';
+import { Floor } from '_entities/floor';
+import { BoundingWalls } from '_widgets/BoundingWalls';
+import { DevSpace } from '_widgets/DevSpace';
+import { MiddleSpace } from '_widgets/MiddleSpace';
+import { DesignSpace } from '_widgets/DesignSpace';
+import { Reception } from '_widgets/Reception';
+import { Lounge } from '_widgets/Lounge';
+import { Player } from '_features/player';
 
 export default function Office() {
   return (
     <>
-      {process.env.NODE_ENV === "development" && <Perf position="top-left" />}
+      {process.env.NODE_ENV === 'development' && <Perf position="top-left" />}
 
       <OrbitControls makeDefault />
       {/* <FirstPersonControls makeDefault lookSpeed={0.1} movementSpeed={10} /> */}
