@@ -7,7 +7,6 @@ import {
   Vector3Array,
 } from '@react-three/rapier';
 import { createRef, RefObject, useRef } from 'react';
-
 export interface Demo {
   (props: { children?: React.ReactNode }): JSX.Element;
 }
@@ -33,7 +32,7 @@ const WheelJoint = ({
 
   useFrame(() => {
     if (joint.current) {
-      joint.current.configureMotorVelocity(20, 10);
+      joint.current.configureMotorVelocity(-20, 20);
     }
   });
 
@@ -43,10 +42,10 @@ const WheelJoint = ({
 export const ThreeCar: Demo = () => {
   const bodyRef = useRef<RapierRigidBody>(null);
   const wheelPositions: [number, number, number][] = [
-    [-3, 0, 2],
-    [-3, 0, -2],
-    [3, 0, 2],
-    [3, 0, -2],
+    [-0.3, 0, 0.3],
+    [-0.3, 0, -0.3],
+    [0.3, 0, 0.3],
+    [0.3, 0, -0.3],
   ];
   const wheelRefs = useRef(
     wheelPositions.map(() => createRef<RapierRigidBody>())
@@ -55,7 +54,7 @@ export const ThreeCar: Demo = () => {
   return (
     <group>
       <RigidBody colliders="cuboid" ref={bodyRef} type="dynamic">
-        <Box scale={[6, 1, 1.9]} castShadow receiveShadow name="chassis">
+        <Box scale={[0.5, 0.1, 0.5]} castShadow receiveShadow name="chassis">
           <meshStandardMaterial color={'red'} />
         </Box>
       </RigidBody>
@@ -69,7 +68,7 @@ export const ThreeCar: Demo = () => {
         >
           <Cylinder
             rotation={[Math.PI / 2, 0, 0]}
-            args={[1, 1, 1, 32]}
+            args={[0.1, 0.1, 0.1, 32]}
             castShadow
             receiveShadow
           >

@@ -21,7 +21,7 @@ export const Player = () => {
       ref={body}
     /> */
     /* <Car position={INITIAL_POSITION} ref={body} /> */
-    <ThreeCar position={INITIAL_POSITION} ref={body} />
+    <ThreeCar />
     /* <Scooter position={INITIAL_POSITION} ref={body} /> */
   );
 };
