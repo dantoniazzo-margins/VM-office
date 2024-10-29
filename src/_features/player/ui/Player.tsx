@@ -4,7 +4,7 @@ import { useThirdPersonCamera } from "../model/third-person.camera";
 import { usePlayerMovement } from "../model/player.movement";
 import { INITIAL_POSITION } from "../lib/constants";
 import { Car } from "_entities/car";
-import { Character } from "./CharacterModel";
+import { Character } from "_entities/character";
 import { Scooter } from "_entities/scooter/ui/Scooter";
 
 export const Player = () => {
@@ -13,7 +13,12 @@ export const Player = () => {
   usePlayerMovement({ target: body.current });
 
   return (
-    <Character position={INITIAL_POSITION} ref={body} />
+    <Character
+      url="/bruno.glb"
+      collider="trimesh"
+      position={INITIAL_POSITION}
+      ref={body}
+    />
     /* <Car position={INITIAL_POSITION} ref={body} /> */
     /* <Scooter position={INITIAL_POSITION} ref={body} /> */
   );

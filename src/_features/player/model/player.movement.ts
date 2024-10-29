@@ -1,10 +1,10 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { ThirdPersonCameraProps } from './third-person.camera';
-import { useKeyboardControls } from '@react-three/drei';
-import * as THREE from 'three';
-import { useRapier } from '@react-three/rapier';
-import { useEffect } from 'react';
-import { INITIAL_POSITION } from '../lib/constants';
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { ThirdPersonCameraProps } from "./third-person.camera";
+import { useKeyboardControls } from "@react-three/drei";
+import * as THREE from "three";
+import { useRapier } from "@react-three/rapier";
+import { useEffect } from "react";
+import { INITIAL_POSITION } from "../lib/constants";
 
 export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
   const [_, getKeys] = useKeyboardControls();
@@ -37,7 +37,7 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
   useFrame((state, delta) => {
     if (!target) return;
     const _keys = getKeys();
-    const speed = _keys.shift ? 10 : 5;
+    const speed = _keys.shift ? 0.1 : 0.05;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();
@@ -62,18 +62,18 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
 
       const currentPosition = target.translation();
 
-      const newPosition = /* {
+      const newPosition = {
         x: moveDir.x * speed * delta,
         y: 0,
         z: moveDir.z * speed * delta,
-      }; */ {
+      }; /* {
         x: currentPosition.x + moveDir.x * speed * delta,
         y: currentPosition.y,
         z: currentPosition.z + moveDir.z * speed * delta,
-      };
+      }; */
       // Move character
       /* target.applyImpulse(newPosition, true); */
-      target.setTranslation(newPosition, true);
+      target.applyImpulse(newPosition, true);
 
       // Calculate target rotation angle based on movement direction
       const targetAngle = Math.atan2(moveDir.x, moveDir.z);
