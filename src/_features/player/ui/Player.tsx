@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useThirdPersonCamera } from '../model/third-person.camera';
 import { usePlayerMovement } from '../model/player.movement';
 import { INITIAL_POSITION } from '../lib/constants';
-import { Car } from '_entities/car';
+import { Car, ThreeCar } from '_entities/car';
 import { Character } from '_entities/character';
 import { Scooter } from '_entities/scooter/ui/Scooter';
 
@@ -20,7 +20,8 @@ export const Player = () => {
       position={INITIAL_POSITION}
       ref={body}
     /> */
-    <Car position={INITIAL_POSITION} ref={body} />
+    /* <Car position={INITIAL_POSITION} ref={body} /> */
+    <ThreeCar position={INITIAL_POSITION} ref={body} />
     /* <Scooter position={INITIAL_POSITION} ref={body} /> */
   );
 };
