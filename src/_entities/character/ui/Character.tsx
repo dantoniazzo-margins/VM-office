@@ -26,8 +26,8 @@ export const Character = forwardRef<RapierRigidBody | null, CharacterProps>(
         mass={1}
       >
         <primitive
-          position-y={1}
-          rotation-y={Math.PI}
+          position-y={0.99}
+          rotation-y={Math.PI * 0.5}
           object={character.scene}
           castShadow
         />

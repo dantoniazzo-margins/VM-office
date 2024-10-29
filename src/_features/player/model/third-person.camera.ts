@@ -1,8 +1,8 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { RapierRigidBody } from '@react-three/rapier';
-import { useMouseControls } from '_features/mouse';
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { RapierRigidBody } from "@react-three/rapier";
+import { useMouseControls } from "_features/mouse";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 export interface ThirdPersonCameraProps {
   target: RapierRigidBody | null;
@@ -33,19 +33,19 @@ export const useThirdPersonCamera = ({ target }: ThirdPersonCameraProps) => {
         cameraState.current.distance = THREE.MathUtils.clamp(
           cameraState.current.distance +
             e.deltaY * 0.01 * cameraState.current.zoomSpeed,
-          3,
+          2,
           20
         );
       }
     };
 
-    window.addEventListener('wheel', handleWheel);
-    return () => window.removeEventListener('wheel', handleWheel);
+    window.addEventListener("wheel", handleWheel);
+    return () => window.removeEventListener("wheel", handleWheel);
   }, [mouseControls.isRightMouseDown]);
 
   useEffect(() => {
     // Lock pointer on click
-    const canvas = document.querySelector('canvas');
+    const canvas = document.querySelector("canvas");
     if (canvas) {
       canvas.onclick = () => canvas.requestPointerLock();
     }

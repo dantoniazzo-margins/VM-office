@@ -14,7 +14,7 @@ export const Player = () => {
 
   return (
     <Character
-      url="/bruno.glb"
+      url="/bruno_on_bike.glb"
       collider="trimesh"
       position={INITIAL_POSITION}
       ref={body}
