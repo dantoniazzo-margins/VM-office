@@ -1,16 +1,15 @@
-import { useFBX, useGLTF } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import { forwardRef, useMemo } from "react";
-export const Character = forwardRef<
+export const Scooter = forwardRef<
   RapierRigidBody | null,
   JSX.IntrinsicElements["group"]
 >((props, ref) => {
-  const bruno = useGLTF("/bruno.glb");
-  /* const zombie = useFBX('/resources/zombie/mremireh_o_desbiens.fbx'); */
+  const scooter = useGLTF("/scooter.glb");
   // Clone the scene to be able to use multiple instances.
+  const scene = useMemo(() => scooter.scene.clone(), [scooter]);
   return (
     <RigidBody
-      scale={1}
       position={props.position}
       ref={ref}
       colliders="cuboid"
@@ -19,9 +18,10 @@ export const Character = forwardRef<
       mass={1}
     >
       <primitive
-        position-y={1}
+        scale={0.7}
         rotation-y={Math.PI}
-        object={bruno.scene}
+        position-y={-0.5}
+        object={scene}
         castShadow
       />
     </RigidBody>
