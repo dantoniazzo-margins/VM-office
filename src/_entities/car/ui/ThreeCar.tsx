@@ -1,15 +1,12 @@
-import { Box, Cylinder } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { Box, Cylinder, useKeyboardControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import {
   RapierRigidBody,
   RigidBody,
   useRevoluteJoint,
   Vector3Array,
-} from '@react-three/rapier';
-import { createRef, RefObject, useRef } from 'react';
-export interface Demo {
-  (props: { children?: React.ReactNode }): JSX.Element;
-}
+} from "@react-three/rapier";
+import { createRef, RefObject, useRef } from "react";
 
 const WheelJoint = ({
   body,
@@ -24,6 +21,7 @@ const WheelJoint = ({
   wheelAnchor: Vector3Array;
   rotationAxis: Vector3Array;
 }) => {
+  const [_, getKeys] = useKeyboardControls();
   const joint = useRevoluteJoint(body, wheel, [
     bodyAnchor,
     wheelAnchor,
@@ -31,15 +29,24 @@ const WheelJoint = ({
   ]);
 
   useFrame(() => {
-    if (joint.current) {
-      joint.current.configureMotorVelocity(-20, 20);
+    if (wheel.current) {
+      const keys = getKeys();
+      if (keys.forward) {
+        if (Math.abs(wheel.current.userForce().x) > 0.05) return;
+        wheel.current.addForce({ x: 0.01, y: 0, z: 0 }, true);
+      } else if (keys.backward) {
+        if (Math.abs(wheel.current.userForce().x) > 0.05) return;
+        wheel.current.addForce({ x: -0.01, y: 0, z: 0 }, true);
+      } else {
+        wheel.current.resetForces(true);
+      }
     }
   });
 
   return null;
 };
 
-export const ThreeCar: Demo = () => {
+export const ThreeCar = () => {
   const bodyRef = useRef<RapierRigidBody>(null);
   const wheelPositions: [number, number, number][] = [
     [-0.3, 0, 0.3],
@@ -54,8 +61,8 @@ export const ThreeCar: Demo = () => {
   return (
     <group>
       <RigidBody colliders="cuboid" ref={bodyRef} type="dynamic">
-        <Box scale={[0.5, 0.1, 0.5]} castShadow receiveShadow name="chassis">
-          <meshStandardMaterial color={'red'} />
+        <Box scale={[0.5, 0.2, 0.3]} castShadow receiveShadow name="chassis">
+          <meshStandardMaterial color={"red"} />
         </Box>
       </RigidBody>
       {wheelPositions.map((wheelPosition, index) => (
@@ -72,7 +79,7 @@ export const ThreeCar: Demo = () => {
             castShadow
             receiveShadow
           >
-            <meshStandardMaterial color={'grey'} />
+            <meshStandardMaterial color={"grey"} />
           </Cylinder>
         </RigidBody>
       ))}

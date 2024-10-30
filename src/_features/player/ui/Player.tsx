@@ -1,11 +1,11 @@
-import { RigidBody, RapierRigidBody } from '@react-three/rapier';
-import { useRef } from 'react';
-import { useThirdPersonCamera } from '../model/third-person.camera';
-import { usePlayerMovement } from '../model/player.movement';
-import { INITIAL_POSITION } from '../lib/constants';
-import { Car, ThreeCar } from '_entities/car';
-import { Character } from '_entities/character';
-import { Scooter } from '_entities/scooter/ui/Scooter';
+import { RigidBody, RapierRigidBody } from "@react-three/rapier";
+import { useRef } from "react";
+import { useThirdPersonCamera } from "../model/third-person.camera";
+import { usePlayerMovement } from "../model/player.movement";
+import { INITIAL_POSITION } from "../lib/constants";
+import { Car, ThreeCar } from "_entities/car";
+import { Character } from "_entities/character";
+import { Scooter } from "_entities/scooter/ui/Scooter";
 
 export const Player = () => {
   const body = useRef<RapierRigidBody | null>(null);

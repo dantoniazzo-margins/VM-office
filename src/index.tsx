@@ -1,11 +1,11 @@
-import './style.css';
-import ReactDOM from 'react-dom/client';
-import { Canvas } from '@react-three/fiber';
-import Office from './Office';
-import { KeyboardControls } from '@react-three/drei';
-import ThirdPersonTest from '_pages/ThirdPersonTest/ThirdPersonTest';
-import WalkingTest from '_pages/WalkingTest/WalkingTest';
-const rootContainer = document.querySelector('#root');
+import "./style.css";
+import ReactDOM from "react-dom/client";
+import { Canvas } from "@react-three/fiber";
+import Office from "./Office";
+import { KeyboardControls } from "@react-three/drei";
+import ThirdPersonTest from "_pages/ThirdPersonTest/ThirdPersonTest";
+import WalkingTest from "_pages/WalkingTest/WalkingTest";
+const rootContainer = document.querySelector("#root");
 
 if (rootContainer) {
   const root = ReactDOM.createRoot(rootContainer);
@@ -13,14 +13,14 @@ if (rootContainer) {
   root.render(
     <KeyboardControls
       map={[
-        { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
-        { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
-        { name: 'leftward', keys: ['ArrowLeft', 'KeyA'] },
-        { name: 'rightward', keys: ['ArrowRight', 'KeyD'] },
-        { name: 'flip', keys: ['KeyF'] },
-        { name: 'shift', keys: ['Shift'] },
-        { name: 'jump', keys: ['Space'] },
-        { name: 'reset', keys: ['KeyR'] },
+        { name: "forward", keys: ["ArrowUp", "KeyW"] },
+        { name: "backward", keys: ["ArrowDown", "KeyS"] },
+        { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
+        { name: "rightward", keys: ["ArrowRight", "KeyD"] },
+        { name: "flip", keys: ["KeyF"] },
+        { name: "shift", keys: ["Shift"] },
+        { name: "jump", keys: ["Space"] },
+        { name: "reset", keys: ["KeyR"] },
       ]}
     >
       <Canvas

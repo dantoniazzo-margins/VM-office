@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Physics, RigidBody, CapsuleCollider } from '@react-three/rapier';
-import { KeyboardControls, OrbitControls, useGLTF } from '@react-three/drei';
-import * as THREE from 'three';
+import React, { useRef, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Physics, RigidBody, CapsuleCollider } from "@react-three/rapier";
+import { KeyboardControls, OrbitControls, useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 
 // Character component with stable physics
 const Character = () => {
@@ -35,12 +35,12 @@ const Character = () => {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
     };
   }, []);
 
@@ -135,7 +135,7 @@ const Ground = () => {
 // Main scene component
 const WalkingTest = () => {
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div style={{ width: "100vw", height: "100vh" }}>
       <Canvas shadows camera={{ position: [0, 5, 10], fov: 50 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 10]} intensity={1} castShadow />
