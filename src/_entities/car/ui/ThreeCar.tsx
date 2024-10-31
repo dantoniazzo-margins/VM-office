@@ -30,13 +30,13 @@ const WheelJoint = ({
   const [_, getKeys] = useKeyboardControls();
 
   useFrame(() => {
-    if (joint.current) {
+    if (joint.current && wheel.current) {
       const keys = getKeys();
       if (keys.forward) {
-        joint.current.configureMotorVelocity(-10, 10);
+        wheel.current.applyTorqueImpulse({ x: -1, y: 0, z: 0 }, true);
       } else if (keys.backward) {
-        joint.current.configureMotorVelocity(10, 10);
-      } else joint.current.configureMotorVelocity(0, 10);
+        wheel.current.applyTorqueImpulse({ x: 1, y: 0, z: 0 }, true);
+      }
     }
   });
 
@@ -65,6 +65,7 @@ export const ThreeCar = () => {
       {wheelPositions.map((wheelPosition, index) => (
         <RigidBody
           colliders={false}
+          mass={10}
           friction={10}
           position={wheelPosition}
           type="dynamic"
@@ -72,6 +73,8 @@ export const ThreeCar = () => {
           ref={wheelRefs.current[index]}
         >
           <CylinderCollider
+            mass={10}
+            friction={10}
             rotation={[Math.PI / 2, 0, Math.PI / 2]}
             args={[0.4, 0.8]}
           />

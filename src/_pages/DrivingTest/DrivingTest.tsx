@@ -35,8 +35,8 @@ export default function App() {
         map={[
           { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
           { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
-          { name: 'leftward', keys: ['ArrowLeft', 'KeyA'] },
-          { name: 'rightward', keys: ['ArrowRight', 'KeyD'] },
+          { name: 'left', keys: ['ArrowLeft', 'KeyA'] },
+          { name: 'right', keys: ['ArrowRight', 'KeyD'] },
           { name: 'flip', keys: ['KeyF'] },
           { name: 'shift', keys: ['Shift'] },
           { name: 'jump', keys: ['Space'] },
