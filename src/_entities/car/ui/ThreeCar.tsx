@@ -1,6 +1,7 @@
 import { Box, Cylinder } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import {
+  CylinderCollider,
   RapierRigidBody,
   RigidBody,
   useRevoluteJoint,
@@ -54,28 +55,22 @@ export const ThreeCar = () => {
 
   return (
     <group>
-      <RigidBody mass={20} colliders="cuboid" ref={bodyRef} type="dynamic">
+      <RigidBody mass={100} colliders="cuboid" ref={bodyRef} type="dynamic">
         <Box scale={[10, 1.5, 2]} castShadow receiveShadow name="chassis">
           <meshStandardMaterial color={'red'} />
         </Box>
       </RigidBody>
       {wheelPositions.map((wheelPosition, index) => (
         <RigidBody
-          friction={1}
+          friction={10}
           position={wheelPosition}
-          colliders="ball"
           type="dynamic"
           key={index}
           ref={wheelRefs.current[index]}
         >
-          <Cylinder
-            rotation={[Math.PI / 2, 0, 0]}
-            args={[1, 1, 1, 32]}
-            castShadow
-            receiveShadow
-          >
+          <CylinderCollider rotation={[Math.PI / 2, 0, 0]} args={[1, 1]}>
             <meshStandardMaterial color={'grey'} />
-          </Cylinder>
+          </CylinderCollider>
         </RigidBody>
       ))}
       {wheelPositions.map((wheelPosition, index) => (
