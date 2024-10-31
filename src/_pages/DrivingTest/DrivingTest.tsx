@@ -18,7 +18,7 @@ function Scene() {
       <Physics debug gravity={[0, -9.81, 0]}>
         <ThreeCar />
         <RigidBody type="fixed">
-          <mesh receiveShadow position={[0, -1.5, 0]}>
+          <mesh receiveShadow position={[0, -2, 0]}>
             <boxGeometry args={[200, 1, 200]} />
             <meshStandardMaterial color="green" />
           </mesh>

@@ -32,9 +32,11 @@ const WheelJoint = ({
   useFrame(() => {
     if (joint.current) {
       const keys = getKeys();
-      if (keys.forward) joint.current.configureMotorVelocity(10, 10);
-      else if (keys.backward) joint.current.configureMotorVelocity(-10, 10);
-      else joint.current.configureMotorVelocity(0, 10);
+      if (keys.forward) {
+        joint.current.configureMotorVelocity(-10, 10);
+      } else if (keys.backward) {
+        joint.current.configureMotorVelocity(10, 10);
+      } else joint.current.configureMotorVelocity(0, 10);
     }
   });
 
@@ -44,10 +46,10 @@ const WheelJoint = ({
 export const ThreeCar = () => {
   const bodyRef = useRef<RapierRigidBody>(null);
   const wheelPositions: [number, number, number][] = [
-    [-3, 0, 3],
-    [-3, 0, -3],
-    [3, 0, 3],
-    [3, 0, -3],
+    [-2, -0.3, 1.5],
+    [-2, -0.3, -1.5],
+    [2, -0.3, 1.5],
+    [2, -0.3, -1.5],
   ];
   const wheelRefs = useRef(
     wheelPositions.map(() => createRef<RapierRigidBody>())
@@ -56,21 +58,23 @@ export const ThreeCar = () => {
   return (
     <group>
       <RigidBody mass={100} colliders="cuboid" ref={bodyRef} type="dynamic">
-        <Box scale={[10, 1.5, 2]} castShadow receiveShadow name="chassis">
+        <Box scale={[2, 1, 7]} castShadow receiveShadow name="chassis">
           <meshStandardMaterial color={'red'} />
         </Box>
       </RigidBody>
       {wheelPositions.map((wheelPosition, index) => (
         <RigidBody
+          colliders={false}
           friction={10}
           position={wheelPosition}
           type="dynamic"
           key={index}
           ref={wheelRefs.current[index]}
         >
-          <CylinderCollider rotation={[Math.PI / 2, 0, 0]} args={[1, 1]}>
-            <meshStandardMaterial color={'grey'} />
-          </CylinderCollider>
+          <CylinderCollider
+            rotation={[Math.PI / 2, 0, Math.PI / 2]}
+            args={[0.4, 0.8]}
+          />
         </RigidBody>
       ))}
       {wheelPositions.map((wheelPosition, index) => (
@@ -78,9 +82,13 @@ export const ThreeCar = () => {
           key={index}
           body={bodyRef}
           wheel={wheelRefs.current[index]}
-          bodyAnchor={wheelPosition}
+          bodyAnchor={[
+            wheelPosition[0],
+            wheelPosition[1],
+            wheelPosition[2] + wheelPosition[2] + wheelPosition[2],
+          ]}
           wheelAnchor={[0, 0, 0]}
-          rotationAxis={[0, 0, 1]}
+          rotationAxis={[1, 0, 0]}
         />
       ))}
     </group>
