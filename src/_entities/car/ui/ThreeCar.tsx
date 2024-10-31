@@ -1,13 +1,13 @@
-import { Box, Cylinder, useKeyboardControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { Box, Cylinder } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 import {
   RapierRigidBody,
   RigidBody,
   useRevoluteJoint,
   Vector3Array,
-} from "@react-three/rapier";
-import { createRef, RefObject, useRef } from "react";
-
+} from '@react-three/rapier';
+import { createRef, RefObject, useRef } from 'react';
+import { useKeyboardControls } from '@react-three/drei';
 const WheelJoint = ({
   body,
   wheel,
@@ -21,25 +21,19 @@ const WheelJoint = ({
   wheelAnchor: Vector3Array;
   rotationAxis: Vector3Array;
 }) => {
-  const [_, getKeys] = useKeyboardControls();
   const joint = useRevoluteJoint(body, wheel, [
     bodyAnchor,
     wheelAnchor,
     rotationAxis,
   ]);
+  const [_, getKeys] = useKeyboardControls();
 
   useFrame(() => {
-    if (wheel.current) {
+    if (joint.current) {
       const keys = getKeys();
-      if (keys.forward) {
-        if (Math.abs(wheel.current.userForce().x) > 0.05) return;
-        wheel.current.addForce({ x: 0.01, y: 0, z: 0 }, true);
-      } else if (keys.backward) {
-        if (Math.abs(wheel.current.userForce().x) > 0.05) return;
-        wheel.current.addForce({ x: -0.01, y: 0, z: 0 }, true);
-      } else {
-        wheel.current.resetForces(true);
-      }
+      if (keys.forward) joint.current.configureMotorVelocity(10, 10);
+      else if (keys.backward) joint.current.configureMotorVelocity(-10, 10);
+      else joint.current.configureMotorVelocity(0, 10);
     }
   });
 
@@ -49,10 +43,10 @@ const WheelJoint = ({
 export const ThreeCar = () => {
   const bodyRef = useRef<RapierRigidBody>(null);
   const wheelPositions: [number, number, number][] = [
-    [-0.3, 0, 0.3],
-    [-0.3, 0, -0.3],
-    [0.3, 0, 0.3],
-    [0.3, 0, -0.3],
+    [-3, 0, 3],
+    [-3, 0, -3],
+    [3, 0, 3],
+    [3, 0, -3],
   ];
   const wheelRefs = useRef(
     wheelPositions.map(() => createRef<RapierRigidBody>())
@@ -60,26 +54,27 @@ export const ThreeCar = () => {
 
   return (
     <group>
-      <RigidBody colliders="cuboid" ref={bodyRef} type="dynamic">
-        <Box scale={[0.5, 0.2, 0.3]} castShadow receiveShadow name="chassis">
-          <meshStandardMaterial color={"red"} />
+      <RigidBody mass={20} colliders="cuboid" ref={bodyRef} type="dynamic">
+        <Box scale={[10, 1.5, 2]} castShadow receiveShadow name="chassis">
+          <meshStandardMaterial color={'red'} />
         </Box>
       </RigidBody>
       {wheelPositions.map((wheelPosition, index) => (
         <RigidBody
+          friction={1}
           position={wheelPosition}
-          colliders="hull"
+          colliders="ball"
           type="dynamic"
           key={index}
           ref={wheelRefs.current[index]}
         >
           <Cylinder
             rotation={[Math.PI / 2, 0, 0]}
-            args={[0.1, 0.1, 0.1, 32]}
+            args={[1, 1, 1, 32]}
             castShadow
             receiveShadow
           >
-            <meshStandardMaterial color={"grey"} />
+            <meshStandardMaterial color={'grey'} />
           </Cylinder>
         </RigidBody>
       ))}
