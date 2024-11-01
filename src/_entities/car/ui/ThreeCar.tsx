@@ -39,8 +39,10 @@ const WheelJoint = ({
       const keys = getKeys();
       if (isFrontWheel) {
         if (keys.forward) {
+          wheel.current.wakeUp();
           joint.current.configureMotorVelocity(-20, 10);
         } else if (keys.backward) {
+          wheel.current.wakeUp();
           joint.current.configureMotorVelocity(20, 10);
         } else joint.current.configureMotorVelocity(0, 10);
       }
