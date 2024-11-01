@@ -9,19 +9,24 @@ import {
 } from '@react-three/rapier';
 import { createRef, RefObject, useRef } from 'react';
 import { useKeyboardControls } from '@react-three/drei';
+
+interface WheelJointProps {
+  body: RefObject<RapierRigidBody>;
+  wheel: RefObject<RapierRigidBody>;
+  bodyAnchor: Vector3Array;
+  wheelAnchor: Vector3Array;
+  rotationAxis: Vector3Array;
+  isFrontWheel?: boolean;
+}
+
 const WheelJoint = ({
   body,
   wheel,
   bodyAnchor,
   wheelAnchor,
   rotationAxis,
-}: {
-  body: RefObject<RapierRigidBody>;
-  wheel: RefObject<RapierRigidBody>;
-  bodyAnchor: Vector3Array;
-  wheelAnchor: Vector3Array;
-  rotationAxis: Vector3Array;
-}) => {
+  isFrontWheel = false,
+}: WheelJointProps) => {
   const joint = useRevoluteJoint(body, wheel, [
     bodyAnchor,
     wheelAnchor,
@@ -32,10 +37,12 @@ const WheelJoint = ({
   useFrame(() => {
     if (joint.current && wheel.current) {
       const keys = getKeys();
-      if (keys.forward) {
-        wheel.current.applyTorqueImpulse({ x: -1, y: 0, z: 0 }, true);
-      } else if (keys.backward) {
-        wheel.current.applyTorqueImpulse({ x: 1, y: 0, z: 0 }, true);
+      if (isFrontWheel) {
+        if (keys.forward) {
+          joint.current.configureMotorVelocity(-20, 10);
+        } else if (keys.backward) {
+          joint.current.configureMotorVelocity(20, 10);
+        } else joint.current.configureMotorVelocity(0, 10);
       }
     }
   });
@@ -80,20 +87,26 @@ export const ThreeCar = () => {
           />
         </RigidBody>
       ))}
-      {wheelPositions.map((wheelPosition, index) => (
-        <WheelJoint
-          key={index}
-          body={bodyRef}
-          wheel={wheelRefs.current[index]}
-          bodyAnchor={[
-            wheelPosition[0],
-            wheelPosition[1],
-            wheelPosition[2] + wheelPosition[2] + wheelPosition[2],
-          ]}
-          wheelAnchor={[0, 0, 0]}
-          rotationAxis={[1, 0, 0]}
-        />
-      ))}
+      {wheelPositions.map((wheelPosition, index) => {
+        // Determine if this is a front wheel (index 0 or 1)
+        const isFrontWheel = index === 1 || index === 3;
+
+        return (
+          <WheelJoint
+            key={index}
+            body={bodyRef}
+            wheel={wheelRefs.current[index]}
+            bodyAnchor={[
+              wheelPosition[0],
+              wheelPosition[1],
+              wheelPosition[2] + wheelPosition[2] + wheelPosition[2],
+            ]}
+            wheelAnchor={[0, 0, 0]}
+            rotationAxis={[1, 0, 0]}
+            isFrontWheel={isFrontWheel}
+          />
+        );
+      })}
     </group>
   );
 };
