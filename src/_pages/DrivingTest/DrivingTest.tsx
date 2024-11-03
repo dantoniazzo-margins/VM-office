@@ -1,11 +1,11 @@
-import { Canvas } from "@react-three/fiber";
-import { RigidBody, Physics } from "@react-three/rapier";
+import { Canvas } from '@react-three/fiber';
+import { RigidBody, Physics } from '@react-three/rapier';
 import {
   KeyboardControls,
   OrbitControls,
   PerspectiveCamera,
-} from "@react-three/drei";
-import { ThreeCar, Wheel, AxleWithWheels } from "_entities/car";
+} from '@react-three/drei';
+import { ThreeCar, Wheel, AxleWithWheels } from '_entities/car';
 
 function Scene() {
   return (
@@ -18,7 +18,7 @@ function Scene() {
       <Physics debug gravity={[0, -9.81, 0]}>
         <AxleWithWheels worldPosition={[0, 1, 0]} />
         <RigidBody type="fixed">
-          <mesh receiveShadow position={[0, -2, 0]}>
+          <mesh receiveShadow position={[0, -1, 0]}>
             <boxGeometry args={[200, 1, 200]} />
             <meshStandardMaterial color="green" />
           </mesh>
@@ -30,17 +30,17 @@ function Scene() {
 
 export default function App() {
   return (
-    <div style={{ height: "100vh", width: "100vw" }}>
+    <div style={{ height: '100vh', width: '100vw' }}>
       <KeyboardControls
         map={[
-          { name: "forward", keys: ["ArrowUp", "KeyW"] },
-          { name: "backward", keys: ["ArrowDown", "KeyS"] },
-          { name: "left", keys: ["ArrowLeft", "KeyA"] },
-          { name: "right", keys: ["ArrowRight", "KeyD"] },
-          { name: "flip", keys: ["KeyF"] },
-          { name: "shift", keys: ["Shift"] },
-          { name: "jump", keys: ["Space"] },
-          { name: "reset", keys: ["KeyR"] },
+          { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
+          { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
+          { name: 'left', keys: ['ArrowLeft', 'KeyA'] },
+          { name: 'right', keys: ['ArrowRight', 'KeyD'] },
+          { name: 'flip', keys: ['KeyF'] },
+          { name: 'shift', keys: ['Shift'] },
+          { name: 'jump', keys: ['Space'] },
+          { name: 'reset', keys: ['KeyR'] },
         ]}
       >
         <Scene />
