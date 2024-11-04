@@ -6,6 +6,7 @@ import { KeyboardControls } from '@react-three/drei';
 import ThirdPersonTest from '_pages/ThirdPersonTest/ThirdPersonTest';
 import WalkingTest from '_pages/WalkingTest/WalkingTest';
 import DrivingGame from '_pages/DrivingTest/DrivingTest';
+import { RaceTrack } from '_pages/DrivingTest/Racetrack';
 
 const rootContainer = document.querySelector('#root');
 
@@ -37,7 +38,8 @@ if (rootContainer) {
         <Office />
       </Canvas>
     </KeyboardControls> */
-    <DrivingGame />
+    /* <DrivingGame /> */
+    <RaceTrack />
     /*  <WalkingTest /> */
   );
 }
