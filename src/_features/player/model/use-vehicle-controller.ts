@@ -6,25 +6,17 @@ import {
 } from '@react-three/rapier';
 import { RefObject, useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { WheelInfo } from './types';
+import { wheels as wheelsInfo } from '../lib/constants';
 
 const up = new THREE.Vector3(0, 1, 0);
 
 const _wheelSteeringQuat = new THREE.Quaternion();
 const _wheelRotationQuat = new THREE.Quaternion();
 
-export type WheelInfo = {
-  axleCs: THREE.Vector3;
-  suspensionRestLength: number;
-  suspensionStiffness: number;
-  maxSuspensionTravel: number;
-  position: THREE.Vector3;
-  radius: number;
-};
-
 export const useVehicleController = (
   chassisRef: RefObject<RapierRigidBody>,
-  wheelsRef: RefObject<THREE.Object3D[]>,
-  wheelsInfo: WheelInfo[]
+  wheelsRef: RefObject<THREE.Object3D[]>
 ) => {
   const { world } = useRapier();
 

@@ -14,16 +14,14 @@ if (rootContainer) {
   const root = ReactDOM.createRoot(rootContainer);
 
   root.render(
-    /* <KeyboardControls
+    <KeyboardControls
       map={[
-        { name: "forward", keys: ["ArrowUp", "KeyW"] },
-        { name: "backward", keys: ["ArrowDown", "KeyS"] },
-        { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
-        { name: "rightward", keys: ["ArrowRight", "KeyD"] },
-        { name: "flip", keys: ["KeyF"] },
-        { name: "shift", keys: ["Shift"] },
-        { name: "jump", keys: ["Space"] },
-        { name: "reset", keys: ["KeyR"] },
+        { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
+        { name: 'back', keys: ['ArrowDown', 'KeyS'] },
+        { name: 'left', keys: ['ArrowLeft', 'KeyA'] },
+        { name: 'right', keys: ['ArrowRight', 'KeyD'] },
+        { name: 'brake', keys: ['Space'] },
+        { name: 'reset', keys: ['KeyR'] },
       ]}
     >
       <Canvas
@@ -37,9 +35,8 @@ if (rootContainer) {
       >
         <Office />
       </Canvas>
-    </KeyboardControls> */
+    </KeyboardControls>
     /* <DrivingGame /> */
-    <RaceTrack />
     /*  <WalkingTest /> */
   );
 }

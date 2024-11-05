@@ -1,4 +1,4 @@
-import { OrbitControls, FirstPersonControls } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import { Physics } from '@react-three/rapier';
 import { Floor } from '_entities/floor';
@@ -15,8 +15,7 @@ export default function Office() {
     <>
       {process.env.NODE_ENV === 'development' && <Perf position="top-left" />}
 
-      <OrbitControls makeDefault />
-      {/* <FirstPersonControls makeDefault lookSpeed={0.1} movementSpeed={10} /> */}
+      {/* <OrbitControls makeDefault /> */}
       <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
       <ambientLight intensity={1.5} />
 

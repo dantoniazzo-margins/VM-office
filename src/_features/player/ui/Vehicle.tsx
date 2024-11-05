@@ -1,16 +1,8 @@
-import { Canvas, Instructions } from '_shared/ui';
-import { useLoadingAssets, usePageVisible } from '_shared/lib';
 import { Collider } from '@dimforge/rapier3d-compat';
-import {
-  KeyboardControls,
-  OrbitControls,
-  useGLTF,
-  useKeyboardControls,
-} from '@react-three/drei';
+import { useKeyboardControls } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import {
   CuboidCollider,
-  Physics,
   RapierRigidBody,
   RigidBody,
   useRapier,
@@ -18,24 +10,11 @@ import {
 import { useControls } from 'leva';
 import { RefObject, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { WheelInfo, useVehicleController } from '_features/player';
+import { useVehicleController } from '../model/use-vehicle-controller';
+import { CHASSIS_SIZE, spawn, WHEEL_SIZE, wheels } from '../lib/constants';
 
 // https://github.com/michael-go/raphcar
 // https://sketchfab.com/3d-models/low-poly-race-track-b40628339fde4b2fbe41711edc7c7a93
-
-const spawn = {
-  position: [-7, 2, -130] as THREE.Vector3Tuple,
-  rotation: [0, Math.PI / 2, 0] as THREE.Vector3Tuple,
-};
-
-const controls = [
-  { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
-  { name: 'back', keys: ['ArrowDown', 'KeyS'] },
-  { name: 'left', keys: ['ArrowLeft', 'KeyA'] },
-  { name: 'right', keys: ['ArrowRight', 'KeyD'] },
-  { name: 'brake', keys: ['Space'] },
-  { name: 'reset', keys: ['KeyR'] },
-];
 
 type KeyControls = {
   forward: boolean;
@@ -46,25 +25,8 @@ type KeyControls = {
   reset: boolean;
 };
 
-const wheelInfo: Omit<WheelInfo, 'position'> = {
-  axleCs: new THREE.Vector3(0, 0, -1),
-  suspensionRestLength: 0.125,
-  suspensionStiffness: 24,
-  maxSuspensionTravel: 1,
-  radius: 0.15,
-};
-
-const wheels: WheelInfo[] = [
-  // front
-  { position: new THREE.Vector3(-0.65, -0.15, -0.45), ...wheelInfo },
-  { position: new THREE.Vector3(-0.65, -0.15, 0.45), ...wheelInfo },
-  // rear
-  { position: new THREE.Vector3(0.65, -0.15, -0.45), ...wheelInfo },
-  { position: new THREE.Vector3(0.65, -0.15, 0.45), ...wheelInfo },
-];
-
-const cameraOffset = new THREE.Vector3(7, 3, 0);
-const cameraTargetOffset = new THREE.Vector3(0, 1.5, 0);
+const cameraOffset = new THREE.Vector3(2, 1, 0);
+const cameraTargetOffset = new THREE.Vector3(0, 0.7, 0);
 
 const _bodyPosition = new THREE.Vector3();
 const _airControlAngVel = new THREE.Vector3();
@@ -76,7 +38,7 @@ type VehicleProps = {
   rotation: THREE.Vector3Tuple;
 };
 
-const Vehicle = ({ position, rotation }: VehicleProps) => {
+export const Vehicle = ({ position, rotation }: VehicleProps) => {
   const { world, rapier } = useRapier();
   const threeControls = useThree((s) => s.controls);
   const [, getKeyboardControls] = useKeyboardControls<keyof KeyControls>();
@@ -87,8 +49,7 @@ const Vehicle = ({ position, rotation }: VehicleProps) => {
 
   const { vehicleController } = useVehicleController(
     chasisBodyRef,
-    wheelsRef as RefObject<THREE.Object3D[]>,
-    wheels
+    wheelsRef as RefObject<THREE.Object3D[]>
   );
 
   const { accelerateForce, brakeForce, steerAngle } = useControls(
@@ -100,7 +61,7 @@ const Vehicle = ({ position, rotation }: VehicleProps) => {
     }
   );
 
-  const [smoothedCameraPosition] = useState(new THREE.Vector3(0, 100, -300));
+  const [smoothedCameraPosition] = useState(new THREE.Vector3(0, 10, -50));
   const [smoothedCameraTarget] = useState(new THREE.Vector3());
 
   const ground = useRef<Collider>();
@@ -216,13 +177,13 @@ const Vehicle = ({ position, rotation }: VehicleProps) => {
       const velocity = chassisRigidBody.linvel();
       cameraPosition.copy(velocity);
       cameraPosition.normalize();
-      cameraPosition.multiplyScalar(-10);
+      cameraPosition.multiplyScalar(-1);
       cameraPosition.add(chassisRigidBody.translation());
     }
 
     cameraPosition.y = Math.max(
       cameraPosition.y,
-      (vehicleController.current?.chassis().translation().y ?? 0) + 1
+      (vehicleController.current?.chassis().translation().y ?? 0) + 0.1
     );
 
     smoothedCameraPosition.lerp(cameraPosition, t);
@@ -249,11 +210,13 @@ const Vehicle = ({ position, rotation }: VehicleProps) => {
         colliders={false}
         type="dynamic"
       >
-        <CuboidCollider args={[0.6, 0.2, 0.4]} />
+        <CuboidCollider
+          args={[CHASSIS_SIZE[0] / 2, CHASSIS_SIZE[1] / 2, CHASSIS_SIZE[2] / 2]}
+        />
 
         {/* chassis */}
         <mesh ref={chasisMeshRef}>
-          <boxGeometry args={[1, 0.4, 0.8]} />
+          <boxGeometry args={CHASSIS_SIZE} />
         </mesh>
 
         {/* wheels */}
@@ -265,11 +228,11 @@ const Vehicle = ({ position, rotation }: VehicleProps) => {
           >
             <group rotation-x={-Math.PI / 2}>
               <mesh>
-                <cylinderGeometry args={[0.15, 0.15, 0.25, 16]} />
+                <cylinderGeometry args={[...WHEEL_SIZE, 16]} />
                 <meshStandardMaterial color="#222" />
               </mesh>
               <mesh scale={1.01}>
-                <cylinderGeometry args={[0.15, 0.15, 0.25, 6]} />
+                <cylinderGeometry args={[...WHEEL_SIZE, 6]} />
                 <meshStandardMaterial color="#fff" wireframe />
               </mesh>
             </group>
@@ -279,69 +242,3 @@ const Vehicle = ({ position, rotation }: VehicleProps) => {
     </>
   );
 };
-
-const Scene = () => {
-  const { scene } = useGLTF('./racetrack.glb');
-
-  return (
-    <>
-      <RigidBody
-        type="fixed"
-        colliders="cuboid"
-        position={[0, 0, 0]}
-        userData={{ outOfBounds: true }}
-      >
-        <mesh>
-          <boxGeometry args={[600, 1, 600]} />
-          <meshStandardMaterial color="#ff5555" />
-        </mesh>
-      </RigidBody>
-
-      <RigidBody type="fixed" colliders="trimesh" position={[-50, 0, -150]}>
-        <primitive object={scene} scale={0.6} />
-      </RigidBody>
-    </>
-  );
-};
-
-export function RaceTrack() {
-  const pageVisible = usePageVisible();
-  const loading = useLoadingAssets();
-
-  const { debug, orbitControls } = useControls(
-    'rapier-dynamic-raycast-vehicle-controller/physics',
-    {
-      debug: false,
-      orbitControls: false,
-    }
-  );
-
-  return (
-    <>
-      <Canvas>
-        <Physics debug={debug} paused={!pageVisible || loading}>
-          <KeyboardControls map={controls}>
-            <Vehicle position={spawn.position} rotation={spawn.rotation} />
-          </KeyboardControls>
-
-          <Scene />
-        </Physics>
-
-        <ambientLight intensity={1} />
-        <hemisphereLight intensity={0.5} />
-
-        {orbitControls && <OrbitControls makeDefault />}
-      </Canvas>
-
-      <Instructions>
-        * offroad is lava !
-        <br />
-        <br />
-        wasd to drive
-        <br />
-        space to brake
-        <br />r to reset
-      </Instructions>
-    </>
-  );
-}
