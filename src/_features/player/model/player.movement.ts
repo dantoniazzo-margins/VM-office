@@ -37,7 +37,7 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
   useFrame((state, delta) => {
     if (!target) return;
     const _keys = getKeys();
-    const speed = _keys.shift ? 0.0016 : 0.0008;
+    const speed = _keys.shift ? 30 : 10;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();
@@ -49,11 +49,10 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
 
     // Calculate movement direction
     const moveDir = new THREE.Vector3(0, 0, 0);
-
     if (_keys.forward) moveDir.add(cameraForward);
-    if (_keys.backward) moveDir.sub(cameraForward);
-    if (_keys.rightward) moveDir.sub(cameraRight);
-    if (_keys.leftward) moveDir.add(cameraRight);
+    if (_keys.back) moveDir.sub(cameraForward);
+    if (_keys.right) moveDir.sub(cameraRight);
+    if (_keys.left) moveDir.add(cameraRight);
     if (_keys.jump) jumpUp();
     if (_keys.reset) reset();
 
@@ -72,7 +71,6 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
         z: currentPosition.z + moveDir.z * speed * delta,
       }; */
       // Move character
-      /* target.applyImpulse(newPosition, true); */
       target.applyImpulse(newPosition, true);
 
       // Calculate target rotation angle based on movement direction

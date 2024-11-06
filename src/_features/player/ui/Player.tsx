@@ -1,29 +1,33 @@
-import { RigidBody, RapierRigidBody } from '@react-three/rapier';
+import {
+  RigidBody,
+  RapierRigidBody,
+  CapsuleCollider,
+} from '@react-three/rapier';
 import { useRef } from 'react';
 import { useThirdPersonCamera } from '../model/third-person.camera';
 import { usePlayerMovement } from '../model/player.movement';
-import { INITIAL_POSITION, spawn } from '../lib/constants';
-import { Car, ThreeCar } from '_entities/car';
-import { Character } from '_entities/character';
-import { Scooter } from '_entities/scooter/ui/Scooter';
-import { Vehicle } from './Vehicle';
+import { INITIAL_POSITION } from '../lib/constants';
+
+const DAMPING = 3; // Linear damping to prevent sliding
 
 export const Player = () => {
   const body = useRef<RapierRigidBody | null>(null);
-  /*   useThirdPersonCamera({ target: body.current });
-  usePlayerMovement({ target: body.current }); */
+  useThirdPersonCamera({ target: body.current });
+  usePlayerMovement({ target: body.current });
 
   return (
-    /* <Character
-      url="/bruno_on_bike.glb"
-      collider="hull"
-      rotation={[0, Math.PI * 0.5, 0]}
-      position={INITIAL_POSITION}
+    <RigidBody
       ref={body}
-    /> */
-    /* <Car position={INITIAL_POSITION} ref={body} /> */
-    /* <ThreeCar /> */
-    <Vehicle position={spawn.position} rotation={spawn.rotation} />
-    /* <Scooter position={INITIAL_POSITION} ref={body} /> */
+      lockRotations
+      colliders="cuboid"
+      linearDamping={DAMPING}
+      friction={0.5}
+      position={INITIAL_POSITION}
+    >
+      <mesh>
+        <capsuleGeometry args={[0.3, 1]} />
+        <meshStandardMaterial color="blue" />
+      </mesh>
+    </RigidBody>
   );
 };
