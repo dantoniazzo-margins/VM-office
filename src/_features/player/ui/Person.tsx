@@ -28,6 +28,14 @@ export const Person = () => {
         <capsuleGeometry args={[0.3, 1]} />
         <meshToonMaterial wireframe color="blue" />
       </mesh>
+      <mesh position={[0.1, 0.5, 0.3]}>
+        <sphereGeometry args={[0.05]} />
+        <meshToonMaterial color="white" />
+      </mesh>
+      <mesh position={[-0.1, 0.5, 0.3]}>
+        <sphereGeometry args={[0.05]} />
+        <meshToonMaterial color="white" />
+      </mesh>
     </RigidBody>
   );
 };
