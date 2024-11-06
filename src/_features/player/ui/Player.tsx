@@ -26,7 +26,7 @@ export const Player = () => {
     >
       <mesh>
         <capsuleGeometry args={[0.3, 1]} />
-        <meshStandardMaterial color="blue" />
+        <meshToonMaterial wireframe color="blue" />
       </mesh>
     </RigidBody>
   );

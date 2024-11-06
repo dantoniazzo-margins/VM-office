@@ -1,9 +1,7 @@
-import { Chair } from "_entities/chair";
-import { Pillar } from "_entities/pillar";
-import { Wall } from "_entities/wall";
-import { FullDeskGroup } from "_widgets/FullDeskGroup";
-import { HorizontalHalfDeskGroup } from "_widgets/HalfDeskGroup";
-import { Gymbag } from "_entities/gymbag";
+import { Pillar } from '_entities/pillar';
+import { Wall } from '_entities/wall';
+import { FullDeskGroup } from '_widgets/FullDeskGroup';
+import { HorizontalHalfDeskGroup } from '_widgets/HalfDeskGroup';
 
 export const DevSpace = () => {
   return (
@@ -17,8 +15,6 @@ export const DevSpace = () => {
         position-x={3}
         rotation-y={Math.PI * 0.5}
       />
-      <Gymbag position-x={-5.8} position-z={1} rotation-y={Math.PI * 0.65} />
-      <Gymbag position-x={-5.8} position-z={2} rotation-y={Math.PI * 0.65} />
       {/* Left wall */}
       <Wall length={4} position-x={3.75} position-z={9} />
     </group>
