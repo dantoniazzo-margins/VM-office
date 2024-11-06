@@ -1,4 +1,4 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { ThirdPersonCameraProps } from './third-person.camera';
 import { useKeyboardControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -6,7 +6,7 @@ import { useRapier } from '@react-three/rapier';
 import { useEffect } from 'react';
 import { INITIAL_POSITION } from '../lib/constants';
 
-export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
+export const usePersonMovement = ({ target }: ThirdPersonCameraProps) => {
   const [_, getKeys] = useKeyboardControls();
 
   const { rapier, world } = useRapier();
@@ -37,7 +37,7 @@ export const usePlayerMovement = ({ target }: ThirdPersonCameraProps) => {
   useFrame((state, delta) => {
     if (!target) return;
     const _keys = getKeys();
-    const speed = _keys.shift ? 30 : 10;
+    const speed = _keys.shift ? 10 : 5;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();

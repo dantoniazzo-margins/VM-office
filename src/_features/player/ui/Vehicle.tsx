@@ -33,12 +33,7 @@ const _airControlAngVel = new THREE.Vector3();
 const _cameraPosition = new THREE.Vector3();
 const _cameraTarget = new THREE.Vector3();
 
-type VehicleProps = {
-  position: THREE.Vector3Tuple;
-  rotation: THREE.Vector3Tuple;
-};
-
-export const Vehicle = ({ position, rotation }: VehicleProps) => {
+export const Vehicle = () => {
   const { world, rapier } = useRapier();
   const threeControls = useThree((s) => s.controls);
   const [, getKeyboardControls] = useKeyboardControls<keyof KeyControls>();
@@ -203,8 +198,8 @@ export const Vehicle = ({ position, rotation }: VehicleProps) => {
   return (
     <>
       <RigidBody
-        position={position}
-        rotation={rotation}
+        position={spawn.position}
+        rotation={spawn.rotation}
         canSleep={false}
         ref={chasisBodyRef}
         colliders={false}

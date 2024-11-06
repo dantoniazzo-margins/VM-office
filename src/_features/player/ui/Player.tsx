@@ -1,33 +1,10 @@
-import {
-  RigidBody,
-  RapierRigidBody,
-  CapsuleCollider,
-} from '@react-three/rapier';
-import { useRef } from 'react';
-import { useThirdPersonCamera } from '../model/third-person.camera';
-import { usePlayerMovement } from '../model/player.movement';
-import { INITIAL_POSITION } from '../lib/constants';
-
-const DAMPING = 3; // Linear damping to prevent sliding
+import { Person } from './Person';
+import { Vehicle } from './Vehicle';
+import { useControls } from 'leva';
 
 export const Player = () => {
-  const body = useRef<RapierRigidBody | null>(null);
-  useThirdPersonCamera({ target: body.current });
-  usePlayerMovement({ target: body.current });
-
-  return (
-    <RigidBody
-      ref={body}
-      lockRotations
-      colliders="cuboid"
-      linearDamping={DAMPING}
-      friction={0.5}
-      position={INITIAL_POSITION}
-    >
-      <mesh>
-        <capsuleGeometry args={[0.3, 1]} />
-        <meshToonMaterial wireframe color="blue" />
-      </mesh>
-    </RigidBody>
-  );
+  const controls = useControls('player', {
+    drive: true,
+  });
+  return controls.drive ? <Vehicle /> : <Person />;
 };
