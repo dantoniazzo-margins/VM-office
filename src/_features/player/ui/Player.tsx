@@ -4,7 +4,7 @@ import { useControls } from 'leva';
 
 export const Player = () => {
   const controls = useControls('player', {
-    drive: true,
+    drive: false,
   });
   return controls.drive ? <Vehicle /> : <Person />;
 };
