@@ -2,11 +2,11 @@ import {
   RigidBody,
   RapierRigidBody,
   CapsuleCollider,
-} from '@react-three/rapier';
-import { useRef } from 'react';
-import { useThirdPersonCamera } from '../model/third-person.camera';
-import { usePersonMovement } from '../model/person.movement';
-import { INITIAL_POSITION } from '../lib/constants';
+} from "@react-three/rapier";
+import { useRef } from "react";
+import { useThirdPersonCamera } from "../model/third-person.camera";
+import { usePersonMovement } from "../model/person.movement";
+import { INITIAL_POSITION } from "../lib/constants";
 
 const DAMPING = 3; // Linear damping to prevent sliding
 
@@ -19,6 +19,7 @@ export const Person = () => {
     <RigidBody
       ref={body}
       lockRotations
+      mass={1000}
       colliders="cuboid"
       linearDamping={DAMPING}
       friction={0.5}

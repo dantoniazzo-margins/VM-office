@@ -1,10 +1,10 @@
-import { useFrame } from '@react-three/fiber';
-import { ThirdPersonCameraProps } from './third-person.camera';
-import { useKeyboardControls } from '@react-three/drei';
-import * as THREE from 'three';
-import { useRapier } from '@react-three/rapier';
-import { useEffect } from 'react';
-import { INITIAL_POSITION } from '../lib/constants';
+import { useFrame } from "@react-three/fiber";
+import { ThirdPersonCameraProps } from "./third-person.camera";
+import { useKeyboardControls } from "@react-three/drei";
+import * as THREE from "three";
+import { useRapier } from "@react-three/rapier";
+import { useEffect } from "react";
+import { INITIAL_POSITION } from "../lib/constants";
 
 export const usePersonMovement = ({ target }: ThirdPersonCameraProps) => {
   const [_, getKeys] = useKeyboardControls();
@@ -24,13 +24,9 @@ export const usePersonMovement = ({ target }: ThirdPersonCameraProps) => {
 
   const jumpUp = () => {
     if (!target) return;
-    const origin = target.translation();
-    origin.y -= 0.77;
-    const direction = { x: 0, y: -1, z: 0 };
-    const ray = new rapier.Ray(origin, direction);
-    const hit = world.castRay(ray, 10, true);
-    if (hit && hit.timeOfImpact < 0.1) {
-      target.applyImpulse({ x: 0, y: 0.07, z: 0 }, true);
+    const translation = target.translation();
+    if (translation.y < 0.1) {
+      target.applyImpulse({ x: 0, y: 0.4, z: 0 }, true);
     }
   };
 
