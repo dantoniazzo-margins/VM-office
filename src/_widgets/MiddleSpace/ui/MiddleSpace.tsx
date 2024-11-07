@@ -1,7 +1,7 @@
-import { Desk } from '_entities/desk';
-import { FLOOR_WIDTH } from '_entities/floor';
-import { Wall, WALL_WIDTH } from '_entities/wall';
-import { Whiteboard } from '_entities/whiteboard';
+import { Desk } from "_entities/desk";
+import { FLOOR_WIDTH } from "_entities/floor";
+import { Wall, WALL_WIDTH } from "_entities/wall";
+import { Whiteboard } from "_entities/whiteboard";
 
 export const MiddleSpace = () => {
   return (
@@ -13,8 +13,6 @@ export const MiddleSpace = () => {
         width={0.1}
         position-z={0}
       />
-
-      <Whiteboard position-z={7} position-x={-0.8} rotation-y={Math.PI * 0.3} />
 
       <Wall
         length={8}
