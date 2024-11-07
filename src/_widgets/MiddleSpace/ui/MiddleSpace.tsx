@@ -1,8 +1,8 @@
-import { Desk } from "_entities/desk";
-import { FLOOR_WIDTH } from "_entities/floor";
-import { Wall, WALL_WIDTH } from "_entities/wall";
-import { Whiteboard } from "_entities/whiteboard";
-import { HorizontalHalfDeskGroup } from "_widgets/HalfDeskGroup";
+import { Desk } from '_entities/desk';
+import { FLOOR_WIDTH } from '_entities/floor';
+import { Wall, WALL_WIDTH } from '_entities/wall';
+import { Whiteboard } from '_entities/whiteboard';
+
 export const MiddleSpace = () => {
   return (
     <group position-z={-5}>
@@ -28,11 +28,7 @@ export const MiddleSpace = () => {
       <Wall length={8} position-x={FLOOR_WIDTH / 3 / 2} position-z={8} />
 
       {/* Ana and Dora office */}
-      <HorizontalHalfDeskGroup
-        position-z={10}
-        position-x={3}
-        rotation-y={-Math.PI * 0.5}
-      />
+      <Desk position-z={3} />
       {/* Dora and Ana office door */}
       <Wall
         length={3.5}

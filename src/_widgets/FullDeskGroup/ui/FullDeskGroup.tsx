@@ -1,12 +1,20 @@
-import { X_SPACING } from "../lib/constants";
-import { HorizontalHalfDeskGroup, Z_SPACING } from "_widgets/HalfDeskGroup";
-import { FilledDeskProps } from "_widgets/FilledDesk";
+interface Props {
+  children: ((props: JSX.IntrinsicElements['group']) => JSX.Element)[];
+}
 
-export const FullDeskGroup = (props: JSX.IntrinsicElements["group"]) => {
+const deskProps: { [key: number]: object } = {
+  0: { ['position-x']: -3 },
+  1: { ['position-x']: -0.97 },
+  2: { ['position-x']: -0.97, ['position-z']: 1.03 },
+  3: { ['position-x']: -3, ['position-z']: 1.03 },
+};
+
+export const FullDeskGroup = (props: Props) => {
   return (
-    <group {...props}>
-      <HorizontalHalfDeskGroup rotation-y={Math.PI} position-z={Z_SPACING} />
-      <HorizontalHalfDeskGroup position-x={X_SPACING} />
+    <group position-z={3}>
+      {props.children.map((Desk, index) => {
+        return <Desk key={index} {...deskProps[index]} />;
+      })}
     </group>
   );
 };
