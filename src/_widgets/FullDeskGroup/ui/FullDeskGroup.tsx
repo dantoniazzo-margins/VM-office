@@ -7,7 +7,7 @@ interface CustomProps {
 interface GroupProps extends Omit<JSX.IntrinsicElements["group"], "children"> {}
 type Props = GroupProps & CustomProps;
 
-const GAP = 0.05;
+export const GAP = 0.05;
 
 const deskProps: { [key: number]: object } = {
   0: {

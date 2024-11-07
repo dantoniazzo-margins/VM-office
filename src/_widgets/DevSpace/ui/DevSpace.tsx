@@ -5,16 +5,16 @@ import { FullDeskGroup } from "_widgets/FullDeskGroup";
 import { useControls } from "leva";
 
 export const DevSpace = () => {
-  const controls1 = useControls("desk-group-1-rotation", {
+  const controls1 = useControls("dev-desk-group-1-rotation", {
     rotation: { value: Math.PI / 2, min: 0, max: Math.PI * 2, step: 0.1 },
   });
-  const controls2 = useControls("desk-group-2-rotation", {
+  const controls2 = useControls("dev-desk-group-2-rotation", {
     rotation: { value: Math.PI / 2, min: 0, max: Math.PI * 2, step: 0.1 },
   });
-  const controls3 = useControls("desk-group-3-rotation", {
+  const controls3 = useControls("dev-desk-group-3-rotation", {
     rotation: { value: 0, min: 0, max: Math.PI * 2, step: 0.1 },
   });
-  const controls4 = useControls("desk-group-4-rotation", {
+  const controls4 = useControls("dev-desk-group-4-rotation", {
     rotation: { value: Math.PI / 2, min: 0, max: Math.PI * 2, step: 0.1 },
   });
   return (
