@@ -1,14 +1,11 @@
 import { FLOOR_LENGTH, FLOOR_WIDTH } from '_entities/floor';
 import { Wall, WALL_WIDTH } from '_entities/wall';
+import { LeftWall } from './LeftWall';
 
 export const BoundingWalls = () => {
   return (
     <>
-      <Wall
-        length={FLOOR_LENGTH}
-        rotate
-        position-x={-FLOOR_WIDTH / 2 + WALL_WIDTH / 2}
-      />
+      <LeftWall />
       <Wall
         length={FLOOR_LENGTH}
         rotate
