@@ -1,7 +1,9 @@
 import { Desk } from '_entities/desk';
+import { MAIN_FLOOR_LENGTH } from '_entities/floor';
 import { Pillar } from '_entities/pillar';
 import { Wall } from '_entities/wall';
 import { FullDeskGroup } from '_widgets/FullDeskGroup';
+import { PM_OFFICE_ENTRY_WALL_Z } from '_widgets/PMSpace';
 import { useControls } from 'leva';
 
 export const DevSpace = () => {
@@ -18,35 +20,35 @@ export const DevSpace = () => {
     rotation: { value: Math.PI / 2, min: 0, max: Math.PI * 2, step: 0.1 },
   });
   return (
-    <group position-z={-18}>
+    <group position-z={-MAIN_FLOOR_LENGTH / 2}>
       <Wall length={1} width={1} position-x={-5.25} position-z={-1.26} />
-      <Pillar position-x={4.75} />
+      <Pillar position-x={4.75} position-z={2} />
       <FullDeskGroup
         rotation={[0, controls1.rotation, 0]}
-        position={[-3, 0, 1.5]}
+        position={[-3, 0, 4.5]}
       >
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
       <FullDeskGroup
         rotation={[0, controls2.rotation, 0]}
-        position={[-3, 0, 6.5]}
+        position={[-3, 0, 9.5]}
       >
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
       <FullDeskGroup
         rotation={[0, controls3.rotation, 0]}
-        position={[3, 0, 6.5]}
+        position={[3, 0, 9.5]}
       >
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
       <FullDeskGroup
         rotation={[0, controls4.rotation, 0]}
-        position={[3.5, 0, 1.5]}
+        position={[3.5, 0, 4.5]}
       >
         {[Desk, Desk]}
       </FullDeskGroup>
       {/* Left wall */}
-      <Wall length={4} position-x={3.75} position-z={9} />
+      <Wall length={4} position-x={3.75} position-z={PM_OFFICE_ENTRY_WALL_Z} />
     </group>
   );
 };
