@@ -9,6 +9,13 @@ import { DesignSpace } from '_widgets/DesignSpace';
 import { Reception } from '_widgets/Reception';
 import { Lounge } from '_widgets/Lounge';
 import { Player } from '_features/player';
+import {
+  MAIN_FLOOR_LENGTH,
+  MAIN_FLOOR_WIDTH,
+  MAIN_FLOOR_HEIGHT,
+} from '_entities/floor';
+import { Vector3 } from 'three';
+import { Kitchen } from '_widgets/Kitchen';
 
 export default function Office() {
   return (
@@ -20,13 +27,18 @@ export default function Office() {
       <ambientLight intensity={1.5} />
 
       <Physics gravity={[0, -9.81, 0]}>
-        <Floor />
+        <Floor
+          size={
+            new Vector3(MAIN_FLOOR_WIDTH, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH)
+          }
+        />
         <BoundingWalls />
         <DevSpace />
         <MiddleSpace />
         <DesignSpace />
         <Reception />
         <Lounge />
+        <Kitchen />
         <Player />
       </Physics>
     </>

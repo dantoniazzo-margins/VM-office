@@ -1,11 +1,15 @@
 import { RigidBody } from '@react-three/rapier';
-import { FLOOR_HEIGHT, FLOOR_LENGTH, FLOOR_WIDTH } from '../lib/constants';
+import { Vector3 } from 'three';
 
-export const Floor = () => {
+interface FloorProps {
+  size: Vector3;
+}
+
+export const Floor = (props: FloorProps) => {
   return (
     <RigidBody type="fixed" restitution={0} friction={0.7}>
       <mesh receiveShadow position-y={-1.25}>
-        <boxGeometry args={[FLOOR_WIDTH, FLOOR_HEIGHT, FLOOR_LENGTH]} />
+        <boxGeometry args={[props.size.x, props.size.y, props.size.z]} />
         <meshStandardMaterial color="#30323b" />
       </mesh>
     </RigidBody>

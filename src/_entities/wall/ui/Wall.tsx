@@ -1,6 +1,6 @@
 import { RigidBody } from '@react-three/rapier';
 import { WALL_HEIGHT, WALL_LENGTH, WALL_WIDTH } from '../lib/constants';
-import { FLOOR_HEIGHT } from '_entities/floor';
+import { MAIN_FLOOR_HEIGHT } from '_entities/floor';
 
 interface Props {
   length: number;
@@ -19,7 +19,7 @@ export const Wall = (props: Props) => {
       <mesh
         receiveShadow
         position-x={props['position-x']}
-        position-y={props['position-y'] || FLOOR_HEIGHT / 2}
+        position-y={props['position-y'] || MAIN_FLOOR_HEIGHT / 2}
         position-z={props['position-z']}
         rotation-y={props.rotate ? Math.PI * 0.5 : 0}
       >
