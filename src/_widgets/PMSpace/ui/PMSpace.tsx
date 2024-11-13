@@ -1,8 +1,12 @@
-import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from "_entities/floor";
-import { Vector3 } from "three";
-import { PM_OFFICE_LENGTH, PM_OFFICE_WIDTH } from "../lib/constants";
-import { RIGHT_WALL_X_POSITION } from "_widgets/BoundingWalls/ui/RightWall";
-import { Wall, WALL_WIDTH } from "_entities/wall";
+import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from '_entities/floor';
+import { Vector3 } from 'three';
+import { PM_OFFICE_LENGTH, PM_OFFICE_WIDTH } from '../lib/constants';
+import { RIGHT_WALL_X_POSITION } from '_widgets/BoundingWalls/ui/RightWall';
+import { Wall, WALL_WIDTH } from '_entities/wall';
+import { FullDeskGroup } from '_widgets/FullDeskGroup';
+import { Desk } from '_entities/desk';
+import { Whiteboard } from '_entities/whiteboard';
+import { Sofa } from '_entities/sofa';
 
 export const PM_OFFICE_ENTRY_WALL_Z = 15.5;
 export const SPLITTING_WALL_LENGTH = PM_OFFICE_LENGTH * 0.8;
@@ -43,6 +47,42 @@ export const PMSpace = () => {
         length={SPLITTING_WALL_LENGTH}
         rotate
         opacity={0.4}
+      />
+      <FullDeskGroup
+        rotation={[0, Math.PI * 0.5, 0]}
+        position={[-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 5, 0, 0]}
+      >
+        {[Desk, Desk, Desk, Desk, Desk, Desk]}
+      </FullDeskGroup>
+      <FullDeskGroup
+        rotation={[0, Math.PI * 0.5, 0]}
+        position={[
+          -PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH * 0.7,
+          0,
+          PM_OFFICE_LENGTH / 4,
+        ]}
+        verticalFirst
+      >
+        {[Desk, Desk]}
+      </FullDeskGroup>
+      <Desk
+        rotation={[0, Math.PI * 0.5, 0]}
+        position={[PM_OFFICE_WIDTH / 2 - 4, 0, -PM_OFFICE_LENGTH / 4]}
+      />
+      <Whiteboard
+        rotation={[0, -Math.PI * 0.15, 0]}
+        position={[PM_OFFICE_WIDTH / 2 - 6, 0, (-PM_OFFICE_LENGTH / 2) * 0.8]}
+      />
+      <Sofa rotation={[0, Math.PI / 2, 0]} position={[-12, 0, 6]} />
+      <Desk
+        scale={0.7}
+        rotation={[0, Math.PI * 0.5, 0]}
+        position={[
+          PM_OFFICE_WIDTH / 2 - PM_OFFICE_WIDTH / 2.1,
+          0,
+          -PM_OFFICE_LENGTH / 2 + PM_OFFICE_LENGTH / 2.15,
+        ]}
+        color="#2e2e2e"
       />
     </group>
   );

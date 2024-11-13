@@ -1,5 +1,5 @@
-import { RigidBody } from "@react-three/rapier";
-import { DESK_LEG_SIZE, DESK_SIZE } from "../lib/constants";
+import { RigidBody } from '@react-three/rapier';
+import { DESK_LEG_SIZE, DESK_SIZE } from '../lib/constants';
 
 export const DESK_LEG_Y = -DESK_SIZE.y / 2 - DESK_LEG_SIZE.y / 2;
 export const DESK_LEG_Z_NEAR =
@@ -10,13 +10,17 @@ export const DESK_LEG_Z_FAR =
 export const BOTTOM_LEG_Y =
   DESK_LEG_Y - DESK_LEG_SIZE.y / 2 + DESK_LEG_SIZE.z / 2;
 
-export default function Desk(props: JSX.IntrinsicElements["group"]) {
+type DeskProps = {
+  color?: string;
+} & JSX.IntrinsicElements['group'];
+
+export default function Desk(props: DeskProps) {
   return (
     <RigidBody colliders="cuboid" type="dynamic" restitution={0} friction={0.7}>
       <group position-y={DESK_LEG_Y - DESK_SIZE.y} {...props}>
         <mesh>
           <boxGeometry args={[DESK_SIZE.x, DESK_SIZE.y, DESK_SIZE.z]} />
-          <meshPhongMaterial color="#83600f" />
+          <meshPhongMaterial color={props.color ?? '#83600f'} />
         </mesh>
         {/* First leg */}
         <mesh position={[-0.95, DESK_LEG_Y, DESK_LEG_Z_NEAR]}>
