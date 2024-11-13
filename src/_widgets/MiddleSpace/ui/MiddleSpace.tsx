@@ -3,9 +3,13 @@ import { MAIN_FLOOR_WIDTH } from '_entities/floor';
 import { Wall, WALL_WIDTH } from '_entities/wall';
 import { Whiteboard } from '_entities/whiteboard';
 
+export const MIDDLE_SPACE_OFFSET = -5;
+
+export const DESIGNER_WALL_Z = 11.5;
+
 export const MiddleSpace = () => {
   return (
-    <group position-z={-5}>
+    <group position-z={MIDDLE_SPACE_OFFSET}>
       <Wall
         length={8}
         position-x={MAIN_FLOOR_WIDTH / 3 / 2}
@@ -40,7 +44,7 @@ export const MiddleSpace = () => {
       <Wall
         length={8}
         position-x={MAIN_FLOOR_WIDTH / 3 / 2}
-        position-z={11.5}
+        position-z={DESIGNER_WALL_Z}
       />
     </group>
   );

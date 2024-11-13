@@ -3,7 +3,7 @@ import { ReceptionDesk } from '_entities/reception';
 
 export const Reception = () => {
   return (
-    <group position-z={14.5}>
+    <group position-z={19.5}>
       <Wall length={2} rotate color="#2f2e2e" />
       <ReceptionDesk position-x={-1.5} />
     </group>

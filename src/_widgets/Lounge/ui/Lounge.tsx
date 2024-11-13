@@ -8,7 +8,7 @@ import { TVSetup } from '_widgets/TVSetup';
 
 export const Lounge = () => {
   return (
-    <group position-z={20}>
+    <group position-z={19}>
       <Pillar position-z={0} position-x={4.75} />
       <Shelf position-z={0} position-x={0.2} scale={[3.4, 0.8, 1]} />
       <Couch position-z={3} position-x={2.8} />

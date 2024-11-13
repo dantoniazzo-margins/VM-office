@@ -5,6 +5,7 @@ import { MAIN_FLOOR_HEIGHT } from '_entities/floor';
 interface Props {
   length: number;
   width?: number;
+  height?: number;
   rotate?: boolean;
   color?: string;
   ['position-x']?: number;
@@ -26,8 +27,8 @@ export const Wall = (props: Props) => {
         <boxGeometry
           args={[
             props.length || WALL_LENGTH,
-            WALL_HEIGHT,
-            props.width ?? WALL_WIDTH,
+            props.height || WALL_HEIGHT,
+            props.width || WALL_WIDTH,
           ]}
         />
         <meshPhongMaterial
