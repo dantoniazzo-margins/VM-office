@@ -1,12 +1,12 @@
-import { Couch } from "_entities/couch";
-import { Pillar } from "_entities/pillar";
-import { PS5Contoller } from "_entities/ps5";
-import { Shelf } from "_entities/shelf";
-import { TVSetup } from "_widgets/TVSetup";
-import { RockingChair } from "_entities/rocking-chair";
-import { BeanBag } from "_entities/bean-bag";
-import { MAIN_FLOOR_WIDTH } from "_entities/floor";
-import { Desk } from "_entities/desk";
+import { Couch } from '_entities/couch';
+import { Pillar } from '_entities/pillar';
+import { PS5Contoller } from '_entities/ps5';
+import { Shelf } from '_entities/shelf';
+import { TVSetup } from '_widgets/TVSetup';
+import { RockingChair } from '_entities/rocking-chair';
+import { BeanBag } from '_entities/bean-bag';
+import { MAIN_FLOOR_WIDTH } from '_entities/floor';
+import { Desk } from '_entities/desk';
 
 export const Lounge = () => {
   return (
@@ -34,12 +34,6 @@ export const Lounge = () => {
         position-y={0}
         rotation-x={Math.PI * 0.5}
         rotation-z={-Math.PI * 0.3}
-      />
-      <RockingChair position-z={4.8} rotation={[0, Math.PI * 0.4, 0]} />
-      <RockingChair position-z={6.2} rotation={[0, Math.PI * 0.6, 0]} />
-      <BeanBag
-        position={[MAIN_FLOOR_WIDTH / 2.5, 0, 7]}
-        rotation={[0, -Math.PI * 0.5, 0]}
       />
     </group>
   );
