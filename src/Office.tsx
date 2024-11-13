@@ -17,13 +17,14 @@ import {
 import { Vector3 } from 'three';
 import { Kitchen } from '_widgets/Kitchen';
 import { PMSpace } from '_widgets/PMSpace';
+import { GreenConf } from '_widgets/GreenConf';
 
 export default function Office() {
   return (
     <>
       {process.env.NODE_ENV === 'development' && <Perf position="top-left" />}
 
-      {/* <OrbitControls makeDefault /> */}
+      <OrbitControls makeDefault />
       <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
       <ambientLight intensity={1.5} />
 
@@ -41,7 +42,8 @@ export default function Office() {
         <Reception />
         <Lounge />
         <Kitchen />
-        <Player />
+        <GreenConf />
+        {/* <Player /> */}
       </Physics>
     </>
   );
