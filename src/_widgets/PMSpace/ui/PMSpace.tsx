@@ -5,6 +5,7 @@ import { RIGHT_WALL_X_POSITION } from "_widgets/BoundingWalls/ui/RightWall";
 import { Wall, WALL_WIDTH } from "_entities/wall";
 
 export const PM_OFFICE_ENTRY_WALL_Z = 15.5;
+export const SPLITTING_WALL_LENGTH = PM_OFFICE_LENGTH * 0.8;
 
 export const PMSpace = () => {
   return (
@@ -35,6 +36,13 @@ export const PMSpace = () => {
         length={PM_OFFICE_LENGTH}
         rotate
         position-x={PM_OFFICE_WIDTH / 2 - WALL_WIDTH / 2}
+      />
+      <Wall
+        position-x={-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 2.5}
+        position-z={PM_OFFICE_LENGTH / 2 - SPLITTING_WALL_LENGTH / 2}
+        length={SPLITTING_WALL_LENGTH}
+        rotate
+        opacity={0.4}
       />
     </group>
   );
