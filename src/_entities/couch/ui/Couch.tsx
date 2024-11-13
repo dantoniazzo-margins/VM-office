@@ -10,7 +10,7 @@ export const Couch = (props: JSX.IntrinsicElements["group"]) => {
       type="dynamic"
       restitution={0}
       friction={0.7}
-      scale={0.8}
+      scale={props.scale ?? 0.8}
     >
       <primitive {...props} position-y={-1} object={scene} castShadow />
     </RigidBody>
