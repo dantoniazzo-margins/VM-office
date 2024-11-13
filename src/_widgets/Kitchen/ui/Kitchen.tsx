@@ -1,8 +1,8 @@
-import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from '_entities/floor';
-import { Vector3 } from 'three';
-import { KITCHEN_LENGTH, KITCHEN_WIDTH } from '../lib/constants';
-import { LEFT_WALL_X_POSITION } from '_widgets/BoundingWalls/ui/LeftWall';
-import { Wall, WALL_WIDTH } from '_entities/wall';
+import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from "_entities/floor";
+import { Vector3 } from "three";
+import { KITCHEN_LENGTH, KITCHEN_WIDTH } from "../lib/constants";
+import { LEFT_WALL_X_POSITION } from "_widgets/BoundingWalls/ui/LeftWall";
+import { Wall, WALL_WIDTH } from "_entities/wall";
 
 export const KITCHEN_SHORT_WALL_LEGTH = KITCHEN_WIDTH - WALL_WIDTH / 2;
 
@@ -23,7 +23,7 @@ export const Kitchen = () => {
       position={[
         LEFT_WALL_X_POSITION - KITCHEN_WIDTH / 2,
         0,
-        MAIN_FLOOR_LENGTH / 2 - KITCHEN_LENGTH / 2,
+        MAIN_FLOOR_LENGTH / 2 - KITCHEN_LENGTH / 3,
       ]}
     >
       <Floor

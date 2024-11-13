@@ -1,9 +1,9 @@
-import { Desk } from '_entities/desk';
-import { MAIN_FLOOR_WIDTH } from '_entities/floor';
-import { Wall, WALL_WIDTH } from '_entities/wall';
-import { Whiteboard } from '_entities/whiteboard';
+import { Desk } from "_entities/desk";
+import { MAIN_FLOOR_WIDTH } from "_entities/floor";
+import { Wall, WALL_WIDTH } from "_entities/wall";
+import { Whiteboard } from "_entities/whiteboard";
 
-export const MIDDLE_SPACE_OFFSET = -5;
+export const MIDDLE_SPACE_OFFSET = -7;
 
 export const DESIGNER_WALL_Z = 11.5;
 

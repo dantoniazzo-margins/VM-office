@@ -1,8 +1,8 @@
-import { MAIN_FLOOR_LENGTH, MAIN_FLOOR_WIDTH } from '_entities/floor';
-import { Wall, WALL_WIDTH } from '_entities/wall';
+import { MAIN_FLOOR_LENGTH, MAIN_FLOOR_WIDTH } from "_entities/floor";
+import { Wall, WALL_WIDTH } from "_entities/wall";
 
-export const FIRST_PART_LENGTH = MAIN_FLOOR_LENGTH * 0.1;
-export const SECOND_PART_LENGTH = MAIN_FLOOR_LENGTH * 0.75;
+export const FIRST_PART_LENGTH = MAIN_FLOOR_LENGTH * 0.05;
+export const SECOND_PART_LENGTH = MAIN_FLOOR_LENGTH * 0.8;
 export const FIRST_GLASS_LENGTH = MAIN_FLOOR_LENGTH * 0.055;
 export const SECOND_GLASS_LENGTH = MAIN_FLOOR_LENGTH * 0.055;
 export const LEFT_WALL_X_POSITION = -MAIN_FLOOR_WIDTH / 2 + WALL_WIDTH / 2;

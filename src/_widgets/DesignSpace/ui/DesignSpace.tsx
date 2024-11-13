@@ -1,10 +1,10 @@
-import { Desk } from '_entities/desk';
-import { Character } from '_entities/character';
-import { FullDeskGroup, GAP } from '_widgets/FullDeskGroup';
+import { Desk } from "_entities/desk";
+import { Character } from "_entities/character";
+import { FullDeskGroup, GAP } from "_widgets/FullDeskGroup";
 
 export const DesignSpace = () => {
   return (
-    <group position-z={9}>
+    <group position-z={8}>
       <FullDeskGroup position={[1, 0, -0.4]}>
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
