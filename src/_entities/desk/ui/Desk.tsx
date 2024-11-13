@@ -3,7 +3,7 @@ import { DESK_LEG_SIZE, DESK_SIZE } from '../lib/constants';
 
 export default function Desk(props: JSX.IntrinsicElements['group']) {
   return (
-    <RigidBody colliders="cuboid" type="fixed" restitution={0} friction={0.7}>
+    <RigidBody colliders="cuboid" type="dynamic" restitution={0} friction={0.7}>
       <group position-y={-0.4} {...props}>
         <mesh position={[0, 0, 0]}>
           <boxGeometry args={[DESK_SIZE.x, DESK_SIZE.y, DESK_SIZE.z]} />
