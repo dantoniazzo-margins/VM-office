@@ -24,7 +24,7 @@ export default function Office() {
     <>
       {process.env.NODE_ENV === 'development' && <Perf position="top-left" />}
 
-      <OrbitControls makeDefault />
+      {/* <OrbitControls makeDefault /> */}
       <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
       <ambientLight intensity={1.5} />
 
@@ -43,7 +43,7 @@ export default function Office() {
         <Lounge />
         <Kitchen />
         <GreenConf />
-        {/* <Player /> */}
+        <Player />
       </Physics>
     </>
   );
