@@ -27,7 +27,7 @@ export default function Office() {
       <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
       <ambientLight intensity={1.5} />
 
-      <Physics debug gravity={[0, -9.81, 0]}>
+      <Physics gravity={[0, -9.81, 0]}>
         <Floor
           size={
             new Vector3(MAIN_FLOOR_WIDTH, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH)
