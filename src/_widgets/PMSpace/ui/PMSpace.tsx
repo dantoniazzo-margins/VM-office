@@ -21,8 +21,8 @@ export const PMSpace = () => {
       {/* Right wall */}
       <Wall
         position-z={PM_OFFICE_LENGTH / 2}
-        position-x={WALL_WIDTH}
-        length={PM_OFFICE_WIDTH - WALL_WIDTH * 2}
+        position-x={0}
+        length={PM_OFFICE_WIDTH}
       />
       {/* Left wall */}
       <Wall
