@@ -7,6 +7,7 @@ import ThirdPersonTest from "_pages/ThirdPersonTest/ThirdPersonTest";
 import WalkingTest from "_pages/WalkingTest/WalkingTest";
 import DrivingGame from "_pages/DrivingTest/DrivingTest";
 import { RaceTrack } from "_pages/DrivingTest/Racetrack";
+import * as THREE from "three";
 
 const rootContainer = document.querySelector("#root");
 
@@ -32,7 +33,7 @@ if (rootContainer) {
           fov: 45,
           near: 0.5,
           far: 200,
-          position: [-4.5, 1, 25],
+          position: [-4.5, 10, 40],
         }}
       >
         <Office />
