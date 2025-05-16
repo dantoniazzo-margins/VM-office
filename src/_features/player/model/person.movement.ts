@@ -1,36 +1,36 @@
-import { useFrame } from '@react-three/fiber';
+import { useFrame, ObjectMap } from '@react-three/fiber';
 import { ThirdPersonCameraProps } from './third-person.camera';
-import { useKeyboardControls } from '@react-three/drei';
+import { useAnimations, useKeyboardControls } from '@react-three/drei';
 import * as THREE from 'three';
-import { useEffect } from 'react';
 import { INITIAL_POSITION } from '../lib/constants';
+import { GLTF } from 'three-stdlib/loaders/GLTFLoader';
 
-export const usePersonMovement = ({ target }: ThirdPersonCameraProps) => {
+export interface PersonMovementProps extends ThirdPersonCameraProps {
+  model: GLTF & ObjectMap;
+}
+
+export const usePersonMovement = (props: PersonMovementProps) => {
   const [_, getKeys] = useKeyboardControls();
-
+  const animations = useAnimations(props.model.animations, props.model.scene);
   const reset = () => {
-    if (!target) return;
-    target.setTranslation(INITIAL_POSITION, true);
-    target.setLinvel({ x: 0, y: 0, z: 0 }, true);
-    target.setAngvel({ x: 0, y: 0, z: 0 }, true);
+    if (!props.target) return;
+    props.target.setTranslation(INITIAL_POSITION, true);
+    props.target.setLinvel({ x: 0, y: 0, z: 0 }, true);
+    props.target.setAngvel({ x: 0, y: 0, z: 0 }, true);
   };
 
-  useEffect(() => {
-    reset();
-  }, []);
-
   const jumpUp = () => {
-    if (!target) return;
-    const translation = target.translation();
+    if (!props.target) return;
+    const translation = props.target.translation();
     if (translation.y < 0.1) {
-      target.applyImpulse({ x: 0, y: 0.4, z: 0 }, true);
+      props.target.applyImpulse({ x: 0, y: 0.05, z: 0 }, true);
     }
   };
 
   useFrame((state, delta) => {
-    if (!target) return;
+    if (!props.target) return;
     const _keys = getKeys();
-    const speed = _keys.shift ? 15 : 9;
+    const speed = _keys.shift ? 7 : 4;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();
@@ -49,10 +49,30 @@ export const usePersonMovement = ({ target }: ThirdPersonCameraProps) => {
     if (_keys.jump) jumpUp();
     if (_keys.reset) reset();
 
+    const walk = animations.actions['Walk'];
+    const run = animations.actions['Run'];
+    const idle = animations.actions['Survey'];
+    if (run) run.timeScale = 2; // Adjust run speed
+    if (_keys.forward || _keys.back || _keys.left || _keys.right) {
+      if (_keys.shift) {
+        idle?.stop();
+        walk?.stop();
+        run?.play();
+      } else {
+        idle?.stop();
+        run?.stop();
+        walk?.play();
+      }
+    } else {
+      idle?.play();
+      walk?.stop();
+      run?.stop();
+    }
+
     if (moveDir.lengthSq() > 0) {
       moveDir.normalize();
 
-      const currentPosition = target.translation();
+      const currentPosition = props.target.translation();
 
       const newPosition = {
         x: moveDir.x * speed * delta,
@@ -64,9 +84,9 @@ export const usePersonMovement = ({ target }: ThirdPersonCameraProps) => {
         z: currentPosition.z + moveDir.z * speed * delta,
       }; */
       // Move character
-      target.applyImpulse(newPosition, true);
+      props.target.applyImpulse(newPosition, true);
 
-      // Calculate target rotation angle based on movement direction
+      // Calculate props.target rotation angle based on movement direction
       const targetAngle = Math.atan2(moveDir.x, moveDir.z);
 
       // Interpolate towards target angle using quaternions for smooth rotation
@@ -78,7 +98,7 @@ export const usePersonMovement = ({ target }: ThirdPersonCameraProps) => {
 
       // Retrieve the current rotation as a quaternion
       const currentQuaternion = new THREE.Quaternion();
-      const currentRotation = target.rotation();
+      const currentRotation = props.target.rotation();
       currentQuaternion.set(
         currentRotation.x,
         currentRotation.y,
@@ -90,7 +110,7 @@ export const usePersonMovement = ({ target }: ThirdPersonCameraProps) => {
       currentQuaternion.slerp(targetQuaternion, 10 * delta); // 10 * delta adjusts rotation speed
 
       // Apply the new rotation to the target
-      target.setRotation(currentQuaternion, true);
+      props.target.setRotation(currentQuaternion, true);
     }
   });
 };
