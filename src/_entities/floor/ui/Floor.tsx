@@ -10,7 +10,7 @@ export const Floor = (props: FloorProps) => {
     <RigidBody type="fixed" restitution={0} friction={0.7}>
       <mesh receiveShadow position-y={-1.25}>
         <boxGeometry args={[props.size.x, props.size.y, props.size.z]} />
-        <meshStandardMaterial color="#30323b" />
+        <meshBasicMaterial color="#30323b" />
       </mesh>
     </RigidBody>
   );

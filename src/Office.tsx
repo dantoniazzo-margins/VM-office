@@ -26,8 +26,8 @@ export default function Office() {
       {process.env.NODE_ENV === 'development' && <Perf position="top-left" />}
 
       {/* <OrbitControls makeDefault /> */}
-      {/*    <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
-      <ambientLight intensity={1.5} /> */}
+      <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
+      <ambientLight intensity={1.5} />
 
       <Physics gravity={[0, -9.81, 0]}>
         <Floor
