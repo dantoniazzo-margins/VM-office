@@ -18,6 +18,7 @@ import { Vector3 } from 'three';
 import { Kitchen } from '_widgets/Kitchen';
 import { PMSpace } from '_widgets/PMSpace';
 import { GreenConf } from '_widgets/GreenConf';
+import { Ceiling } from '_widgets/Ceiling';
 
 export default function Office() {
   return (
@@ -25,8 +26,8 @@ export default function Office() {
       {process.env.NODE_ENV === 'development' && <Perf position="top-left" />}
 
       {/* <OrbitControls makeDefault /> */}
-      <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
-      <ambientLight intensity={1.5} />
+      {/*    <directionalLight castShadow position={[7, 2, 0]} intensity={4.5} />
+      <ambientLight intensity={1.5} /> */}
 
       <Physics gravity={[0, -9.81, 0]}>
         <Floor
@@ -34,6 +35,7 @@ export default function Office() {
             new Vector3(MAIN_FLOOR_WIDTH, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH)
           }
         />
+        <Ceiling />
         <BoundingWalls />
         <DevSpace />
         <PMSpace />

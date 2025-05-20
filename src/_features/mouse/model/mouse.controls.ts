@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from 'react';
 
 export const useMouseControls = () => {
   const [mouseState, setMouseState] = useState({
@@ -9,6 +9,9 @@ export const useMouseControls = () => {
     movementX: 0,
     movementY: 0,
   });
+
+  // Add a timer ref to track mouse movement
+  const moveTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleMouseDown = (e: MouseEvent) => {
@@ -27,10 +30,27 @@ export const useMouseControls = () => {
         ...prev,
         isLeftMouseDown: e.button === 0 ? false : prev.isLeftMouseDown,
         isRightMouseDown: e.button === 2 ? false : prev.isRightMouseDown,
+        // Reset movement on mouse up
+        movementX: 0,
+        movementY: 0,
+      }));
+    };
+
+    // Helper function to reset movement values
+    const resetMovement = () => {
+      setMouseState((prev) => ({
+        ...prev,
+        movementX: 0,
+        movementY: 0,
       }));
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Clear any existing timeout
+      if (moveTimeoutRef.current !== null) {
+        window.clearTimeout(moveTimeoutRef.current);
+      }
+
       if (document.pointerLockElement) {
         setMouseState((prev) => ({
           ...prev,
@@ -47,6 +67,9 @@ export const useMouseControls = () => {
           lastY: e.clientY,
         }));
       }
+
+      // Set a timeout to reset movement values after mouse stops
+      moveTimeoutRef.current = window.setTimeout(resetMovement, 50);
     };
 
     const handleContextMenu = (e: MouseEvent) => {
@@ -64,19 +87,23 @@ export const useMouseControls = () => {
       }
     };
 
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("contextmenu", handleContextMenu);
-    document.addEventListener("pointerlockchange", handlePointerLockChange);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('pointerlockchange', handlePointerLockChange);
 
     return () => {
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("contextmenu", handleContextMenu);
+      // Clear timeout on cleanup
+      if (moveTimeoutRef.current !== null) {
+        window.clearTimeout(moveTimeoutRef.current);
+      }
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('contextmenu', handleContextMenu);
       document.removeEventListener(
-        "pointerlockchange",
+        'pointerlockchange',
         handlePointerLockChange
       );
     };

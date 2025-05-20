@@ -24,6 +24,7 @@ export const Person = () => {
       linearDamping={DAMPING}
       friction={0.5}
       scale={0.01}
+      rotation={[0, Math.PI, 0]}
       position={INITIAL_POSITION}
     >
       <primitive object={fox.scene} castShadow />

@@ -29,12 +29,12 @@ if (rootContainer) {
     >
       <Canvas
         shadows
-        camera={{
+        /*   camera={{
           fov: 45,
           near: 0.5,
           far: 200,
-          position: [-4.5, 10, 40],
-        }}
+          position: [-4.5, 7, 40],
+        }} */
       >
         <Office />
       </Canvas>

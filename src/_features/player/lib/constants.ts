@@ -2,7 +2,7 @@ import { Vector3 } from 'three';
 import * as THREE from 'three';
 import { WheelInfo } from '../model/types';
 
-export const INITIAL_POSITION: Vector3 = new Vector3(-4, 0, 18.6);
+export const INITIAL_POSITION: Vector3 = new Vector3(-4, 0, 24);
 
 export const spawn = {
   position: [-4, 2, 18.6] as THREE.Vector3Tuple,

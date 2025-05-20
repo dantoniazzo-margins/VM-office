@@ -35,6 +35,12 @@ export const GreenConf = () => {
         color="#5d9058"
       />
       <Wall
+        position-z={GREEN_CONF_SIZE.z / 2 - WALL_WIDTH / 2}
+        position-x={-MAIN_FLOOR_WIDTH / 2 + 3 / 2}
+        length={4}
+        color="#565656"
+      />
+      <Wall
         length={GREEN_CONF_SIZE.z}
         rotate
         position-x={MAIN_FLOOR_WIDTH / 2 - WALL_WIDTH / 2}

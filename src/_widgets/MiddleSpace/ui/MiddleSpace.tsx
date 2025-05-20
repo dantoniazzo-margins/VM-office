@@ -1,8 +1,9 @@
-import { Desk, DESK_SIZE } from "_entities/desk";
-import { MAIN_FLOOR_WIDTH } from "_entities/floor";
-import { Wall, WALL_WIDTH } from "_entities/wall";
-import { Whiteboard } from "_entities/whiteboard";
-import { FullDeskGroup } from "_widgets/FullDeskGroup";
+import { Desk, DESK_SIZE } from '_entities/desk';
+import { MAIN_FLOOR_WIDTH } from '_entities/floor';
+import { Wall, WALL_WIDTH } from '_entities/wall';
+import { Whiteboard } from '_entities/whiteboard';
+import { FullDeskGroup } from '_widgets/FullDeskGroup';
+import { CeilingLight } from '_features/light';
 
 export const MIDDLE_SPACE_OFFSET = -7;
 
@@ -19,6 +20,8 @@ export const MiddleSpace = () => {
   return (
     <group position-z={MIDDLE_SPACE_OFFSET}>
       {/* Close to dev space wall */}
+      <CeilingLight position-x={1.5} position-z={3} />
+      <CeilingLight position-x={-3.7} position-z={3} />
       <Wall
         length={CLOSE_TO_DEV_SPACE_WALL_LENGTH}
         position-x={MAIN_FLOOR_WIDTH / 2 - CLOSE_TO_DEV_SPACE_WALL_LENGTH / 2}
@@ -50,6 +53,8 @@ export const MiddleSpace = () => {
       <FullDeskGroup rotation={[0, Math.PI * 0.5, 0]} position={[2, 0, 4]}>
         {[Desk, Desk]}
       </FullDeskGroup>
+      <CeilingLight position-x={-3.7} position-z={10} />
+      <CeilingLight position-x={1.5} position-z={10} />
       <Whiteboard position={[-1, 0, 7]} rotation={[0, Math.PI * 0.25, 0]} />
       {/* Dora and Ana office door */}
       <Wall

@@ -5,6 +5,7 @@ import { Wall, WALL_WIDTH } from '_entities/wall';
 import { FullDeskGroup } from '_widgets/FullDeskGroup';
 import { PM_OFFICE_ENTRY_WALL_Z } from '_widgets/PMSpace';
 import { useControls } from 'leva';
+import { CeilingLight } from '_features/light';
 
 export const DevSpace = () => {
   const controls1 = useControls('dev-desk-group-1-rotation', {
@@ -27,6 +28,7 @@ export const DevSpace = () => {
         position-x={-MAIN_FLOOR_WIDTH / 2 + 0.5 + WALL_WIDTH}
         position-z={0.5 + WALL_WIDTH}
       />
+      <CeilingLight position-z={5} />
       <Pillar position-x={4.75} position-z={2} />
       {/* Top left */}
       <FullDeskGroup

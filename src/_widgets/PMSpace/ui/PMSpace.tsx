@@ -7,6 +7,7 @@ import { FullDeskGroup } from '_widgets/FullDeskGroup';
 import { Desk } from '_entities/desk';
 import { Whiteboard } from '_entities/whiteboard';
 import { Sofa } from '_entities/sofa';
+import { CeilingLight } from '_features/light';
 
 export const PM_OFFICE_ENTRY_WALL_Z = 15.5;
 export const SPLITTING_WALL_LENGTH = PM_OFFICE_LENGTH * 0.8;
@@ -20,6 +21,9 @@ export const PMSpace = () => {
         -MAIN_FLOOR_LENGTH / 2 + PM_OFFICE_LENGTH / 2 + PM_OFFICE_ENTRY_WALL_Z,
       ]}
     >
+      <CeilingLight position-x={3} />
+      <CeilingLight position-x={-5} />
+      {/* Floor */}
       <Floor
         size={new Vector3(PM_OFFICE_WIDTH, MAIN_FLOOR_HEIGHT, PM_OFFICE_LENGTH)}
       />
