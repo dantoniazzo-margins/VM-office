@@ -1,11 +1,15 @@
-import { Desk } from '_entities/desk';
-import { Character } from '_entities/character';
-import { FullDeskGroup, GAP } from '_widgets/FullDeskGroup';
-import { CeilingLight } from '_features/light';
+import { Desk } from "_entities/desk";
+import { Character } from "_entities/character";
+import { FullDeskGroup, GAP } from "_widgets/FullDeskGroup";
+import { CeilingLight, LampLight } from "_features/light";
 
 export const DesignSpace = () => {
   return (
     <group position-z={8}>
+      <LampLight position={[5, -0.5, -3]} rotation={[0, Math.PI / 2, 0]} />
+      <LampLight position={[5, -0.5, 3]} />
+      <LampLight position={[5, -0.5, 7.5]} />
+      <LampLight position={[5, -0.5, 10.5]} />
       <CeilingLight position-x={1.5} position-z={5} />
       <CeilingLight position-x={-3.7} position-z={5} />
       <FullDeskGroup position={[1, 0, -0.4]}>
@@ -21,6 +25,7 @@ export const DesignSpace = () => {
         url="/sara.glb"
         collider="hull"
       />
+
       <CeilingLight position-x={1.5} position-z={14} />
     </group>
   );

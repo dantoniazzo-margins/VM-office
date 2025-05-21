@@ -1,18 +1,16 @@
 interface CeilingLightProps {
-  'position-x'?: number;
-  'position-z'?: number;
+  "position-x"?: number;
+  "position-z"?: number;
 }
 
 export const CeilingLight = (props: CeilingLightProps) => {
   return (
-    <></>
-    /*   <pointLight
-      castShadow
-      color={'white'}
-      intensity={50}
-      position-y={1.2}
-      position-x={props['position-x']}
-      position-z={props['position-z']}
-    /> */
+    <pointLight
+      color={"white"}
+      intensity={5}
+      position-y={1}
+      position-x={props["position-x"]}
+      position-z={props["position-z"]}
+    />
   );
 };
