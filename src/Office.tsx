@@ -41,13 +41,8 @@ export default function Office() {
       />
       {process.env.NODE_ENV === "development" && <Perf position="top-left" />}
 
-      {/* <OrbitControls makeDefault /> */}
-      <e.directionalLight
-        theatreKey="light"
-        castShadow
-        position={[7, 2, 0]}
-        intensity={4.5}
-      />
+      <OrbitControls makeDefault />
+
       <ambientLight intensity={1.5} />
 
       <Physics gravity={[0, -9.81, 0]}>
@@ -56,7 +51,7 @@ export default function Office() {
             new Vector3(MAIN_FLOOR_WIDTH, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH)
           }
         />
-        <Ceiling />
+        <Ceiling width={MAIN_FLOOR_LENGTH} length={MAIN_FLOOR_WIDTH} />
         <BoundingWalls />
         <DevSpace />
         <PMSpace />
@@ -66,7 +61,7 @@ export default function Office() {
         <Lounge />
         <Kitchen />
         <GreenConf />
-        <Player />
+        {/* <Player /> */}
       </Physics>
     </SheetProvider>
   );

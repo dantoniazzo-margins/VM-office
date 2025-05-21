@@ -1,8 +1,8 @@
-import { RigidBody } from '@react-three/rapier';
-import { RECEPTION_DESK_SIZE, RECEPTION_DESK_TOP_SIZE } from '../lib/constants';
-export const ReceptionDesk = (props: JSX.IntrinsicElements['group']) => {
+import { RigidBody } from "@react-three/rapier";
+import { RECEPTION_DESK_SIZE, RECEPTION_DESK_TOP_SIZE } from "../lib/constants";
+export const ReceptionDesk = (props: JSX.IntrinsicElements["group"]) => {
   return (
-    <RigidBody colliders="cuboid" type="fixed" restitution={0} friction={0.7}>
+    <RigidBody colliders="cuboid" type="dynamic" restitution={0} friction={0.7}>
       <group {...props} position={[0, -RECEPTION_DESK_SIZE.y / 2, 0]}>
         <mesh>
           <boxGeometry
