@@ -11,9 +11,16 @@ import { Desk } from "_entities/desk";
 import { Whiteboard } from "_entities/whiteboard";
 import { Sofa } from "_entities/sofa";
 import { CeilingLight } from "_features/light";
+import { Window, WINDOW_WIDTH } from "_entities/window";
+import { Ceiling } from "_widgets/Ceiling";
 
 export const PM_OFFICE_ENTRY_WALL_Z = 15.5;
 export const SPLITTING_WALL_LENGTH = PM_OFFICE_LENGTH * 0.8;
+
+export const INITIAL_PM_WINDOW_Z_POSITION =
+  -PM_OFFICE_LENGTH / 2 + WALL_WIDTH / 2 + WINDOW_WIDTH / 2;
+
+export const numOfWindows: number[] = new Array(10).fill(0);
 
 export const PMSpace = () => {
   return (
@@ -24,6 +31,7 @@ export const PMSpace = () => {
         -MAIN_FLOOR_LENGTH / 2 + PM_OFFICE_LENGTH / 2 + PM_OFFICE_ENTRY_WALL_Z,
       ]}
     >
+      <Ceiling width={PM_OFFICE_LENGTH} length={PM_OFFICE_WIDTH} />
       <CeilingLight position-x={3} />
       <CeilingLight position-x={-5} />
       {/* Floor */}
@@ -63,6 +71,16 @@ export const PMSpace = () => {
           MAIN_FLOOR_HEIGHT / 2
         }
       />
+      {numOfWindows.map((_, i) => {
+        return (
+          <Window
+            position-x={PM_OFFICE_WIDTH / 2 - WALL_WIDTH / 2}
+            position-z={INITIAL_PM_WINDOW_Z_POSITION + i * WINDOW_WIDTH}
+            rotation={[0, Math.PI / 2, 0]}
+          />
+        );
+      })}
+
       <FullDeskGroup
         rotation={[0, Math.PI * 0.5, 0]}
         position={[-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 5, 0, 0]}

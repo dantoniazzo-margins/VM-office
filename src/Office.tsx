@@ -24,6 +24,7 @@ import extension from "@theatre/r3f/dist/extension";
 import { editable as e, SheetProvider } from "@theatre/r3f";
 import { PerspectiveCamera } from "@theatre/r3f";
 import { Ceiling } from "_widgets/Ceiling";
+import { useControls } from "leva";
 
 studio.initialize();
 studio.extend(extension);
@@ -31,6 +32,9 @@ studio.extend(extension);
 const demoSheet = getProject("Demo Project").sheet("Demo Sheet");
 
 export default function Office() {
+  const controls = useControls("view", {
+    bird: false,
+  });
   return (
     <SheetProvider sheet={demoSheet}>
       <PerspectiveCamera
@@ -40,8 +44,7 @@ export default function Office() {
         fov={75}
       />
       {process.env.NODE_ENV === "development" && <Perf position="top-left" />}
-
-      <OrbitControls makeDefault />
+      {controls.bird && <OrbitControls makeDefault />}
 
       <ambientLight intensity={1.5} />
 
@@ -61,7 +64,7 @@ export default function Office() {
         <Lounge />
         <Kitchen />
         <GreenConf />
-        {/* <Player /> */}
+        {!controls.bird && <Player />}
       </Physics>
     </SheetProvider>
   );

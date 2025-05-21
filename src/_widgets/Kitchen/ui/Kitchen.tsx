@@ -1,9 +1,10 @@
-import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from '_entities/floor';
-import { Vector3 } from 'three';
-import { KITCHEN_LENGTH, KITCHEN_WIDTH } from '../lib/constants';
-import { LEFT_WALL_X_POSITION } from '_widgets/BoundingWalls/ui/LeftWall';
-import { Wall, WALL_WIDTH } from '_entities/wall';
-import { CeilingLight } from '_features/light';
+import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from "_entities/floor";
+import { Vector3 } from "three";
+import { KITCHEN_LENGTH, KITCHEN_WIDTH } from "../lib/constants";
+import { LEFT_WALL_X_POSITION } from "_widgets/BoundingWalls/ui/LeftWall";
+import { Wall, WALL_WIDTH } from "_entities/wall";
+import { CeilingLight } from "_features/light";
+import { Ceiling } from "_widgets/Ceiling";
 
 export const KITCHEN_SHORT_WALL_LEGTH = KITCHEN_WIDTH - WALL_WIDTH / 2;
 
@@ -27,6 +28,7 @@ export const Kitchen = () => {
         MAIN_FLOOR_LENGTH / 2 - KITCHEN_LENGTH / 3,
       ]}
     >
+      <Ceiling width={KITCHEN_LENGTH} length={KITCHEN_WIDTH} />
       <CeilingLight position-x={-2} />
       <Floor
         size={new Vector3(KITCHEN_WIDTH, MAIN_FLOOR_HEIGHT, KITCHEN_LENGTH)}
