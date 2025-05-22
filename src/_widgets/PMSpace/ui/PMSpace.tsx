@@ -20,7 +20,7 @@ export const SPLITTING_WALL_LENGTH = PM_OFFICE_LENGTH * 0.8;
 export const INITIAL_PM_WINDOW_Z_POSITION =
   -PM_OFFICE_LENGTH / 2 + WALL_WIDTH / 2 + WINDOW_WIDTH / 2;
 
-export const numOfWindows: number[] = new Array(10).fill(0);
+export const numOfWindows: number[] = new Array(6).fill(0);
 
 export const PMSpace = () => {
   return (
@@ -93,7 +93,7 @@ export const PMSpace = () => {
         position={[
           -PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH * 0.7,
           0,
-          PM_OFFICE_LENGTH / 4,
+          PM_OFFICE_LENGTH / 4.2,
         ]}
         verticalFirst
       >
@@ -101,18 +101,18 @@ export const PMSpace = () => {
       </FullDeskGroup>
       <Desk
         rotation={[0, Math.PI * 0.5, 0]}
-        position={[PM_OFFICE_WIDTH / 2 - 4, 0, -PM_OFFICE_LENGTH / 4]}
+        position={[PM_OFFICE_WIDTH / 2 - 2, 0, -PM_OFFICE_LENGTH / 4]}
       />
       <Whiteboard
         rotation={[0, -Math.PI * 0.15, 0]}
-        position={[PM_OFFICE_WIDTH / 2 - 6, 0, (-PM_OFFICE_LENGTH / 2) * 0.8]}
+        position={[PM_OFFICE_WIDTH / 2 - 3.5, 0, (-PM_OFFICE_LENGTH / 2) * 0.7]}
       />
       <Sofa rotation={[0, Math.PI / 2, 0]} position={[-12, 0, 6]} />
       <Desk
         scale={0.7}
         rotation={[0, Math.PI * 0.5, 0]}
         position={[
-          PM_OFFICE_WIDTH / 2 - PM_OFFICE_WIDTH / 2.1,
+          PM_OFFICE_WIDTH / 2 - PM_OFFICE_WIDTH / 2.5,
           0,
           -PM_OFFICE_LENGTH / 2 + PM_OFFICE_LENGTH / 2.15,
         ]}
