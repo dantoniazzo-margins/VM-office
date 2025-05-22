@@ -1,9 +1,4 @@
-import { forwardRef, useMemo } from "react";
-import {
-  RapierRigidBody,
-  RigidBody,
-  RigidBodyProps,
-} from "@react-three/rapier";
+import { useMemo } from "react";
 import { useGLTF } from "@react-three/drei";
 
 interface CeilingLightProps {
@@ -11,7 +6,7 @@ interface CeilingLightProps {
   "position-z"?: number;
 }
 
-export const CeilingLight = forwardRef((props: CeilingLightProps) => {
+export const CeilingLight = (props: CeilingLightProps) => {
   const ceilingLight = useGLTF("/ceiling_light.glb");
   // Clone the scene to be able to use multiple instances.
   const scene = useMemo(() => ceilingLight.scene.clone(), [ceilingLight]);
@@ -25,4 +20,4 @@ export const CeilingLight = forwardRef((props: CeilingLightProps) => {
       <pointLight position-y={-0.1} color={"white"} intensity={5} />
     </group>
   );
-});
+};

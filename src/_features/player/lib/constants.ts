@@ -1,8 +1,6 @@
-import { Vector3 } from 'three';
-import * as THREE from 'three';
-import { WheelInfo } from '../model/types';
-
-export const INITIAL_POSITION: Vector3 = new Vector3(-4, 0, 24);
+import { Vector3 } from "three";
+import * as THREE from "three";
+import { WheelInfo } from "../model/types";
 
 export const spawn = {
   position: [-4, 2, 18.6] as THREE.Vector3Tuple,
@@ -11,7 +9,7 @@ export const spawn = {
 
 export const CHASSIS_SIZE = [0.16, 0.05, 0.1] as THREE.Vector3Tuple;
 
-const wheelInfo: Omit<WheelInfo, 'position'> = {
+const wheelInfo: Omit<WheelInfo, "position"> = {
   axleCs: new THREE.Vector3(0, 0, -1),
   suspensionRestLength: 0.1,
   suspensionStiffness: 1.3,

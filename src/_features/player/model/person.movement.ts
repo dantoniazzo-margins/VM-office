@@ -1,24 +1,24 @@
-import { useFrame, ObjectMap } from '@react-three/fiber';
-import { ThirdPersonCameraProps } from './third-person.camera';
-import { useAnimations, useKeyboardControls } from '@react-three/drei';
-import * as THREE from 'three';
-import { INITIAL_POSITION } from '../lib/constants';
-import { GLTF } from 'three-stdlib/loaders/GLTFLoader';
+import { useFrame, ObjectMap } from "@react-three/fiber";
+import { ThirdPersonCameraProps } from "./third-person.camera";
+import { useAnimations, useKeyboardControls } from "@react-three/drei";
+import * as THREE from "three";
+import { GLTF } from "three-stdlib/loaders/GLTFLoader";
+import { Keys } from "_features/controls";
 
 export interface PersonMovementProps extends ThirdPersonCameraProps {
   model: GLTF & ObjectMap;
+  keys: () => Keys;
+  initialPosition: THREE.Vector3;
 }
 
 export const usePersonMovement = (props: PersonMovementProps) => {
-  const [_, getKeys] = useKeyboardControls();
   const animations = useAnimations(props.model.animations, props.model.scene);
   const reset = () => {
     if (!props.target) return;
-    props.target.setTranslation(INITIAL_POSITION, true);
+    props.target.setTranslation(props.initialPosition, true);
     props.target.setLinvel({ x: 0, y: 0, z: 0 }, true);
     props.target.setAngvel({ x: 0, y: 0, z: 0 }, true);
   };
-
   const jumpUp = () => {
     if (!props.target) return;
     const translation = props.target.translation();
@@ -29,8 +29,7 @@ export const usePersonMovement = (props: PersonMovementProps) => {
 
   useFrame((state, delta) => {
     if (!props.target) return;
-    const _keys = getKeys();
-    const speed = _keys.shift ? 7 : 4;
+    const speed = props.keys().shift ? 7 : 4;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();
@@ -42,19 +41,24 @@ export const usePersonMovement = (props: PersonMovementProps) => {
 
     // Calculate movement direction
     const moveDir = new THREE.Vector3(0, 0, 0);
-    if (_keys.forward) moveDir.add(cameraForward);
-    if (_keys.back) moveDir.sub(cameraForward);
-    if (_keys.right) moveDir.sub(cameraRight);
-    if (_keys.left) moveDir.add(cameraRight);
-    if (_keys.jump) jumpUp();
-    if (_keys.reset) reset();
+    if (props.keys().forward) moveDir.add(cameraForward);
+    if (props.keys().back) moveDir.sub(cameraForward);
+    if (props.keys().right) moveDir.sub(cameraRight);
+    if (props.keys().left) moveDir.add(cameraRight);
+    if (props.keys().jump) jumpUp();
+    if (props.keys().reset) reset();
 
-    const walk = animations.actions['Walk'];
-    const run = animations.actions['Run'];
-    const idle = animations.actions['Survey'];
+    const walk = animations.actions["Walk"];
+    const run = animations.actions["Run"];
+    const idle = animations.actions["Survey"];
     if (run) run.timeScale = 2; // Adjust run speed
-    if (_keys.forward || _keys.back || _keys.left || _keys.right) {
-      if (_keys.shift) {
+    if (
+      props.keys().forward ||
+      props.keys().back ||
+      props.keys().left ||
+      props.keys().right
+    ) {
+      if (props.keys().shift) {
         idle?.stop();
         walk?.stop();
         run?.play();

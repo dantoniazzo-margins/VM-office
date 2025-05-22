@@ -77,6 +77,7 @@ export const PMSpace = () => {
             position-x={PM_OFFICE_WIDTH / 2 - WALL_WIDTH / 2}
             position-z={INITIAL_PM_WINDOW_Z_POSITION + i * WINDOW_WIDTH}
             rotation={[0, Math.PI / 2, 0]}
+            key={`pm-window-${i}`}
           />
         );
       })}

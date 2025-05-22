@@ -6,8 +6,13 @@ import * as THREE from "three";
 
 export interface ThirdPersonCameraProps {
   target: RapierRigidBody | null;
+  isLocalUser?: boolean;
 }
-export const useThirdPersonCamera = ({ target }: ThirdPersonCameraProps) => {
+export const useThirdPersonCamera = ({
+  target,
+  isLocalUser,
+}: ThirdPersonCameraProps) => {
+  if (!isLocalUser) return null;
   const mouseControls = useMouseControls();
 
   const cameraState = useRef({

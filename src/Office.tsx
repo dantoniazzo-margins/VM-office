@@ -8,7 +8,7 @@ import { MiddleSpace } from "_widgets/MiddleSpace";
 import { DesignSpace } from "_widgets/DesignSpace";
 import { Reception } from "_widgets/Reception";
 import { Lounge } from "_widgets/Lounge";
-import { Player } from "_features/player";
+import { Person, Player } from "_features/player";
 import {
   MAIN_FLOOR_LENGTH,
   MAIN_FLOOR_WIDTH,
@@ -18,32 +18,20 @@ import { Vector3 } from "three";
 import { Kitchen } from "_widgets/Kitchen";
 import { PMSpace } from "_widgets/PMSpace";
 import { GreenConf } from "_widgets/GreenConf";
-import { getProject } from "@theatre/core";
-import studio from "@theatre/studio";
-import extension from "@theatre/r3f/dist/extension";
-import { editable as e, SheetProvider } from "@theatre/r3f";
-import { PerspectiveCamera } from "@theatre/r3f";
 import { Ceiling } from "_widgets/Ceiling";
 import { useControls } from "leva";
-
-studio.initialize();
-studio.extend(extension);
-// our Theatre.js project sheet, we'll use this later
-const demoSheet = getProject("Demo Project").sheet("Demo Sheet");
+import { PerspectiveCamera } from "@react-three/drei";
 
 export default function Office() {
   const controls = useControls("view", {
     bird: false,
   });
   return (
-    <SheetProvider sheet={demoSheet}>
-      <PerspectiveCamera
-        theatreKey="Camera"
-        makeDefault
-        position={[5, 5, -5]}
-        fov={75}
-      />
-      {process.env.NODE_ENV === "development" && <Perf position="top-left" />}
+    <>
+      <PerspectiveCamera makeDefault position={[5, 5, -5]} fov={75} />
+      {process.env.NODE_ENV === "development" && (
+        <Perf position="bottom-left" />
+      )}
       {controls.bird && <OrbitControls makeDefault />}
 
       <ambientLight intensity={1.5} />
@@ -65,7 +53,13 @@ export default function Office() {
         <Kitchen />
         <GreenConf />
         {!controls.bird && <Player />}
+        {/*  <Person
+          keys={() => {
+            return {};
+          }}
+          initialPosition={new Vector3(-4, 0, 17)}
+        /> */}
       </Physics>
-    </SheetProvider>
+    </>
   );
 }

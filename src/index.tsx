@@ -8,30 +8,31 @@ import WalkingTest from "_pages/WalkingTest/WalkingTest";
 import DrivingGame from "_pages/DrivingTest/DrivingTest";
 import { RaceTrack } from "_pages/DrivingTest/Racetrack";
 import * as THREE from "three";
+import {
+  LiveblocksProvider,
+  RoomProvider,
+  ClientSideSuspense,
+} from "@liveblocks/react/suspense";
+import { NumOfPlayers } from "_features/players";
+import { keys } from "_features/controls";
 
 const rootContainer = document.querySelector("#root");
-
+const keyboardControls = Object.values(keys).map((value) => value);
 if (rootContainer) {
   const root = ReactDOM.createRoot(rootContainer);
 
   root.render(
-    <KeyboardControls
-      map={[
-        { name: "forward", keys: ["ArrowUp", "KeyW"] },
-        { name: "back", keys: ["ArrowDown", "KeyS"] },
-        { name: "left", keys: ["ArrowLeft", "KeyA"] },
-        { name: "right", keys: ["ArrowRight", "KeyD"] },
-        { name: "brake", keys: ["Space"] },
-        { name: "jump", keys: ["Space"] },
-        { name: "shift", keys: ["Shift"] },
-        { name: "reset", keys: ["KeyR"] },
-      ]}
-    >
-      <Canvas shadows>
-        <Office />
-      </Canvas>
-    </KeyboardControls>
-    /* <DrivingGame /> */
-    /*  <WalkingTest /> */
+    <LiveblocksProvider publicApiKey="pk_dev_MLbdFOCdYIBnJw1RRR9-j5jYWjMKGcuqTH0KhPK2gZSBepVZKwqGHaKOp-XdcKRK">
+      <RoomProvider id="office">
+        <ClientSideSuspense fallback={<div>Loading…</div>}>
+          <KeyboardControls map={keyboardControls}>
+            <Canvas shadows>
+              <Office />
+            </Canvas>
+            <NumOfPlayers />
+          </KeyboardControls>
+        </ClientSideSuspense>
+      </RoomProvider>
+    </LiveblocksProvider>
   );
 }

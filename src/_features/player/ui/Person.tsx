@@ -2,20 +2,36 @@ import {
   RigidBody,
   RapierRigidBody,
   CapsuleCollider,
-} from '@react-three/rapier';
-import { useRef } from 'react';
-import { useThirdPersonCamera } from '../model/third-person.camera';
-import { usePersonMovement } from '../model/person.movement';
-import { INITIAL_POSITION } from '../lib/constants';
-import { useGLTF } from '@react-three/drei';
+} from "@react-three/rapier";
+import { useMemo, useRef } from "react";
+import { useThirdPersonCamera } from "../model/third-person.camera";
+import { usePersonMovement } from "../model/person.movement";
+import { useGLTF } from "@react-three/drei";
+import { Keys } from "_features/controls";
+import { Vector3 } from "three";
 
 const DAMPING = 3; // Linear damping to prevent sliding
 
-export const Person = () => {
+export interface PersonProps {
+  isLocalUser?: boolean;
+  keys: () => Keys;
+  initialPosition: Vector3;
+}
+
+export const Person = (props: PersonProps) => {
   const body = useRef<RapierRigidBody | null>(null);
-  const fox = useGLTF('/fox.glb');
-  useThirdPersonCamera({ target: body.current });
-  usePersonMovement({ target: body.current, model: fox });
+  const fox = useGLTF("/fox.glb");
+
+  useThirdPersonCamera({
+    target: body.current,
+    isLocalUser: props.isLocalUser,
+  });
+  usePersonMovement({
+    target: body.current,
+    model: fox,
+    keys: props.keys,
+    initialPosition: props.initialPosition,
+  });
 
   return (
     <RigidBody
@@ -23,23 +39,10 @@ export const Person = () => {
       colliders="cuboid"
       linearDamping={DAMPING}
       friction={0.5}
-      scale={0.01}
       rotation={[0, Math.PI, 0]}
-      position={INITIAL_POSITION}
+      position={props.initialPosition}
     >
-      <primitive object={fox.scene} castShadow />
-      <mesh>
-        <capsuleGeometry args={[0.3, 1]} />
-        <meshToonMaterial wireframe color="blue" />
-      </mesh>
-      <mesh position={[0.1, 0.5, 0.3]}>
-        <sphereGeometry args={[0.05]} />
-        <meshToonMaterial color="white" />
-      </mesh>
-      <mesh position={[-0.1, 0.5, 0.3]}>
-        <sphereGeometry args={[0.05]} />
-        <meshToonMaterial color="white" />
-      </mesh>
+      <primitive scale={0.01} object={fox.scene} castShadow />
     </RigidBody>
   );
 };
