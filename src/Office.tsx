@@ -24,7 +24,7 @@ import { PerspectiveCamera } from "@react-three/drei";
 
 export default function Office() {
   const controls = useControls("view", {
-    bird: false,
+    orbitControls: false,
   });
   return (
     <>
