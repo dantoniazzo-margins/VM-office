@@ -32,7 +32,7 @@ export default function Office() {
       {process.env.NODE_ENV === "development" && (
         <Perf position="bottom-left" />
       )}
-      {controls.bird && <OrbitControls makeDefault />}
+      {controls.orbitControls && <OrbitControls makeDefault />}
 
       <ambientLight intensity={1.5} />
 
@@ -52,7 +52,7 @@ export default function Office() {
         <Lounge />
         <Kitchen />
         <GreenConf />
-        {!controls.bird && <Player />}
+        {!controls.orbitControls && <Player />}
         {/*  <Person
           keys={() => {
             return {};
