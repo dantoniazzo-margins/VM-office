@@ -4,6 +4,7 @@ import { CeilingLight, LampLight } from "_features/light";
 import { Window, WINDOW_WIDTH } from "_entities/window";
 import { RIGHT_WALL_X_POSITION } from "_widgets/BoundingWalls";
 import { Ball } from "_entities/ball";
+import { Logo } from "_entities/logo";
 import {
   CustomAnimation,
   CustomAnimationWithPhysics,
@@ -71,6 +72,8 @@ export const DesignSpace = () => {
         url={"/sitting.glb"}
         scale={0.48}
       />
+
+      <Logo position={[0, 0.6, -3.26]} />
       <CeilingLight position-x={1.5} position-z={14} />
     </group>
   );

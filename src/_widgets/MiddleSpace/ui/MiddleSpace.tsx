@@ -1,9 +1,9 @@
-import { Desk, DESK_SIZE } from '_entities/desk';
-import { MAIN_FLOOR_WIDTH } from '_entities/floor';
-import { Wall, WALL_WIDTH } from '_entities/wall';
-import { Whiteboard } from '_entities/whiteboard';
-import { FullDeskGroup } from '_widgets/FullDeskGroup';
-import { CeilingLight } from '_features/light';
+import { Desk, DESK_SIZE } from "_entities/desk";
+import { MAIN_FLOOR_HEIGHT, MAIN_FLOOR_WIDTH } from "_entities/floor";
+import { Wall, WALL_HEIGHT, WALL_WIDTH } from "_entities/wall";
+import { Whiteboard } from "_entities/whiteboard";
+import { FullDeskGroup } from "_widgets/FullDeskGroup";
+import { CeilingLight } from "_features/light";
 
 export const MIDDLE_SPACE_OFFSET = -7;
 
@@ -82,6 +82,15 @@ export const MiddleSpace = () => {
         position-x={MAIN_FLOOR_WIDTH / 3 / 2}
         position-z={DESIGNER_WALL_Z}
       />
+      <mesh
+        receiveShadow
+        position-x={MAIN_FLOOR_WIDTH / 3 / 2}
+        position-y={MAIN_FLOOR_HEIGHT / 2}
+        position-z={DESIGNER_WALL_Z + WALL_WIDTH / 2 + 0.01}
+      >
+        <planeGeometry args={[8, WALL_HEIGHT]} />
+        <meshPhongMaterial color={"#3e3e3e"} />
+      </mesh>
     </group>
   );
 };
