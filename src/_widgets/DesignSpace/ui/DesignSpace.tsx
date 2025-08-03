@@ -88,7 +88,7 @@ export const DesignSpace = () => {
         scale={1}
       />
 
-      <Logo position={[0, 0.6, -3.26]} />
+      <Logo position={[0, 0.7, -3.35]} />
       <CeilingLight position-x={1.5} position-z={14} />
     </group>
   );

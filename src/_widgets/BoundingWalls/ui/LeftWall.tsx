@@ -1,5 +1,6 @@
 import { MAIN_FLOOR_LENGTH, MAIN_FLOOR_WIDTH } from '_entities/floor';
 import { Wall, WALL_WIDTH } from '_entities/wall';
+import { CustomAnimation } from '_features/animation';
 
 export const EXTENSION_LENGTH = MAIN_FLOOR_LENGTH * 0.067;
 export const FIRST_PART_LENGTH = MAIN_FLOOR_LENGTH * 0.05;
@@ -27,12 +28,15 @@ export const LeftWall = () => {
         position-x={LEFT_WALL_X_POSITION}
         position-z={MAIN_FLOOR_LENGTH / 2 - FIRST_PART_LENGTH / 2}
       />
+      {/* Long wall */}
+
       <Wall
         length={SECOND_PART_LENGTH}
         rotate
         position-x={LEFT_WALL_X_POSITION}
         position-z={-MAIN_FLOOR_LENGTH / 2 + SECOND_PART_LENGTH / 2}
       />
+
       <Wall
         length={FIRST_GLASS_LENGTH}
         rotate
