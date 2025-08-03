@@ -9,10 +9,11 @@ import {
   CustomAnimation,
   CustomAnimationWithPhysics,
 } from '_features/animation';
+import { LargePillar } from '_entities/pillar';
 
 export const KITCHEN_SHORT_WALL_LEGTH = KITCHEN_WIDTH - WALL_WIDTH / 2;
 
-export const KITCHEN_FIRST_WALL_Z = KITCHEN_LENGTH / 3.3;
+export const KITCHEN_FIRST_WALL_Z = KITCHEN_LENGTH / 5;
 export const KITCHEN_SECOND_WALL_Z = -KITCHEN_LENGTH / 2;
 
 export const KITCHEN_THIRD_WALL_LENGTH =
@@ -72,9 +73,14 @@ export const Kitchen = () => {
         position-z={-4}
         color="#3b3b3b"
       />
+      <LargePillar
+        rotation={[0, -Math.PI * 0.05, 0]}
+        position={[-0.4, -1, 1.5]}
+        scale={0.2}
+      />
       <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
-        position={[-2.5, -1, 1]}
+        position={[-2.5, -1, 0.3]}
         rotation={[0, Math.PI, 0]}
         url={'/kitchen_table.glb'}
         scale={0.0125}
