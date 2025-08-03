@@ -32,18 +32,6 @@ export const DesignSpace = () => {
       <LampLight position={[5, -0.5, 7.5]} />
       <LampLight position={[5, -0.5, 10.5]} />
       <Ball position={[0, -1, 7]} />
-      <CustomAnimation
-        playedAnimation="idle"
-        position={[0, 0.1, 11]}
-        url={'/person.glb'}
-        scale={1}
-      />
-      <CustomAnimation
-        playedAnimation="Animation"
-        position={[-0.7, -1, 11]}
-        url={'/dog.glb'}
-        scale={0.3}
-      />
       <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
         position={[-0.5, -0.5, 5]}

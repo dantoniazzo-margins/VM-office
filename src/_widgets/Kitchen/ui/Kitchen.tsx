@@ -184,6 +184,28 @@ export const Kitchen = () => {
         url={'/trash_can.glb'}
         scale={0.0023}
       />
+      {/* Recycle bins */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-4, -1, -2.1]}
+        rotation={[0, Math.PI / 1.5, 0]}
+        url={'/recycle_bin_glass.glb'}
+        scale={1.2}
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-4, -1, -2.7]}
+        rotation={[0, Math.PI / 1.5, 0]}
+        url={'/recycle_bin_plastic.glb'}
+        scale={1.2}
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-4, -1, -3.3]}
+        rotation={[0, Math.PI / 1.5, 0]}
+        url={'/recycle_bin_paper.glb'}
+        scale={1.2}
+      />
     </group>
   );
 };
