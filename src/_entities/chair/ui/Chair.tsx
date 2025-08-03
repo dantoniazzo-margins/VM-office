@@ -8,7 +8,7 @@ export const Chair = (props: JSX.IntrinsicElements['group']) => {
   return (
     <RigidBody
       position-y={-1}
-      scale={0.01}
+      scale={1}
       colliders="cuboid"
       restitution={0}
       friction={0.7}

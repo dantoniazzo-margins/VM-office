@@ -1,14 +1,14 @@
-import { Desk } from "_entities/desk";
-import { FullDeskGroup, GAP } from "_widgets/FullDeskGroup";
-import { CeilingLight, LampLight } from "_features/light";
-import { Window, WINDOW_WIDTH } from "_entities/window";
-import { RIGHT_WALL_X_POSITION } from "_widgets/BoundingWalls";
-import { Ball } from "_entities/ball";
-import { Logo } from "_entities/logo";
+import { Desk } from '_entities/desk';
+import { FullDeskGroup, GAP } from '_widgets/FullDeskGroup';
+import { CeilingLight, LampLight } from '_features/light';
+import { Window, WINDOW_WIDTH } from '_entities/window';
+import { RIGHT_WALL_X_POSITION } from '_widgets/BoundingWalls';
+import { Ball } from '_entities/ball';
+import { Logo } from '_entities/logo';
 import {
   CustomAnimation,
   CustomAnimationWithPhysics,
-} from "_features/animation";
+} from '_features/animation';
 
 export const INITIAL_DESIGN_WINDOW_Z_POSITION = -2.7;
 
@@ -35,20 +35,20 @@ export const DesignSpace = () => {
       <CustomAnimation
         playedAnimation="idle"
         position={[0, 0.1, 11]}
-        url={"/person.glb"}
+        url={'/person.glb'}
         scale={1}
       />
       <CustomAnimation
         playedAnimation="Animation"
         position={[-0.7, -1, 11]}
-        url={"/dog.glb"}
+        url={'/dog.glb'}
         scale={0.3}
       />
       <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
         position={[-0.5, 0.6, 5]}
         rotation={[0, -Math.PI * 0.5, 0]}
-        url={"/donald_j_trump.glb"}
+        url={'/donald_j_trump.glb'}
         scale={0.5}
       />
       <CeilingLight position-x={1.5} position-z={5} />
@@ -60,17 +60,44 @@ export const DesignSpace = () => {
       <Desk position={[4 + GAP, 0, 0.13]} />
       <FullDeskGroup position={[1, 0, 5.4]}>{[Desk, Desk]}</FullDeskGroup>
       <Desk position={[4 + GAP, 0, 4.87]} />
-      <CustomAnimation
+      <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
         position={[0, -1, -1.7]}
-        url={"/chair.glb"}
-        scale={0.01}
+        url={'/chair.glb'}
+        scale={1}
       />
-      <CustomAnimation
+      <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
-        position={[0, -1, -1.7]}
-        url={"/sitting.glb"}
-        scale={0.48}
+        position={[2, -1, -1.7]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[4, -1, -1.7]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      <CustomAnimationWithPhysics
+        rotation={[0, Math.PI, 0]}
+        playedAnimation="mixamo.com"
+        position={[0, -1, 1]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      <CustomAnimationWithPhysics
+        rotation={[0, Math.PI, 0]}
+        playedAnimation="mixamo.com"
+        position={[2, -1, 1]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      <CustomAnimationWithPhysics
+        rotation={[0, Math.PI, 0]}
+        playedAnimation="mixamo.com"
+        position={[4, -1, 1]}
+        url={'/chair.glb'}
+        scale={1}
       />
 
       <Logo position={[0, 0.6, -3.26]} />

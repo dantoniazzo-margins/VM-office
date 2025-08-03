@@ -1,5 +1,5 @@
 import { useAnimations, useGLTF } from '@react-three/drei';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { RigidBody } from '@react-three/rapier';
 
 interface CustomAnimationProps {
@@ -12,6 +12,7 @@ interface CustomAnimationProps {
 
 export const CustomAnimationWithPhysics = (props: CustomAnimationProps) => {
   const model = useGLTF(props.url);
+  const scene = useMemo(() => model.scene.clone(), [model]);
   const animations = useAnimations(model.animations, model.scene);
 
   useEffect(() => {
@@ -24,11 +25,11 @@ export const CustomAnimationWithPhysics = (props: CustomAnimationProps) => {
       position={props.position}
       rotation={props.rotation}
       scale={props.scale}
-      colliders="cuboid"
+      colliders="hull"
       restitution={0}
       friction={0.7}
     >
-      <primitive object={model.scene}></primitive>
+      <primitive object={scene}></primitive>
     </RigidBody>
   );
 };
