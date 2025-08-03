@@ -1,12 +1,12 @@
-import { Desk } from "_entities/desk";
-import { MAIN_FLOOR_LENGTH, MAIN_FLOOR_WIDTH } from "_entities/floor";
-import { Pillar } from "_entities/pillar";
-import { Wall, WALL_WIDTH } from "_entities/wall";
-import { FullDeskGroup } from "_widgets/FullDeskGroup";
-import { PM_OFFICE_ENTRY_WALL_Z } from "_widgets/PMSpace";
-import { CeilingLight } from "_features/light";
-import { Window, WINDOW_WIDTH } from "_entities/window";
-import { RIGHT_WALL_X_POSITION } from "_widgets/BoundingWalls";
+import { Desk } from '_entities/desk';
+import { MAIN_FLOOR_LENGTH, MAIN_FLOOR_WIDTH } from '_entities/floor';
+import { Pillar } from '_entities/pillar';
+import { Wall, WALL_WIDTH } from '_entities/wall';
+import { FullDeskGroup } from '_widgets/FullDeskGroup';
+import { PM_OFFICE_ENTRY_WALL_Z } from '_widgets/PMSpace';
+import { CeilingLight } from '_features/light';
+import { Window, WINDOW_WIDTH } from '_entities/window';
+import { RIGHT_WALL_X_POSITION } from '_widgets/BoundingWalls';
 
 export const INITIAL_DEV_WINDOW_Z_POSITION = 0.92;
 
@@ -35,12 +35,12 @@ export const DevSpace = () => {
       <CeilingLight position-z={5} />
       <Pillar position-x={4.75} position-z={2} />
       {/* Top left */}
-      <FullDeskGroup position={[-3, 0, 4.5]}>
+      <FullDeskGroup rotation={[0, Math.PI / 2, 0]} position={[-3, 0, 4.5]}>
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
 
       {/* Bottom left */}
-      <FullDeskGroup position={[-3, 0, 9.5]}>
+      <FullDeskGroup rotation={[0, Math.PI / 2, 0]} position={[-3, 0, 9.5]}>
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
       {/* Bottom right */}
@@ -48,7 +48,9 @@ export const DevSpace = () => {
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
       {/* Top right */}
-      <FullDeskGroup position={[3.5, 0, 4.5]}>{[Desk, Desk]}</FullDeskGroup>
+      <FullDeskGroup rotation={[0, Math.PI / 2, 0]} position={[3.5, 0, 4.5]}>
+        {[Desk, Desk]}
+      </FullDeskGroup>
       {/* Left wall */}
       <Wall length={4} position-x={3.75} position-z={PM_OFFICE_ENTRY_WALL_Z} />
     </group>
