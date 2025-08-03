@@ -1,10 +1,14 @@
-import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from "_entities/floor";
-import { Vector3 } from "three";
-import { KITCHEN_LENGTH, KITCHEN_WIDTH } from "../lib/constants";
-import { LEFT_WALL_X_POSITION } from "_widgets/BoundingWalls/ui/LeftWall";
-import { Wall, WALL_WIDTH } from "_entities/wall";
-import { CeilingLight } from "_features/light";
-import { Ceiling } from "_widgets/Ceiling";
+import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from '_entities/floor';
+import { Vector3 } from 'three';
+import { KITCHEN_LENGTH, KITCHEN_WIDTH } from '../lib/constants';
+import { LEFT_WALL_X_POSITION } from '_widgets/BoundingWalls/ui/LeftWall';
+import { Wall, WALL_WIDTH } from '_entities/wall';
+import { CeilingLight } from '_features/light';
+import { Ceiling } from '_widgets/Ceiling';
+import {
+  CustomAnimation,
+  CustomAnimationWithPhysics,
+} from '_features/animation';
 
 export const KITCHEN_SHORT_WALL_LEGTH = KITCHEN_WIDTH - WALL_WIDTH / 2;
 
@@ -67,6 +71,27 @@ export const Kitchen = () => {
         }
         position-z={-4}
         color="#3b3b3b"
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-2.5, -1, 1]}
+        rotation={[0, Math.PI, 0]}
+        url={'/kitchen_table.glb'}
+        scale={0.0125}
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[1.5, -1, -2.5]}
+        rotation={[0, Math.PI / 2.1, 0]}
+        url={'/kitchen_table.glb'}
+        scale={0.0125}
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[3.5, -1, -2.4]}
+        rotation={[0, Math.PI / 2.1, 0]}
+        url={'/kitchen_table.glb'}
+        scale={0.0125}
       />
     </group>
   );

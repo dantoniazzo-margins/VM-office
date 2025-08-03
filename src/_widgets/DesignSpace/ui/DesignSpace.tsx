@@ -31,7 +31,7 @@ export const DesignSpace = () => {
       <LampLight position={[5, -0.5, 3]} />
       <LampLight position={[5, -0.5, 7.5]} />
       <LampLight position={[5, -0.5, 10.5]} />
-      <Ball position={[0, 0, 7]} />
+      <Ball position={[0, -1, 7]} />
       <CustomAnimation
         playedAnimation="idle"
         position={[0, 0.1, 11]}
@@ -46,7 +46,7 @@ export const DesignSpace = () => {
       />
       <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
-        position={[-0.5, 0.6, 5]}
+        position={[-0.5, -0.5, 5]}
         rotation={[0, -Math.PI * 0.5, 0]}
         url={'/donald_j_trump.glb'}
         scale={0.5}
