@@ -16,10 +16,17 @@ if (rootContainer) {
   const root = ReactDOM.createRoot(rootContainer);
 
   root.render(
-    <KeyboardControls map={keyboardControls}>
-      <Canvas shadows>
-        <Office />
-      </Canvas>
-    </KeyboardControls>
+    <>
+      {' '}
+      <KeyboardControls map={keyboardControls}>
+        <Canvas shadows>
+          <Office />
+        </Canvas>
+      </KeyboardControls>{' '}
+      <div className="absolute bottom-0 right-0 p-4 text-white z-10">
+        Click anywhere to pointer lock, right click to look around, WASD to
+        move, Shift to run
+      </div>
+    </>
   );
 }
