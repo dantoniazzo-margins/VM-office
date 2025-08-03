@@ -5,13 +5,14 @@ import { RigidBody } from '@react-three/rapier';
 interface CustomAnimationProps {
   position?: [number, number, number];
   rotation?: [number, number, number];
-  scale?: number;
+  scale?: number | [number, number, number];
   url: string;
   playedAnimation?: string;
 }
 
 export const CustomAnimation = (props: CustomAnimationProps) => {
   const model = useGLTF(props.url);
+  const scene = useMemo(() => model.scene.clone(), [model]);
   const animations = useAnimations(model.animations, model.scene);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export const CustomAnimation = (props: CustomAnimationProps) => {
       position={props.position}
       rotation={props.rotation}
       scale={props.scale}
-      object={model.scene}
+      object={scene}
     ></primitive>
   );
 };

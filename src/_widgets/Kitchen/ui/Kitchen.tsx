@@ -14,7 +14,7 @@ import { LargePillar } from '_entities/pillar';
 export const KITCHEN_SHORT_WALL_LEGTH = KITCHEN_WIDTH - WALL_WIDTH / 2;
 
 export const KITCHEN_FIRST_WALL_Z = KITCHEN_LENGTH / 5;
-export const KITCHEN_SECOND_WALL_Z = -KITCHEN_LENGTH / 2;
+export const KITCHEN_SECOND_WALL_Z = -KITCHEN_LENGTH / 2.7;
 
 export const KITCHEN_THIRD_WALL_LENGTH =
   KITCHEN_FIRST_WALL_Z - KITCHEN_SECOND_WALL_Z - WALL_WIDTH;
@@ -78,6 +78,7 @@ export const Kitchen = () => {
         position={[-0.4, -1, 1.5]}
         scale={0.2}
       />
+      {/* Far table */}
       <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
         position={[-2.5, -1, 0.3]}
@@ -85,6 +86,7 @@ export const Kitchen = () => {
         url={'/kitchen_table.glb'}
         scale={0.0125}
       />
+      {/* Left table */}
       <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
         position={[1.5, -1, -2.5]}
@@ -92,12 +94,86 @@ export const Kitchen = () => {
         url={'/kitchen_table.glb'}
         scale={0.0125}
       />
+      {/* Right table */}
       <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
         position={[3.5, -1, -2.4]}
         rotation={[0, Math.PI / 2.1, 0]}
         url={'/kitchen_table.glb'}
         scale={0.0125}
+      />
+      {/* Kitchen sink */}
+      <CustomAnimationWithPhysics
+        type="fixed"
+        playedAnimation="mixamo.com"
+        position={[1, -1, -5.35]}
+        rotation={[0, 0, 0]}
+        url={'/kitchen_sink.glb'}
+        scale={[1, 1, 1.3]}
+      />
+      {/* Kitchen cupboards */}
+      {/* Top */}
+      <CustomAnimation
+        playedAnimation="mixamo.com"
+        position={[1.2, 0.91, -5.97]}
+        rotation={[0, -Math.PI / 2, 0]}
+        url={'/kitchen_cupboards.glb'}
+        scale={[1.22, 0.9, 1]}
+      />
+      <CustomAnimation
+        playedAnimation="mixamo.com"
+        position={[1.2, 0.91, -4.75]}
+        rotation={[0, -Math.PI / 2, 0]}
+        url={'/kitchen_cupboards.glb'}
+        scale={[1.22, 0.9, 1]}
+      />
+      {/* Bottom */}
+      <CustomAnimation
+        playedAnimation="mixamo.com"
+        position={[1.2, 0.42, -5.97]}
+        rotation={[0, -Math.PI / 2, 0]}
+        url={'/kitchen_cupboards.glb'}
+        scale={[1.22, 0.9, 1]}
+      />
+      <CustomAnimation
+        playedAnimation="mixamo.com"
+        position={[1.2, 0.42, -4.75]}
+        rotation={[0, -Math.PI / 2, 0]}
+        url={'/kitchen_cupboards.glb'}
+        scale={[1.22, 0.9, 1]}
+      />
+      {/* Fridge */}
+      <CustomAnimationWithPhysics
+        type="fixed"
+        playedAnimation="mixamo.com"
+        position={[1, -0.37, -6.93]}
+        rotation={[Math.PI, Math.PI, 0]}
+        url={'/fridge.glb'}
+        scale={[0.2, 0.15, 0.19]}
+      />
+      <CustomAnimationWithPhysics
+        type="fixed"
+        playedAnimation="mixamo.com"
+        position={[1, 0.83, -6.93]}
+        rotation={[Math.PI, Math.PI, 0]}
+        url={'/fridge.glb'}
+        scale={[0.2, 0.136, 0.19]}
+      />
+      {/* Kitchen coffee area */}
+      <mesh position={[-4.2, -0.25, -5.7]} receiveShadow>
+        <boxGeometry args={[1.5, 0.1, 3.2]} />
+        <meshPhongMaterial color={'#3b3b3b'} />
+      </mesh>
+      <mesh position={[-4.35, 0.5, -6.4]} receiveShadow>
+        <boxGeometry args={[1.2, 0.075, 1.6]} />
+        <meshPhongMaterial color={'#3b3b3b'} />
+      </mesh>
+      <CustomAnimation
+        playedAnimation="mixamo.com"
+        position={[-4, -0.2, -4.8]}
+        rotation={[0, Math.PI / 2, 0]}
+        url={'/coffee_machine.glb'}
+        scale={3}
       />
     </group>
   );

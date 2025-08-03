@@ -1,13 +1,14 @@
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { useEffect, useMemo } from 'react';
-import { RigidBody } from '@react-three/rapier';
+import { RigidBody, RigidBodyTypeString } from '@react-three/rapier';
 
 interface CustomAnimationProps {
   position?: [number, number, number];
   rotation?: [number, number, number];
-  scale?: number;
+  scale?: number | [number, number, number];
   url: string;
   playedAnimation?: string;
+  type?: RigidBodyTypeString;
 }
 
 export const CustomAnimationWithPhysics = (props: CustomAnimationProps) => {
@@ -22,6 +23,7 @@ export const CustomAnimationWithPhysics = (props: CustomAnimationProps) => {
 
   return (
     <RigidBody
+      type={props.type || 'dynamic'}
       position={props.position}
       rotation={props.rotation}
       scale={props.scale}

@@ -1,4 +1,9 @@
-import { OrbitControls, PerspectiveCamera, Text } from '@react-three/drei';
+import {
+  OrbitControls,
+  PerspectiveCamera,
+  Text,
+  Float,
+} from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import { Physics } from '@react-three/rapier';
 import { Floor } from '_entities/floor';
@@ -57,27 +62,31 @@ export default function Office() {
         <Kitchen />
         <GreenConf />
         {!controls.orbitControls && <Player />}
-        <Text
-          fontSize={0.1}
-          position={new Vector3(-4, -0.5, 26)}
-          rotation-y={0}
-        >
-          Click anywhere to pointer lock,
-        </Text>
-        <Text
-          fontSize={0.1}
-          position={new Vector3(-4, -0.63, 26)}
-          rotation-y={0}
-        >
-          right click to look around,
-        </Text>
-        <Text
-          fontSize={0.1}
-          position={new Vector3(-4, -0.76, 26)}
-          rotation-y={0}
-        >
-          WASD to move, Shift to run
-        </Text>
+        <Float position={new Vector3(-4, -0.5, 26)} rotation-x={-0.5}>
+          {' '}
+          <Text
+            font="./bangers-v20-latin-regular.woff"
+            fontSize={0.1}
+            rotation-y={0}
+          >
+            Click anywhere to pointer lock,
+          </Text>
+          <Text
+            font="./bangers-v20-latin-regular.woff"
+            fontSize={0.1}
+            position={new Vector3(0, -0.13, 0)}
+            rotation-y={0}
+          >
+            right click to look around,
+          </Text>
+          <Text
+            font="./bangers-v20-latin-regular.woff"
+            fontSize={0.1}
+            position={new Vector3(0, -0.26, 0)}
+          >
+            WASD to move, Shift to run
+          </Text>
+        </Float>
       </Physics>
     </>
   );
