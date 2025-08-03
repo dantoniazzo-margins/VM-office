@@ -168,12 +168,21 @@ export const Kitchen = () => {
         <boxGeometry args={[1.2, 0.075, 1.6]} />
         <meshPhongMaterial color={'#3b3b3b'} />
       </mesh>
+      {/* Coffee machine */}
       <CustomAnimation
         playedAnimation="mixamo.com"
         position={[-4, -0.2, -4.8]}
         rotation={[0, Math.PI / 2, 0]}
         url={'/coffee_machine.glb'}
         scale={3}
+      />
+      {/* Trash can */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-3, -1, -6.9]}
+        rotation={[0, 0, 0]}
+        url={'/trash_can.glb'}
+        scale={0.0023}
       />
     </group>
   );
