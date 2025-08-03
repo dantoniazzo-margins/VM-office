@@ -60,7 +60,7 @@ export const DesignSpace = () => {
       <Desk position={[4 + GAP, 0, 0.13]} />
       <FullDeskGroup position={[1, 0, 5.4]}>{[Desk, Desk]}</FullDeskGroup>
       <Desk position={[4 + GAP, 0, 4.87]} />
-      {/*      <CustomAnimationWithPhysics
+      <CustomAnimationWithPhysics
         playedAnimation="mixamo.com"
         position={[0, -1, -1.7]}
         url={'/chair.glb'}
@@ -98,7 +98,7 @@ export const DesignSpace = () => {
         position={[4, -1, 1]}
         url={'/chair.glb'}
         scale={1}
-      /> */}
+      />
 
       <Logo position={[0, 0.6, -3.26]} />
       <CeilingLight position-x={1.5} position-z={14} />

@@ -1,18 +1,19 @@
-import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from "_entities/floor";
-import { Vector3 } from "three";
-import { PM_OFFICE_LENGTH, PM_OFFICE_WIDTH } from "../lib/constants";
+import { Floor, MAIN_FLOOR_HEIGHT, MAIN_FLOOR_LENGTH } from '_entities/floor';
+import { Vector3 } from 'three';
+import { PM_OFFICE_LENGTH, PM_OFFICE_WIDTH } from '../lib/constants';
 import {
   RIGHT_WALL_HEIGHT,
   RIGHT_WALL_X_POSITION,
-} from "_widgets/BoundingWalls/ui/RightWall";
-import { Wall, WALL_HEIGHT, WALL_WIDTH } from "_entities/wall";
-import { FullDeskGroup } from "_widgets/FullDeskGroup";
-import { Desk } from "_entities/desk";
-import { Whiteboard } from "_entities/whiteboard";
-import { Sofa } from "_entities/sofa";
-import { CeilingLight } from "_features/light";
-import { Window, WINDOW_WIDTH } from "_entities/window";
-import { Ceiling } from "_widgets/Ceiling";
+} from '_widgets/BoundingWalls/ui/RightWall';
+import { Wall, WALL_HEIGHT, WALL_WIDTH } from '_entities/wall';
+import { FullDeskGroup } from '_widgets/FullDeskGroup';
+import { Desk } from '_entities/desk';
+import { Whiteboard } from '_entities/whiteboard';
+import { Sofa } from '_entities/sofa';
+import { CeilingLight } from '_features/light';
+import { Window, WINDOW_WIDTH } from '_entities/window';
+import { Ceiling } from '_widgets/Ceiling';
+import { CustomAnimationWithPhysics } from '_features/animation';
 
 export const PM_OFFICE_ENTRY_WALL_Z = 15.5;
 export const SPLITTING_WALL_LENGTH = PM_OFFICE_LENGTH * 0.8;
@@ -81,13 +82,58 @@ export const PMSpace = () => {
           />
         );
       })}
-
+      {/* Bottom right */}
       <FullDeskGroup
         rotation={[0, Math.PI * 0.5, 0]}
         position={[-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 5, 0, 0]}
       >
         {[Desk, Desk, Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
+      {/* Top right */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 5 + 1.6, 0, 3]}
+        rotation={[0, -Math.PI / 2, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Top middle */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 5 + 1.6, 0, 1]}
+        rotation={[0, -Math.PI / 2, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Top left */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 5 + 1.6, 0, -1]}
+        rotation={[0, -Math.PI / 2, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 5 - 1.6, 0, 3]}
+        rotation={[0, Math.PI / 2, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 5 - 1.6, 0, 1]}
+        rotation={[0, Math.PI / 2, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH / 5 - 1.6, 0, -1]}
+        rotation={[0, Math.PI / 2, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
       <FullDeskGroup
         rotation={[0, Math.PI * 0.5, 0]}
         position={[
@@ -99,15 +145,51 @@ export const PMSpace = () => {
       >
         {[Desk, Desk]}
       </FullDeskGroup>
+      {/* Top */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[
+          -PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH * 0.7 + 1.6,
+          0,
+          PM_OFFICE_LENGTH / 4.2 + 1,
+        ]}
+        rotation={[0, -Math.PI / 2, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Bottom */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[
+          -PM_OFFICE_WIDTH / 2 + PM_OFFICE_WIDTH * 0.7 - 1.6,
+          0,
+          PM_OFFICE_LENGTH / 4.2 + 1,
+        ]}
+        rotation={[0, Math.PI / 2, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Top left */}
       <Desk
         rotation={[0, Math.PI * 0.5, 0]}
-        position={[PM_OFFICE_WIDTH / 2 - 2, 0, -PM_OFFICE_LENGTH / 4]}
+        position={[PM_OFFICE_WIDTH / 2 - 2.5, 0, -PM_OFFICE_LENGTH / 4]}
+      />
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[PM_OFFICE_WIDTH / 2 - 2 + 0.5, -1, -PM_OFFICE_LENGTH / 4]}
+        rotation={[0, -Math.PI / 2, 0]}
+        url={'/chair.glb'}
+        scale={1}
       />
       <Whiteboard
         rotation={[0, -Math.PI * 0.15, 0]}
-        position={[PM_OFFICE_WIDTH / 2 - 3.5, 0, (-PM_OFFICE_LENGTH / 2) * 0.7]}
+        position={[PM_OFFICE_WIDTH / 2 - 4.5, 0, (-PM_OFFICE_LENGTH / 2) * 0.7]}
       />
-      <Sofa rotation={[0, Math.PI / 2, 0]} position={[-12, 0, 6]} />
+      <Sofa
+        rotation={[0, Math.PI / 2, 0]}
+        position={[PM_OFFICE_WIDTH / 2 - 17.5, 0, 6]}
+      />
+      {/* Top right */}
       <Desk
         scale={0.7}
         rotation={[0, Math.PI * 0.5, 0]}

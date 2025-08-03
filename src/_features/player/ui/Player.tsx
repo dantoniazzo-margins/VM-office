@@ -16,7 +16,7 @@ export const Player = () => {
     <Person
       keys={getKeys}
       isLocalUser
-      initialPosition={new Vector3(-4, 0, 24)}
+      initialPosition={new Vector3(-4, -1, 24)}
     />
   );
 };

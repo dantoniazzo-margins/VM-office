@@ -7,6 +7,7 @@ import { PM_OFFICE_ENTRY_WALL_Z } from '_widgets/PMSpace';
 import { CeilingLight } from '_features/light';
 import { Window, WINDOW_WIDTH } from '_entities/window';
 import { RIGHT_WALL_X_POSITION } from '_widgets/BoundingWalls';
+import { CustomAnimationWithPhysics } from '_features/animation';
 
 export const INITIAL_DEV_WINDOW_Z_POSITION = 0.92;
 
@@ -38,19 +39,131 @@ export const DevSpace = () => {
       <FullDeskGroup rotation={[0, Math.PI / 2, 0]} position={[-3, 0, 4.5]}>
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
+      {/* Top left */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-5, -1, 2.5]}
+        rotation={[0, Math.PI * 0.34, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Bottom Left */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-5, -1, 5.5]}
+        rotation={[0, Math.PI * 0.76, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Bottom right */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-1.3, -1, 5.5]}
+        rotation={[0, -Math.PI * 0.4, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Top right */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-1, -1, 3.5]}
+        rotation={[0, Math.PI * 0.1, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
 
       {/* Bottom left */}
       <FullDeskGroup rotation={[0, Math.PI / 2, 0]} position={[-3, 0, 9.5]}>
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
+      {/* Top left */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-4.5, -1, 8]}
+        rotation={[0, Math.PI * 0.45, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Bottom left */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-4.7, -1, 10]}
+        rotation={[0, Math.PI * 0.1, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Bottom right */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-1.6, -1, 10.5]}
+        rotation={[0, -Math.PI * 0.5, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Top right */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[-1.6, -1, 8.5]}
+        rotation={[0, -Math.PI * 0.5, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
       {/* Bottom right */}
       <FullDeskGroup position={[3, 0, 12.5]}>
         {[Desk, Desk, Desk, Desk]}
       </FullDeskGroup>
+      {/* Top left */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[4, -1, 11]}
+        rotation={[0, Math.PI / 0.5, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Top right */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[2, -1, 11]}
+        rotation={[0, Math.PI / 0.5, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Bottom left */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[4, -1, 14]}
+        rotation={[0, Math.PI, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Bottom right */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[2, -1, 14]}
+        rotation={[0, Math.PI, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
       {/* Top right */}
       <FullDeskGroup rotation={[0, Math.PI / 2, 0]} position={[3.5, 0, 4.5]}>
         {[Desk, Desk]}
       </FullDeskGroup>
+      {/* Top right */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[4, -1, 3.5]}
+        rotation={[0, -Math.PI / 4, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
+      {/* Bottom right */}
+      <CustomAnimationWithPhysics
+        playedAnimation="mixamo.com"
+        position={[4, -1, 5.5]}
+        rotation={[0, -Math.PI / 1.89, 0]}
+        url={'/chair.glb'}
+        scale={1}
+      />
       {/* Left wall */}
       <Wall length={4} position-x={3.75} position-z={PM_OFFICE_ENTRY_WALL_Z} />
     </group>

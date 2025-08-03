@@ -1,4 +1,5 @@
 import { DESK_SIZE } from '_entities/desk';
+import { CustomAnimationWithPhysics } from '_features/animation';
 import { omit } from 'lodash';
 
 interface CustomProps {
