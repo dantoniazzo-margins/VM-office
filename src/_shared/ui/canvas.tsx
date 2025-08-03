@@ -8,7 +8,7 @@ export const Canvas = ({
   ...rest
 }: Parameters<typeof R3FCanvas>[0]) => (
   <Suspense fallback={<Spinner />}>
-    <R3FCanvas id="gl" {...rest}>
+    <R3FCanvas onLoad={() => console.log('Canvas loaded')} id="gl" {...rest}>
       {children}
     </R3FCanvas>
 

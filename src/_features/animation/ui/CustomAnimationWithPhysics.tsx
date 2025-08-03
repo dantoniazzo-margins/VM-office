@@ -1,6 +1,6 @@
-import { useAnimations, useGLTF } from "@react-three/drei";
-import { useEffect } from "react";
-import { RigidBody } from "@react-three/rapier";
+import { useAnimations, useGLTF } from '@react-three/drei';
+import { useEffect } from 'react';
+import { RigidBody } from '@react-three/rapier';
 
 interface CustomAnimationProps {
   position?: [number, number, number];
@@ -15,8 +15,7 @@ export const CustomAnimationWithPhysics = (props: CustomAnimationProps) => {
   const animations = useAnimations(model.animations, model.scene);
 
   useEffect(() => {
-    console.log("Animation actions:", animations.actions);
-    const action = animations.actions[props.playedAnimation || "Idle"];
+    const action = animations.actions[props.playedAnimation || 'Idle'];
     action?.play();
   }, []);
 

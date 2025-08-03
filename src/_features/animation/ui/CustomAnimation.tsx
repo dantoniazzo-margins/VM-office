@@ -1,6 +1,6 @@
-import { useAnimations, useGLTF } from "@react-three/drei";
-import { act, useEffect, useMemo } from "react";
-import { RigidBody } from "@react-three/rapier";
+import { useAnimations, useGLTF } from '@react-three/drei';
+import { act, useEffect, useMemo } from 'react';
+import { RigidBody } from '@react-three/rapier';
 
 interface CustomAnimationProps {
   position?: [number, number, number];
@@ -12,12 +12,10 @@ interface CustomAnimationProps {
 
 export const CustomAnimation = (props: CustomAnimationProps) => {
   const model = useGLTF(props.url);
-  console.log("Model loaded:", model);
   const animations = useAnimations(model.animations, model.scene);
 
   useEffect(() => {
-    console.log("Animation actions:", animations.actions);
-    const action = animations.actions[props.playedAnimation || "Idle"];
+    const action = animations.actions[props.playedAnimation || 'Idle'];
     action?.play();
   }, []);
 

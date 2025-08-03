@@ -54,7 +54,6 @@ export const useThirdPersonCamera = ({
   }, []);
 
   useFrame((state, delta) => {
-    console.log('Target:', target);
     if (!target) return;
 
     const {
