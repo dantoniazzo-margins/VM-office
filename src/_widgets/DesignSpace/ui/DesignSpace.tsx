@@ -32,13 +32,7 @@ export const DesignSpace = () => {
       <LampLight position={[5, -0.5, 7.5]} />
       <LampLight position={[5, -0.5, 10.5]} />
       <Ball position={[0, -1, 7]} />
-      <CustomAnimationWithPhysics
-        playedAnimation="mixamo.com"
-        position={[-0.5, -0.5, 5]}
-        rotation={[0, -Math.PI * 0.5, 0]}
-        url={'/donald_j_trump.glb'}
-        scale={0.5}
-      />
+
       <CeilingLight position-x={1.5} position-z={5} />
       <CeilingLight position-x={-3.7} position-z={5} />
       <FullDeskGroup position={[1, 0, -0.4]}>
