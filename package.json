@@ -16,8 +16,6 @@
     "vite-plugin-restart": "^0.4.1"
   },
   "dependencies": {
-    "@liveblocks/client": "^2.24.2",
-    "@liveblocks/react": "^2.24.2",
     "@react-three/drei": "^9.108.1",
     "@react-three/fiber": "^8.16.8",
     "@react-three/rapier": "^1.4.0",

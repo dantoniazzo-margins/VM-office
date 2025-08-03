@@ -1,8 +1,8 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { RapierRigidBody } from "@react-three/rapier";
-import { useMouseControls } from "_features/mouse";
-import { useEffect, useRef } from "react";
-import * as THREE from "three";
+import { useFrame } from '@react-three/fiber';
+import { RapierRigidBody } from '@react-three/rapier';
+import { useMouseControls } from '_features/mouse';
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
 
 export interface ThirdPersonCameraProps {
   target: RapierRigidBody | null;
@@ -36,24 +36,25 @@ export const useThirdPersonCamera = ({
 
   useEffect(() => {
     // Lock pointer on click
-    const canvas = document.querySelector("canvas");
+    const canvas = document.querySelector('canvas');
     const handlePointerLockChange = () => {
       canvas?.requestPointerLock();
     };
 
     if (canvas) {
       canvas.requestPointerLock();
-      canvas.addEventListener("click", handlePointerLockChange);
+      canvas.addEventListener('click', handlePointerLockChange);
     }
 
     return () => {
       if (canvas) {
-        canvas.removeEventListener("click", handlePointerLockChange);
+        canvas.removeEventListener('click', handlePointerLockChange);
       }
     };
   }, []);
 
   useFrame((state, delta) => {
+    console.log('Target:', target);
     if (!target) return;
 
     const {
@@ -63,7 +64,6 @@ export const useThirdPersonCamera = ({
       maxVerticalAngle,
       minVerticalAngle,
     } = cameraState.current;
-
     // Check if mouse is currently moving
     const currentTime = performance.now();
     const isMoving =

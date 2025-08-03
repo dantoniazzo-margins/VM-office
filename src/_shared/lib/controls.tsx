@@ -43,6 +43,7 @@ export const Controls = ({ expanded = false }: ControlsProps) => {
 
   return (
     <Leva
+      hidden={process.env.NODE_ENV !== 'development'}
       collapsed={!expanded}
       theme={
         isSmallScreen
