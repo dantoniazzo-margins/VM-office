@@ -29,7 +29,7 @@ export const usePersonMovement = (props: PersonMovementProps) => {
 
   useFrame((state, delta) => {
     if (!props.target) return;
-    const speed = props.keys().shift ? 2 : 0.7;
+    const speed = props.keys().shift ? 1.5 : 0.75;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();
