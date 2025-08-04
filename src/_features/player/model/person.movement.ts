@@ -1,9 +1,9 @@
-import { useFrame, ObjectMap } from "@react-three/fiber";
-import { ThirdPersonCameraProps } from "./third-person.camera";
-import { useAnimations, useKeyboardControls } from "@react-three/drei";
-import * as THREE from "three";
-import { GLTF } from "three-stdlib/loaders/GLTFLoader";
-import { Keys } from "_features/controls";
+import { useFrame, ObjectMap } from '@react-three/fiber';
+import { ThirdPersonCameraProps } from './third-person.camera';
+import { useAnimations, useKeyboardControls } from '@react-three/drei';
+import * as THREE from 'three';
+import { GLTF } from 'three-stdlib/loaders/GLTFLoader';
+import { Keys } from '_features/controls';
 
 export interface PersonMovementProps extends ThirdPersonCameraProps {
   model: GLTF & ObjectMap;
@@ -29,7 +29,7 @@ export const usePersonMovement = (props: PersonMovementProps) => {
 
   useFrame((state, delta) => {
     if (!props.target) return;
-    const speed = props.keys().shift ? 7 : 4;
+    const speed = props.keys().shift ? 2 : 0.7;
 
     // Get camera's forward and right directions
     const cameraForward = new THREE.Vector3();
@@ -48,9 +48,9 @@ export const usePersonMovement = (props: PersonMovementProps) => {
     if (props.keys().jump) jumpUp();
     if (props.keys().reset) reset();
 
-    const walk = animations.actions["Walk"];
-    const run = animations.actions["Run"];
-    const idle = animations.actions["Survey"];
+    const walk = animations.actions['Walk'];
+    const run = animations.actions['Run'];
+    const idle = animations.actions['Survey'];
     if (run) run.timeScale = 2; // Adjust run speed
     if (
       props.keys().forward ||
